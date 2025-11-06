@@ -1,0 +1,59 @@
+python run.py \
+    --split_dir ./data_split \
+    --model U-Net \
+    --batch_size 64 \
+    --epochs 100 \
+    --lr 1e-3 \
+    --noise_type emb \
+    --snr_db -4 \
+    --gpu_id 6 \
+    --checkpoint_dir ./checkpoints \
+    --mode train \
+
+python run.py \
+    --split_dir ./data_split \
+    --model U-Net \
+    --batch_size 64 \
+    --epochs 100 \
+    --lr 1e-3 \
+    --noise_type emb \
+    --snr_db -2 \
+    --gpu_id 6 \
+    --checkpoint_dir ./checkpoints \
+    --mode train \
+
+python run.py \
+    --split_dir ./data_split \
+    --model U-Net \
+    --batch_size 64 \
+    --epochs 100 \
+    --lr 1e-3 \
+    --noise_type emb \
+    --snr_db 0 \
+    --gpu_id 6 \
+    --checkpoint_dir ./checkpoints \
+    --mode train \
+
+python run.py \
+    --split_dir ./data_split \
+    --model U-Net \
+    --batch_size 64 \
+    --epochs 100 \
+    --lr 1e-3 \
+    --noise_type emb \
+    --snr_db 2 \
+    --gpu_id 6 \
+    --checkpoint_dir ./checkpoints \
+    --mode train \
+
+python run.py \
+    --split_dir ./data_split \
+    --model U-Net \
+    --batch_size 64 \
+    --epochs 100 \
+    --lr 1e-3 \
+    --noise_type emb \
+    --snr_db 4 \
+    --gpu_id 6 \
+    --checkpoint_dir ./checkpoints \
+    --mode train \
