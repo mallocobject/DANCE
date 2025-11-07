@@ -1,7 +1,9 @@
 from .UNet import UNet
-from .ECAUNet import ECAUNet
-from .CIADUNet import CIADUNet
-from .SEUNet import SEUNet
-from .CBAMUNet import CBAMUNet
+from .ECANet import ECANet
+from .CIADNet import CIADNet
+from .SENet import SENet
+from .CBAMNet import CBAMNet
+from .ACDAE import ACDAE
+from .DnCNN import DnCNN
 
-__all__ = ["UNet", "ECAUNet", "CIADUNet", "SEUNet", "CBAMUNet"]
+__all__ = ["UNet", "ECANet", "CIADNet", "SENet", "CBAMNet", "ACDAE", "DnCNN"]

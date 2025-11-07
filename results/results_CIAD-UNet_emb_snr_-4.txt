@@ -1,0 +1,6 @@
+
+=== Final Metrics ===
+RMSE: 0.1737 ± nan
+SNR: 8.5566 ± nan
+=== End Final Metrics ===
+

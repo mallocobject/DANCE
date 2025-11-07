@@ -28,15 +28,22 @@ class ECGDenoisingExperiment:
 
         self.model_dict = {
             "U-Net": UNet,
-            "ECA-UNet": ECAUNet,
-            "CIAD-UNet": CIADUNet,
-            "SE-UNet": SEUNet,
-            "CBAM-UNet": CBAMUNet,
+            "ECANet": ECANet,
+            "CIADNet": CIADNet,
+            "SENet": SENet,
+            "CBAMNet": CBAMNet,
+            "ACDAE": ACDAE,
+            "DnCNN": DnCNN,
         }
 
         self.checkpoint = os.path.join(
             self.args.checkpoint_dir,
             f"best_{self.args.model}_{self.args.noise_type}_snr_{self.args.snr_db}.pth",
+        )
+
+        self.results_file = os.path.join(
+            "./results",
+            f"results_{self.args.model}_{self.args.noise_type}_snr_{self.args.snr_db}.txt",
         )
 
         self.device = torch.device(
@@ -90,7 +97,7 @@ class ECGDenoisingExperiment:
     def train(self):
         metrics_dict = {"RMSE": [], "SNR": []}
 
-        for idx in range(1):
+        for idx in range(10):
             print(f"🚀 Starting training run {idx+1}/10")
             dataloader = self._get_dataloader("train")
 
@@ -124,24 +131,35 @@ class ECGDenoisingExperiment:
                     f"Epoch {epoch+1}/{self.args.epochs}, Learning Rate: {scheduler.get_last_lr()[0]:.4f}, Train Loss: {avg_loss:.4f}"
                 )
 
-                metrics = self.test(model=model)
-                print(
-                    f"Test Metrics - RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
-                )
                 if epoch == self.args.epochs - 1:
+                    metrics = self.test(model=model)
                     metrics_dict["RMSE"].append(metrics["RMSE"])
                     metrics_dict["SNR"].append(metrics["SNR"])
 
             # torch.save(model.state_dict(), self.checkpoint)
 
-        print("🚀 Final Results after 10 runs:")
-        print(
-            f"Model: {self.args.model}, Noise Type: {self.args.noise_type}, SNR: {self.args.snr_db} dB"
-        )
-        final_metrics = {}
-        for key in metrics_dict:
-            final_metrics[key] = np.mean(metrics_dict[key])
-            print(f"{key}: {final_metrics[key]:.4f}")
+        # print("🚀 Final Results after 10 runs:")
+        # print(
+        #     f"Model: {self.args.model}, Noise Type: {self.args.noise_type}, SNR: {self.args.snr_db} dB"
+        # )
+        with open(self.results_file, "w") as f:
+            f.write("\n=== Final Metrics ===\n")
+            for key in metrics_dict:
+                mean_val = np.mean(metrics_dict[key])
+                std_val = np.std(metrics_dict[key], ddof=1)
+
+                # 分别格式化均值和标准差
+                if len(metrics_dict[key]) == 1:
+                    mean_val = f"{mean_val:.4f}"
+                    std_val = "N/A"  # 如果只有一个值，标准差不可用
+                else:
+                    mean_val = f"{mean_val:.4f}"
+                    std_val = f"{std_val:.4f}"
+                print(f"{key}: {mean_val} ± {std_val}")
+                f.write(f"{key}: {mean_val} ± {std_val}\n")
+
+            f.write("\n=== End Final Metrics ===\n")
+            print("Results saved to:", self.results_file)
 
     def test(self, model: nn.Module = None):
         test_dataloader = self._get_dataloader("test")

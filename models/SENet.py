@@ -52,7 +52,7 @@ class DecBlock(nn.Module):
         return x
 
 
-class SEUNet(nn.Module):
+class SENet(nn.Module):
     def __init__(self) -> None:
         super().__init__()
 
@@ -111,7 +111,7 @@ class SEUNet(nn.Module):
 
 if __name__ == "__main__":
     x = torch.rand(16, 2, 256)
-    model = SEUNet()
+    model = SENet()
     print(model)
     y = model(x)
     print(y.shape)

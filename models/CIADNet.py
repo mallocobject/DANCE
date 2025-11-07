@@ -8,12 +8,12 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import CBAM
+from layers import CIAD, Shrink, ChannelShrink, SpatialShrink
 
 
 class EncBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size):
-        super().__init__()
+        super(EncBlock, self).__init__()
         self.conv = nn.Sequential(
             nn.Conv1d(
                 in_channels=in_channels,
@@ -21,6 +21,8 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
+            nn.LeakyReLU(),
+            CIAD(out_channels),
             nn.LeakyReLU(),
         )
 
@@ -31,7 +33,7 @@ class EncBlock(nn.Module):
 
 class DecBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, act=True):
-        super().__init__()
+        super(DecBlock, self).__init__()
         self.act = act
         self.conv = nn.Sequential(
             nn.Conv1d(
@@ -41,7 +43,6 @@ class DecBlock(nn.Module):
                 padding=(kernel_size - 1) // 2,
             ),
         )
-
         if act:
             self.relu = nn.LeakyReLU()
 
@@ -49,10 +50,11 @@ class DecBlock(nn.Module):
         x = self.conv(x)
         if self.act:
             x = self.relu(x)
+
         return x
 
 
-class CBAMUNet(nn.Module):
+class CIADNet(nn.Module):
     def __init__(self) -> None:
         super().__init__()
 
@@ -60,7 +62,6 @@ class CBAMUNet(nn.Module):
         Kernal_Size = [11, 5, 5, 5]
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
-        self.attn = nn.ModuleList()
 
         self.bottle_neck = nn.Sequential(
             nn.Conv1d(
@@ -90,7 +91,6 @@ class CBAMUNet(nn.Module):
                     act=True if i != 3 else False,
                 )
             )
-            self.attn.append(CBAM(channels[-(i + 1)]))
 
     def forward(self, x):
         encfeature = []
@@ -103,15 +103,14 @@ class CBAMUNet(nn.Module):
 
         for i in range(4):
             x = self.up(x)
-            f = self.attn[i](encfeature[-(i + 1)])
-            x += f
+            x += encfeature[-(i + 1)]
             x = self.decoder[i](x)
         return x
 
 
 if __name__ == "__main__":
     x = torch.rand(16, 2, 256)
-    model = CBAMUNet()
+    model = CIADNet()
     print(model)
     y = model(x)
     print(y.shape)

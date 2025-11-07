@@ -11,7 +11,6 @@ class ChannelShrink(nn.Module):
 
         self.fc = nn.Sequential(
             nn.Conv1d(ch, ch // reduction, kernel_size=1, bias=False),
-            nn.BatchNorm1d(ch // reduction),
             nn.ReLU(),
             nn.Conv1d(ch // reduction, ch, kernel_size=1, bias=False),
         )

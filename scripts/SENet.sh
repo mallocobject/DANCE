@@ -1,6 +1,6 @@
 python run.py \
     --split_dir ./data_split \
-    --model SE-UNet \
+    --model SENet \
     --batch_size 64 \
     --epochs 100 \
     --lr 1e-3 \
@@ -12,7 +12,7 @@ python run.py \
 
 python run.py \
     --split_dir ./data_split \
-    --model SE-UNet \
+    --model SENet \
     --batch_size 64 \
     --epochs 100 \
     --lr 1e-3 \
@@ -24,7 +24,7 @@ python run.py \
 
 python run.py \
     --split_dir ./data_split \
-    --model SE-UNet \
+    --model SENet \
     --batch_size 64 \
     --epochs 100 \
     --lr 1e-3 \
@@ -36,7 +36,7 @@ python run.py \
 
 python run.py \
     --split_dir ./data_split \
-    --model SE-UNet \
+    --model SENet \
     --batch_size 64 \
     --epochs 100 \
     --lr 1e-3 \
@@ -48,7 +48,7 @@ python run.py \
 
 python run.py \
     --split_dir ./data_split \
-    --model SE-UNet \
+    --model SENet \
     --batch_size 64 \
     --epochs 100 \
     --lr 1e-3 \
