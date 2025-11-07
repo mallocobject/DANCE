@@ -34,7 +34,7 @@ class DecBlock(nn.Module):
         super().__init__()
         self.act = act
         self.conv = nn.Sequential(
-            nn.Conv1d(
+            nn.ConvTranspose1d(
                 in_channels=in_channels,
                 out_channels=out_channels,
                 kernel_size=kernel_size,
@@ -71,6 +71,7 @@ class SENet(nn.Module):
             ),
             nn.LeakyReLU(),
         )
+
         self.down = nn.MaxPool1d(2)
         self.up = nn.Upsample(scale_factor=2, mode="linear")
 

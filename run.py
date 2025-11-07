@@ -24,7 +24,7 @@ def parse_args():
         "--model",
         type=str,
         default="U-Net",
-        choices=["U-Net", "ECANet", "CIADNet", "SENet", "CBAMNet", "ACDAE", "DnCNN"],
+        choices=["U-Net", "ECANet", "CIADNet", "SENet", "CBAMNet", "ACDAE", "DACNN"],
         help="Model architecture to use",
     )
     parser.add_argument("--batch_size", type=int, default=64)

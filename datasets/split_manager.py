@@ -127,12 +127,12 @@ class SplitManager:
                 noise_idx = i % len(noise_segments[noise_type])
                 noise_segment = noise_segments[noise_type][noise_idx].copy()
 
-                scale_factor = self._calculate_snr_adjustment(
-                    clean_sig, noise_segment, snr_db
-                )
-                adjusted_noise = noise_segment * scale_factor / 3  # 均等分配
-                mixed_noise += adjusted_noise
+                mixed_noise += noise_segment
 
+            scale_factor = self._calculate_snr_adjustment(
+                clean_sig, mixed_noise, snr_db
+            )
+            mixed_noise *= scale_factor
             noisy_sig = clean_sig + mixed_noise
             mixed_noisy_segments.append(noisy_sig)
 
@@ -175,44 +175,18 @@ class SplitManager:
         train_indices = indices[:n_train]
         test_indices = indices[n_train:]
 
-        # # 获取mean和std用于标准化
-        # train_clean = clean_segments[train_indices]
-
-        # clean_mean = np.mean(train_clean, axis=(0, 1), keepdims=True)
-        # clean_std = np.std(train_clean, axis=(0, 1), keepdims=True)
-
-        # # 标准化干净信号
-        # clean_normalized = self._zscore_normalize(clean_segments, clean_mean, clean_std)
-
         # 确保目录存在
         os.makedirs(split_dir, exist_ok=True)
 
-        # # 保存标准化后的干净信号
-        # clean_segments = clean_segments.transpose(
-        #     0, 2, 1
-        # )  # (num_samples, 2, window_size)
         np.save(os.path.join(split_dir, "clean_signals.npy"), clean_segments)
 
-        # 为每个SNR级别创建四种噪声类型的含噪信号
         for snr_db in snr_levels:
-            print(f"\nProcessing SNR: {snr_db}dB")
-
-            # 创建带噪声的信号
             noisy_signals_dict = self._create_noisy_signals(
                 clean_segments, noise_segments, snr_db
             )
-
             for noise_type, noisy_data in noisy_signals_dict.items():
-                # noisy_normalized = self._zscore_normalize(
-                #     noisy_data, clean_mean, clean_std
-                # )
-
-                # noisy_data = noisy_data.transpose(
-                #     0, 2, 1
-                # )  # (num_samples, 2, window_size)
                 filename = f"noisy_{noise_type}_snr_{snr_db}.npy"
                 np.save(os.path.join(split_dir, filename), noisy_data)
-                print(f"Saved {filename}")
 
         # 保存划分信息
         split_info = {
@@ -224,8 +198,6 @@ class SplitManager:
             "window_size": self.window_size,
             "snr_levels": snr_levels,
             "noise_types": ["bw", "em", "ma", "emb"],  # 四种噪声类型
-            # "clean_mean": clean_mean.tolist(),
-            # "clean_std": clean_std.tolist(),
             "seed": self.seed,
         }
 

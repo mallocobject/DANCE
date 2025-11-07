@@ -27,7 +27,7 @@ class DecBlock(nn.Module):
         super().__init__()
         self.act = act
         self.conv = nn.Sequential(
-            nn.Conv1d(
+            nn.ConvTranspose1d(
                 in_channels=in_channels,
                 out_channels=out_channels,
                 kernel_size=kernel_size,

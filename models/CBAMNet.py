@@ -34,7 +34,7 @@ class DecBlock(nn.Module):
         super().__init__()
         self.act = act
         self.conv = nn.Sequential(
-            nn.Conv1d(
+            nn.ConvTranspose1d(
                 in_channels=in_channels,
                 out_channels=out_channels,
                 kernel_size=kernel_size,
@@ -62,6 +62,8 @@ class CBAMNet(nn.Module):
         self.decoder = nn.ModuleList()
         self.attn = nn.ModuleList()
 
+        self.down = nn.MaxPool1d(2)
+        self.up = nn.Upsample(scale_factor=2, mode="linear")
         self.bottle_neck = nn.Sequential(
             nn.Conv1d(
                 channels[-1],
@@ -71,8 +73,6 @@ class CBAMNet(nn.Module):
             ),
             nn.LeakyReLU(),
         )
-        self.down = nn.MaxPool1d(2)
-        self.up = nn.Upsample(scale_factor=2, mode="linear")
 
         for i in range(4):
             self.encoder.append(
@@ -98,9 +98,7 @@ class CBAMNet(nn.Module):
             x = self.encoder[i](x)
             encfeature.append(x)
             x = self.down(x)
-
         x = self.bottle_neck(x)
-
         for i in range(4):
             x = self.up(x)
             f = self.attn[i](encfeature[-(i + 1)])

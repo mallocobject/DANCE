@@ -33,7 +33,7 @@ class ECGDenoisingExperiment:
             "SENet": SENet,
             "CBAMNet": CBAMNet,
             "ACDAE": ACDAE,
-            "DnCNN": DnCNN,
+            "DACNN": DACNN,
         }
 
         self.checkpoint = os.path.join(
@@ -97,7 +97,7 @@ class ECGDenoisingExperiment:
     def train(self):
         metrics_dict = {"RMSE": [], "SNR": []}
 
-        for idx in range(10):
+        for idx in range(1):
             print(f"🚀 Starting training run {idx+1}/10")
             dataloader = self._get_dataloader("train")
 
@@ -131,8 +131,13 @@ class ECGDenoisingExperiment:
                     f"Epoch {epoch+1}/{self.args.epochs}, Learning Rate: {scheduler.get_last_lr()[0]:.4f}, Train Loss: {avg_loss:.4f}"
                 )
 
+                metrics = self.test(model=model)
+                print(
+                    f"--- Test Metrics after Epoch {epoch+1}: RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
+                )
+
                 if epoch == self.args.epochs - 1:
-                    metrics = self.test(model=model)
+
                     metrics_dict["RMSE"].append(metrics["RMSE"])
                     metrics_dict["SNR"].append(metrics["SNR"])
 

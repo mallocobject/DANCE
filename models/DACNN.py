@@ -85,9 +85,8 @@ class EncoderCell(nn.Module):
 class DeNoiseEnc(nn.Module):
     def __init__(self, using_APReLU=True):
         super(DeNoiseEnc, self).__init__()
-        self.conv_kernel = [17, 17, 3, 3]
-        self.paddingsize = [8, 8, 1, 1]
-        self.out_channels = [4, 8, 16, 32]
+        self.conv_kernel = [11, 5, 5, 5]
+        self.out_channels = [16, 32, 64, 128]
         self.EncoderList = nn.ModuleList()
         input_channel = 2
         for i in range(4):
@@ -97,7 +96,7 @@ class DeNoiseEnc(nn.Module):
                     input_channel,
                     self.out_channels[i],
                     self.conv_kernel[i],
-                    self.paddingsize[i],
+                    (self.conv_kernel[i] - 1) // 2,
                     using_APReLU=using_APReLU,
                 ),
             )
@@ -189,6 +188,7 @@ class DecoderCell(nn.Module):
             kernel_size=kernel_size,
             padding=padding,
             stride=stride,
+            output_padding=1,  # ← 关键！
         )
         if using_APReLU:
             self.activate = APReLU(out_channels)
@@ -247,11 +247,10 @@ class DeNoiseDec(nn.Module):
         self,
     ):
         super(DeNoiseDec, self).__init__()
-        self.conv_kernel = [4, 4, 18, 18]
-        self.paddingsize = [1, 1, 8, 8]
-        self.out_channels = [16, 8, 4, 2]
+        self.conv_kernel = [5, 5, 5, 11]
+        self.out_channels = [64, 32, 16, 2]
         DecoderList = []
-        in_channels = 32
+        in_channels = 128
         for i in range(4):
             if i != 3:
                 DecoderList.append(
@@ -259,7 +258,7 @@ class DeNoiseDec(nn.Module):
                         in_channels,
                         self.out_channels[i],
                         self.conv_kernel[i],
-                        self.paddingsize[i],
+                        (self.conv_kernel[i] - 1) // 2,
                         using_APReLU=True,
                     )
                 )
@@ -269,7 +268,7 @@ class DeNoiseDec(nn.Module):
                         in_channels,
                         self.out_channels[i],
                         self.conv_kernel[i],
-                        self.paddingsize[i],
+                        (self.conv_kernel[i] - 1) // 2,
                         using_APReLU=True,
                         last=True,
                     )
@@ -286,7 +285,7 @@ class DeNoiseDec(nn.Module):
         return y0
 
 
-class DnCNN(nn.Module):
+class DACNN(nn.Module):
 
     def __init__(self):
         super().__init__()
@@ -299,7 +298,7 @@ class DnCNN(nn.Module):
 
 if __name__ == "__main__":
     x = torch.randn(10, 2, 256)
-    model = DnCNN()
+    model = DACNN()
     print(model)
     y = model(x)
     print(y.shape)
