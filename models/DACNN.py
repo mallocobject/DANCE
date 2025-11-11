@@ -9,6 +9,13 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
+import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from layers import CIAD
+
 
 class APReLU(nn.Module):
     """An implementation of APReLU(Adaptively Parametric ReLU) from the paper 'Deep Residual Networks With Adaptively Parametric Rectifier Linear Units for Fault Diagnosis'
@@ -61,12 +68,15 @@ class EncoderCell(nn.Module):
         using_APReLU=True,
     ):
         super(EncoderCell, self).__init__()
-        self.conv = nn.Conv1d(
-            in_channels,
-            out_channels,
-            kernel_size=kernel_size,
-            padding=padding,
-            stride=stride,
+        self.conv = nn.Sequential(
+            nn.Conv1d(
+                in_channels,
+                out_channels,
+                kernel_size=kernel_size,
+                padding=padding,
+                stride=stride,
+            ),
+            CIAD(out_channels),
         )
         if using_APReLU:
             self.activate = APReLU(out_channels)

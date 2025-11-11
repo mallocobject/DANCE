@@ -8,22 +8,25 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import ECA
+from layers import ECA, CIAD, ChannelShrink
 
 
 class EncBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size):
         super(EncBlock, self).__init__()
-        self.conv = nn.Conv1d(
-            in_channels=in_channels,
-            out_channels=out_channels,
-            kernel_size=kernel_size,
-            padding=(kernel_size - 1) // 2,
+        self.conv = nn.Sequential(
+            nn.Conv1d(
+                in_channels=in_channels,
+                out_channels=out_channels,
+                kernel_size=kernel_size,
+                padding=(kernel_size - 1) // 2,
+            ),
+            CIAD(out_channels),
+            nn.LeakyReLU(),
         )
-        self.relu = nn.LeakyReLU()
 
     def forward(self, x):
-        return self.relu(self.conv(x))
+        return self.conv(x)
 
 
 class DecBlock(nn.Module):

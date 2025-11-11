@@ -1,8 +1,8 @@
 
 === Final Metrics ===
-RMSE: 0.1307 ± 0.0013
+RMSE: 0.1526 ± 0.0022
 10 runs
-SNR: 11.2794 ± 0.0794
+SNR: 9.8582 ± 0.1145
 10 runs
 
 === End Final Metrics ===

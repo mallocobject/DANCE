@@ -9,7 +9,7 @@ class Shrink(nn.Module):
         self.gap = nn.AdaptiveAvgPool1d(1)
         self.fc = nn.Sequential(
             nn.Linear(ch, ch),
-            # nn.BatchNorm1d(ch),
+            nn.BatchNorm1d(ch),
             nn.ReLU(),
             nn.Linear(ch, ch),
             nn.Sigmoid(),

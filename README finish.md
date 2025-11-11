@@ -2,7 +2,7 @@
 
 ## 网络概述
 
-AGS-UNet (Attention Gated Shrinkage UNet) 是一种专为ECG信号去噪任务设计的深度学习网络. 该网络创新性地融合了双重注意力机制与轻量化设计, 在保证高效推理速度的同时, 实现了卓越的噪声抑制性能
+*通道阈值去噪, 时空局部增强*
 
 ## 💡 核心特点
 
@@ -76,55 +76,81 @@ AGS-UNet (Attention Gated Shrinkage UNet) 是一种专为ECG信号去噪任务�
     </tr>
     <tr>
       <td>U-Net</td>
-      <td>6.9733 ± 0.0676</td>
-      <td>7.7794 ± 0.0560</td>
-      <td>8.6639 ± 0.0724</td>
-      <td>9.6611 ± 0.0417</td>
-      <td>10.5980 ± 0.0597</td>
-      <td>0.1839 ± 0.0015</td>
-      <td>0.1633 ± 0.0010</td>
-      <td>0.1450 ± 0.0011</td>
-      <td>0.1278 ± 0.0006</td>
-      <td>0.1117 ± 0.0008</td>
+      <td>6.9607 ± 0.0358</td>
+      <td>7.8065 ± 0.0387</td>
+      <td>8.6614 ± 0.0409</td>
+      <td>9.6005 ± 0.0791</td>
+      <td>10.5637 ± 0.0421</td>
+      <td>0.2151 ± 0.0010</td>
+      <td>0.1945 ± 0.0008</td>
+      <td>0.1759 ± 0.0009</td>
+      <td>0.1573 ± 0.0014</td>
+      <td>0.1402 ± 0.0008</td>
     </tr>
     <tr>
       <td>DACNN</td>
-      <td>8.0467 ± </td>
-      <td>8.8087</td>
-      <td>9.4517</td>
-      <td>10.7303 ± </td>
-      <td>11.4378</td>
-      <td>0.1838 ± 0.0015</td>
-      <td></td>
-      <td></td>
-      <td>0.1305 ± 0.0011</td>
-      <td></td>
+      <td>7.8718 ± 0.1154</td>
+      <td>8.6885 ± 0.0899</td>
+      <td>9.6326 ± 0.1123</td>
+      <td>10.5301 ± 0.1150</td>
+      <td>11.4497 ± 0.1791</td>
+      <td>0.1921 ± 0.0022</td>
+      <td>0.1733 ± 0.0016</td>
+      <td>0.1553 ± 0.0018</td>
+      <td>0.1400 ± 0.0015</td>
+      <td>0.1260 ± 0.0027</td>
     </tr>
     <tr>
       <td>ACDAE</td>
-      <td>8.1675</td>
-      <td>8.9059</td>
-      <td>9.5592</td>
-      <td>10.6778</td>
-      <td>11.2051</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>8.0482 ± 0.1703</td>
+      <td>8.8348 ± 0.1252</td>
+      <td>9.6317 ± 0.1241</td>
+      <td>10.5137 ± 0.1573</td>
+      <td>11.4005 ± 0.1607</td>
+      <td>0.1899 ± 0.0032</td>
+      <td>0.1728 ± 0.0028</td>
+      <td>0.1575 ± 0.0026</td>
+      <td>0.1416 ± 0.0026</td>
+      <td>0.1279 ± 0.0025</td>
     </tr>
     <tr style="background-color: #ecf3ecff;">
-      <td><strong>CIADNet (ours)</strong></td>
-      <td><strong>7.9458</strong></td>
-      <td><strong>8.7579</strong></td>
-      <td><strong>9.5577</strong></td>
-      <td><strong>10.3215</strong></td>
-      <td><strong>11.1991</strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
+      <td><strong>U-Net + CIAD</strong></td>
+      <td><strong>8.2786 ± 0.</strong></td>
+      <td><strong>9.0644 ± 0.</strong></td>
+      <td><strong>10.0717 ± 0.</strong></td>
+      <td><strong>10.7572 ± 0.</strong></td>
+      <td><strong>11.6682 ± 0.</strong></td>
+      <td><strong>0.1952 ± 0.</strong></td>
+      <td><strong>0.1767 ± 0.</strong></td>
+      <td><strong>0.1606 ± 0.</strong></td>
+      <td><strong>0.1482 ± 0.</strong></td>
+      <td><strong>0.1318 ± 0.</strong></td>
+    </tr>
+    <tr>
+      <td>DACNN + CIAD</td>
+      <td>7.8713 ± 0.0716</td>
+      <td>8.6578 ± 0.1187</td>
+      <td>9.5654 ± 0.1076</td>
+      <td>10.5243 ± 0.0705</td>
+      <td>11.4467 ± 0.1660</td>
+      <td>0.1936 ± 0.0014</td>
+      <td>0.1754 ± 0.0020</td>
+      <td>0.1578 ± 0.0018</td>
+      <td>0.1413 ± 0.0010</td>
+      <td>0.1268 ± 0.0022</td>
+    </tr>
+    <tr>
+      <td>ACDAE + CIAD</td>
+      <td>8.4473 ± 0.0567</td>
+      <td>9.2665 ± 0.0473</td>
+      <td>10.0035 ± 0.0782</td>
+      <td>10.9089 ± 0.1062</td>
+      <td>11.7043 ± 0.0685</td>
+      <td>0.1821 ± 0.0011</td>
+      <td>0.1649 ± 0.0010</td>
+      <td>0.1508 ± 0.0013</td>
+      <td>0.1356 ± 0.0019</td>
+      <td>0.1234 ± 0.0008</td>
     </tr>
   </tbody>
 </table>
@@ -485,16 +511,16 @@ AGS-UNet (Attention Gated Shrinkage UNet) 是一种专为ECG信号去噪任务�
     </tr>
     <tr>
       <td>+ Channel Shrink</td>
-      <td>7.8181</td>
-      <td>8.5531</td>
-      <td>9.3777</td>
-      <td>10.1528</td>
-      <td>11.0423.</td>
-      <td>0.</td>
-      <td>0.</td>
-      <td>0.</td>
-      <td>0.</td>
-      <td>0.</td>
+      <td>8.3010 ± 0.0560</td>
+      <td>9.1325 ± 0.0451</td>
+      <td>9.9971 ± 0.0898</td>
+      <td>10.8336 ± 0.0753</td>
+      <td>11.6638 ± 0.0435</td>
+      <td>0.1845 ± 0.0012</td>
+      <td>0.1669 ± 0.0010</td>
+      <td>0.1505 ± 0.0015</td>
+      <td>0.1365 ± 0.0011</td>
+      <td>0.1235 ± 0.0006</td>
     </tr>
     <tr>
       <td>+ Spatial Shrink</td>

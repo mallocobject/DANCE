@@ -1,6 +1,0 @@
-
-=== Final Metrics ===
-RMSE: 0.1949 ± N/A
-SNR: 7.7925 ± N/A
-
-=== End Final Metrics ===

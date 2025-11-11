@@ -1,4 +1,4 @@
-from .ciad import CIAD, ChannelShrink, SpatialShrink
+from .ciad import CIAD, ChannelShrink, SpatialEnhance
 from .cbam import CBAM
 from .drsn_block import DRSNBlock
 from .shcink import Shrink

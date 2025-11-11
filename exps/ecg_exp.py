@@ -43,7 +43,7 @@ class ECGDenoisingExperiment:
 
         self.results_file = os.path.join(
             "./results",
-            f"results_{self.args.model}_{self.args.noise_type}_snr_{self.args.snr_db}.txt",
+            f"results_{self.args.model}_{self.args.noise_type}_snr_{self.args.snr_db}_ss.txt",
         )
 
         self.device = torch.device(
@@ -97,7 +97,7 @@ class ECGDenoisingExperiment:
     def train(self):
         metrics_dict = {"RMSE": [], "SNR": []}
 
-        for idx in range(1):
+        for idx in range(10):
             print(f"🚀 Starting training run {idx+1}/10")
             dataloader = self._get_dataloader("train")
 
@@ -127,17 +127,16 @@ class ECGDenoisingExperiment:
 
                 avg_loss = np.mean(losses)
 
-                print(
-                    f"Epoch {epoch+1}/{self.args.epochs}, Learning Rate: {scheduler.get_last_lr()[0]:.4f}, Train Loss: {avg_loss:.4f}"
-                )
+                # print(
+                #     f"Epoch {epoch+1}/{self.args.epochs}, Learning Rate: {scheduler.get_last_lr()[0]:.4f}, Train Loss: {avg_loss:.4f}"
+                # )
 
-                metrics = self.test(model=model)
-                print(
-                    f"--- Test Metrics after Epoch {epoch+1}: RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
-                )
+                # print(
+                #     f"--- Test Metrics after Epoch {epoch+1}: RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
+                # )
 
                 if epoch == self.args.epochs - 1:
-
+                    metrics = self.test(model=model)
                     metrics_dict["RMSE"].append(metrics["RMSE"])
                     metrics_dict["SNR"].append(metrics["SNR"])
 
@@ -147,7 +146,7 @@ class ECGDenoisingExperiment:
         # print(
         #     f"Model: {self.args.model}, Noise Type: {self.args.noise_type}, SNR: {self.args.snr_db} dB"
         # )
-        with open(self.results_file, "w") as f:
+        with open(self.results_file, "a") as f:
             f.write("\n=== Final Metrics ===\n")
             for key in metrics_dict:
                 mean_val = np.mean(metrics_dict[key])
@@ -162,6 +161,7 @@ class ECGDenoisingExperiment:
                     std_val = f"{std_val:.4f}"
                 print(f"{key}: {mean_val} ± {std_val}")
                 f.write(f"{key}: {mean_val} ± {std_val}\n")
+                f.write(f"{len(metrics_dict[key])} runs\n")
 
             f.write("\n=== End Final Metrics ===\n")
             print("Results saved to:", self.results_file)
