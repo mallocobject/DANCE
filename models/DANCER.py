@@ -8,12 +8,12 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import ECA
+from layers import DANCE, CAC, CSE
 
 
 class EncBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size):
-        super().__init__()
+        super(EncBlock, self).__init__()
         self.conv = nn.Sequential(
             nn.Conv1d(
                 in_channels=in_channels,
@@ -21,7 +21,7 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            nn.LeakyReLU(),
+            DANCE(out_channels),
         )
 
     def forward(self, x):
@@ -31,17 +31,16 @@ class EncBlock(nn.Module):
 
 class DecBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, act=True):
-        super().__init__()
+        super(DecBlock, self).__init__()
         self.act = act
         self.conv = nn.Sequential(
-            nn.ConvTranspose1d(
+            nn.Conv1d(
                 in_channels=in_channels,
                 out_channels=out_channels,
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
         )
-
         if act:
             self.relu = nn.LeakyReLU()
 
@@ -49,18 +48,18 @@ class DecBlock(nn.Module):
         x = self.conv(x)
         if self.act:
             x = self.relu(x)
+
         return x
 
 
-class ECANet(nn.Module):
+class DANCER(nn.Module):
     def __init__(self) -> None:
         super().__init__()
 
         channels = [2, 16, 32, 64, 128]
-        Kernal_Size = [11, 5, 5, 5]
+        kernal_size = [13, 7, 7, 7]
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
-        self.attn = nn.ModuleList()
 
         self.down = nn.MaxPool1d(2)
         self.up = nn.Upsample(scale_factor=2, mode="linear")
@@ -79,18 +78,17 @@ class ECANet(nn.Module):
                 EncBlock(
                     in_channels=channels[i],
                     out_channels=channels[i + 1],
-                    kernel_size=Kernal_Size[i],
+                    kernel_size=kernal_size[i],
                 )
             )
             self.decoder.append(
                 DecBlock(
                     in_channels=channels[-(i + 1)],
                     out_channels=channels[-(i + 2)],
-                    kernel_size=Kernal_Size[-(i + 1)],
+                    kernel_size=kernal_size[-(i + 1)],
                     act=True if i != 3 else False,
                 )
             )
-            self.attn.append(ECA())
 
     def forward(self, x):
         encfeature = []
@@ -98,20 +96,17 @@ class ECANet(nn.Module):
             x = self.encoder[i](x)
             encfeature.append(x)
             x = self.down(x)
-
         x = self.bottle_neck(x)
-
         for i in range(4):
             x = self.up(x)
-            f = self.attn[i](encfeature[-(i + 1)])
-            x += f
+            x += encfeature[-(i + 1)]
             x = self.decoder[i](x)
         return x
 
 
 if __name__ == "__main__":
     x = torch.rand(16, 2, 256)
-    model = ECANet()
+    model = DANCER()
     print(model)
     y = model(x)
     print(y.shape)

@@ -28,10 +28,7 @@ class ECGDenoisingExperiment:
 
         self.model_dict = {
             "U-Net": UNet,
-            "ECANet": ECANet,
-            "CIADNet": CIADNet,
-            "SENet": SENet,
-            "CBAMNet": CBAMNet,
+            "DANCER": DANCER,
             "ACDAE": ACDAE,
             "DACNN": DACNN,
         }
@@ -43,7 +40,7 @@ class ECGDenoisingExperiment:
 
         self.results_file = os.path.join(
             "./results",
-            f"results_{self.args.model}_{self.args.noise_type}_snr_{self.args.snr_db}_ss.txt",
+            f"results_{self.args.model}_{self.args.noise_type}_snr_{self.args.snr_db}.txt",
         )
 
         self.device = torch.device(
@@ -128,11 +125,7 @@ class ECGDenoisingExperiment:
                 avg_loss = np.mean(losses)
 
                 # print(
-                #     f"Epoch {epoch+1}/{self.args.epochs}, Learning Rate: {scheduler.get_last_lr()[0]:.4f}, Train Loss: {avg_loss:.4f}"
-                # )
-
-                # print(
-                #     f"--- Test Metrics after Epoch {epoch+1}: RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
+                #     f"--- Epoch {epoch+1}: Loss: {avg_loss:.4f}, RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
                 # )
 
                 if epoch == self.args.epochs - 1:

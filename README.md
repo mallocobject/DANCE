@@ -1,29 +1,56 @@
-# AGS-UNet: ECG信号去噪网络
+# DANCER: ECG信号去噪网络
 
 ## 网络概述
 
-AGS-UNet (Attention Gated Shrinkage UNet) 是一种专为ECG信号去噪任务设计的深度学习网络. 该网络创新性地融合了双重注意力机制与轻量化设计, 在保证高效推理速度的同时, 实现了卓越的噪声抑制性能
+**DANCER** 是一种基于UNet结构的心电信号(ECG)去噪网络, 内部集成了核心创新模块 **DANCE (Dual Adaptive Noise-Compression and Core-Excitation)**。  
+该模块通过通道自适应压缩(CAC)与通道-空间激励(CSE)的协同机制, 实现对噪声的自适应抑制与关键信号特征的增强。  
+模型以端到端方式从含噪ECG信号直接学习到纯净信号, 在保证高去噪性能的同时兼顾轻量化与可解释性。
+
+> **说明:** DANCE 为核心创新模块, DANCER 表示完整去噪网络, 用于与其他模型进行对比实验。
+
+---
 
 ## 💡 核心特点
 
-### 🔥 双重注意力协同去噪
+### 🔥 双重自适应去噪 (DANCE)
 
-- **特征级自适应去噪**：编码器集成的收缩模块通过可学习阈值机制, 实现特征层面的智能噪声过滤
-- **空间感知增强**：跳跃连接中的注意力门控单元, 对特征映射进行空间重要性重加权
+- **通道自适应压缩 (CAC):**  
+  通过全局统计信息与可学习阈值机制, 自适应压缩噪声成分, 有效抑制特征层噪声干扰。  
+  该模块基于绝对值映射与通道注意力, 实现特征的动态阈值收缩与非线性恢复。  
+
+- **通道-空间激励 (CSE):**  
+  通过一维卷积建模局部依赖关系, 在通道与空间维度上动态分配权重, 强化关键特征响应并抑制冗余信息。  
+
+---
 
 ### 🎯 渐进式特征融合
 
-- **跨尺度特征选择**：注意力门控机制智能筛选多尺度特征, 实现精准的特征传递
-- **语义一致性保持**：确保编码器与解码器间的特征语义对齐, 促进信息流畅传递
+- **跨尺度特征选择:**  
+  在解码阶段, 注意力门控机制选择性融合多尺度特征, 提高重建精度与上下文一致性。  
+- **语义一致性保持:**  
+  通过残差与跳跃连接保持编码器与解码器间的语义一致性, 促进高层与低层信息的协同流动。
+
+---
 
 ### ⚡ 轻量化高效设计
 
-- **优化卷积结构**：采用小尺度卷积核, 平衡感受野与计算效率
-- **精简参数量**：在保持性能的前提下, 降低模型复杂度和计算开销
+- **结构优化:**  
+  模块采用小卷积核结构与通道压缩设计, 在保持感受野的同时降低计算负担。  
+- **参数量精简:**  
+  使用分层降维与共享权重策略, 显著减少参数数量与显存占用, 提升运行效率。
+
+---
 
 ### 🚀 端到端优化
 
-- **直接信号映射**：构建从含噪信号 (ECG双导联信号) 到纯净信号的端到端学习框架
+- **直接信号映射:**  
+  网络采用端到端训练策略, 从原始含噪信号直接学习映射到纯净信号, 提升整体收敛速度与泛化性能。  
+- **多层协同监督:**  
+  结合重建误差与特征相似度损失, 提升网络的稳定性与去噪鲁棒性。
+
+---
+
+
 
 ## 📊 模型对比结果
 
@@ -75,72 +102,375 @@ AGS-UNet (Attention Gated Shrinkage UNet) 是一种专为ECG信号去噪任务�
       <td>0.1587</td>
     </tr>
     <tr>
-      <td>CBAM-UNet</td>
-      <td>9.0012</td>
-      <td>9.8849</td>
-      <td>10.9736</td>
-      <td>11.8059</td>
-      <td>12.8272</td>
-      <td>0.1683</td>
-      <td>0.1511</td>
-      <td>0.1334</td>
-      <td>0.1204</td>
-      <td>0.1070</td>
+      <td>U-Net</td>
+      <td>6.9607 ± 0.0358</td>
+      <td>7.8065 ± 0.0387</td>
+      <td>8.6614 ± 0.0409</td>
+      <td>9.6005 ± 0.0791</td>
+      <td>10.5637 ± 0.0421</td>
+      <td>0.2151 ± 0.0010</td>
+      <td>0.1945 ± 0.0008</td>
+      <td>0.1759 ± 0.0009</td>
+      <td>0.1573 ± 0.0014</td>
+      <td>0.1402 ± 0.0008</td>
     </tr>
     <tr>
-      <td>ECA-UNet (ACDAE)</td>
-      <td>8.1096</td>
-      <td>9.1517</td>
-      <td>10.1912</td>
-      <td>11.2488</td>
-      <td>12.3446</td>
-      <td>0.1860</td>
-      <td>0.1648</td>
-      <td>0.1458</td>
-      <td>0.1281</td>
-      <td>0.1132</td>
+      <td>DACNN</td>
+      <td>7.8718 ± 0.1154</td>
+      <td>8.6885 ± 0.0899</td>
+      <td>9.6326 ± 0.1123</td>
+      <td>10.5301 ± 0.1150</td>
+      <td>11.4497 ± 0.1791</td>
+      <td>0.1921 ± 0.0022</td>
+      <td>0.1733 ± 0.0016</td>
+      <td>0.1553 ± 0.0018</td>
+      <td>0.1400 ± 0.0015</td>
+      <td>0.1260 ± 0.0027</td>
     </tr>
     <tr>
-      <td>SE-UNet</td>
-      <td>9.1097</td>
-      <td>9.8424</td>
-      <td>10.8138</td>
-      <td>11.8796</td>
-      <td>12.8323</td>
-      <td>0.1662</td>
-      <td>0.1521</td>
-      <td>0.1354</td>
-      <td>0.1187</td>
-      <td>0.1069</td>
-    </tr>
-    <tr>
-      <td>CS-UNet</td>
-      <td>9.0712</td>
-      <td>9.6873</td>
-      <td>10.6865</td>
-      <td>11.6704</td>
-      <td>12.7099</td>
-      <td>0.1678</td>
-      <td>0.1543</td>
-      <td>0.1375</td>
-      <td>0.1224</td>
-      <td>0.1078</td>
+      <td>ACDAE</td>
+      <td>8.0482 ± 0.1703</td>
+      <td>8.8348 ± 0.1252</td>
+      <td>9.6317 ± 0.1241</td>
+      <td>10.5137 ± 0.1573</td>
+      <td>11.4005 ± 0.1607</td>
+      <td>0.1899 ± 0.0032</td>
+      <td>0.1728 ± 0.0028</td>
+      <td>0.1575 ± 0.0026</td>
+      <td>0.1416 ± 0.0026</td>
+      <td>0.1279 ± 0.0025</td>
     </tr>
     <tr style="background-color: #ecf3ecff;">
-      <td><strong>CIAD-UNet (ours)</strong></td>
-      <td><strong>9.1616</strong></td>
-      <td><strong>10.0953</strong></td>
-      <td><strong>10.9872</strong></td>
-      <td><strong>11.9503</strong></td>
-      <td><strong>12.8933</strong></td>
-      <td><strong>0.1647</strong></td>
-      <td><strong>0.1480</strong></td>
-      <td><strong>0.1331</strong></td>
-      <td><strong>0.1187</strong></td>
-      <td><strong>0.1061</strong></td>
+      <td><strong>DANCER (ours)</strong></td>
+      <td><strong>8.2786 ± 0.</strong></td>
+      <td><strong>9.0644 ± 0.</strong></td>
+      <td><strong>10.0717 ± 0.</strong></td>
+      <td><strong>10.7572 ± 0.</strong></td>
+      <td><strong>11.6682 ± 0.</strong></td>
+      <td><strong>0.1952 ± 0.</strong></td>
+      <td><strong>0.1767 ± 0.</strong></td>
+      <td><strong>0.1606 ± 0.</strong></td>
+      <td><strong>0.1482 ± 0.</strong></td>
+      <td><strong>0.1318 ± 0.</strong></td>
     </tr>
   </tbody>
 </table>
+混合噪声 (emb) 下的去噪性能对比
+
+---
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="3">Methods</th>
+      <th colspan="5">SNR(dB)</th>
+      <th colspan="5">RMSE</th>
+    </tr>
+    <tr>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FFT</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DWT</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>U-Net</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DACNN</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ACDAE</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr style="background-color: #ecf3ecff;">
+      <td><strong>DANCER (ours)</strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+    </tr>
+  </tbody>
+</table>
+基线漂移 (bw) 下的去噪性能对比 (10 runs)
+
+---
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="3">Methods</th>
+      <th colspan="5">SNR(dB)</th>
+      <th colspan="5">RMSE</th>
+    </tr>
+    <tr>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FFT</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DWT</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>U-Net</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DACNN</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ACDAE</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr style="background-color: #ecf3ecff;">
+      <td><strong>DANCER (ours)</strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+    </tr>
+  </tbody>
+</table>
+肌肉伪迹 (ma) 下的去噪性能对比 (10 runs)
+
+---
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="3">Methods</th>
+      <th colspan="5">SNR(dB)</th>
+      <th colspan="5">RMSE</th>
+    </tr>
+    <tr>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FFT</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DWT</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>U-Net</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DACNN</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ACDAE</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr style="background-color: #ecf3ecff;">
+      <td><strong>DANCER (ours)</strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+    </tr>
+  </tbody>
+</table>
+电机移动伪迹 (em) 下的去噪性能对比 (10 runs)
 
 ---
 
@@ -169,55 +499,55 @@ AGS-UNet (Attention Gated Shrinkage UNet) 是一种专为ECG信号去噪任务�
   <tbody>
     <tr>
       <td>Baseline (U-Net)</td>
-      <td>8.2768</td>
-      <td>9.2625</td>
-      <td>10.2548</td>
-      <td>11.4056</td>
-      <td>12.4331</td>
-      <td>0.1830</td>
-      <td>0.1632</td>
-      <td>0.1447</td>
-      <td>0.1260</td>
-      <td>0.1117</td>
+      <td>6.9733 ± 0.0676</td>
+      <td>7.7794 ± 0.0560</td>
+      <td>8.6639 ± 0.0724</td>
+      <td>9.6611 ± 0.0417</td>
+      <td>10.5980 ± 0.0597</td>
+      <td>0.1839 ± 0.0015</td>
+      <td>0.1633 ± 0.0010</td>
+      <td>0.1450 ± 0.0011</td>
+      <td>0.1278 ± 0.0006</td>
+      <td>0.1117 ± 0.0008</td>
     </tr>
     <tr>
       <td>+ Channel Shrink</td>
-      <td>8.9327</td>
-      <td>9.7825</td>
-      <td>10.5592</td>
-      <td>11.5708</td>
-      <td>12.7295</td>
-      <td>0.1697</td>
-      <td>0.1532</td>
-      <td>0.1396</td>
-      <td>0.1235</td>
-      <td>0.1082</td>
+      <td>8.3010 ± 0.0560</td>
+      <td>9.1325 ± 0.0451</td>
+      <td>9.9971 ± 0.0898</td>
+      <td>10.8336 ± 0.0753</td>
+      <td>11.6638 ± 0.0435</td>
+      <td>0.1845 ± 0.0012</td>
+      <td>0.1669 ± 0.0010</td>
+      <td>0.1505 ± 0.0015</td>
+      <td>0.1365 ± 0.0011</td>
+      <td>0.1235 ± 0.0006</td>
     </tr>
     <tr>
       <td>+ Spatial Shrink</td>
-      <td>8.4643</td>
-      <td>9.3659</td>
-      <td>10.3896</td>
-      <td>11.4077</td>
-      <td>12.5814</td>
-      <td>0.1784</td>
-      <td>0.1602</td>
-      <td>0.1422</td>
-      <td>0.1257</td>
-      <td>0.1091</td>
+      <td>7.1127</td>
+      <td>8.0044</td>
+      <td>8.8369</td>
+      <td>9.8145</td>
+      <td>10.7461</td>
+      <td>0.</td>
+      <td>0.</td>
+      <td>0.</td>
+      <td>0.</td>
+      <td>0.</td>
     </tr>
     <tr>
       <td><strong>+ Channel & Spatial Shrink</strong></td>
-      <td><strong>9.1616</strong></td>
-      <td><strong>10.0953</strong></td>
-      <td><strong>10.9872</strong></td>
-      <td><strong>11.9503</strong></td>
-      <td><strong>12.8933</strong></td>
-      <td><strong>0.1647</strong></td>
-      <td><strong>0.1480</strong></td>
-      <td><strong>0.1331</strong></td>
-      <td><strong>0.1187</strong></td>
-      <td><strong>0.1061</strong></td>
+      <td><strong>7.9458</strong></td>
+      <td><strong>8.7579</strong></td>
+      <td><strong>9.5577</strong></td>
+      <td><strong>10.3215</strong></td>
+      <td><strong>11.1991</strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
     </tr>
   </tbody>
 </table>

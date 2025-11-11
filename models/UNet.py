@@ -27,7 +27,7 @@ class DecBlock(nn.Module):
         super().__init__()
         self.act = act
         self.conv = nn.Sequential(
-            nn.ConvTranspose1d(
+            nn.Conv1d(
                 in_channels=in_channels,
                 out_channels=out_channels,
                 kernel_size=kernel_size,
@@ -50,7 +50,7 @@ class UNet(nn.Module):
         super().__init__()
 
         channels = [2, 16, 32, 64, 128]
-        Kernal_Size = [11, 5, 5, 5]
+        kernal_size = [13, 7, 7, 7]
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
 
@@ -71,14 +71,14 @@ class UNet(nn.Module):
                 EncBlock(
                     in_channels=channels[i],
                     out_channels=channels[i + 1],
-                    kernel_size=Kernal_Size[i],
+                    kernel_size=kernal_size[i],
                 )
             )
             self.decoder.append(
                 DecBlock(
                     in_channels=channels[-(i + 1)],
                     out_channels=channels[-(i + 2)],
-                    kernel_size=Kernal_Size[-(i + 1)],
+                    kernel_size=kernal_size[-(i + 1)],
                     act=True if i != 3 else False,
                 )
             )

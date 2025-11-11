@@ -2,7 +2,7 @@
 
 # 定义SNR值和对应的GPU ID（避免内存冲突）
 snr_values=(-4 -2 0 2 4)
-gpu_ids=(4 4 4 4 4)  # 交替使用GPU
+gpu_ids=(0 1 6 7 7)  # 交替使用GPU
 
 echo "开始并行训练所有SNR配置..."
 

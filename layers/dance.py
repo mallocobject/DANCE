@@ -3,15 +3,19 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-class ChannelShrink(nn.Module):
-    def __init__(self, ch: int):
+class CAC(nn.Module):
+    """
+    Channel Adaptive Compression
+    """
+
+    def __init__(self, ch: int, reduction: int = 1):
         super().__init__()
         self.gap = nn.AdaptiveAvgPool1d(1)
         self.fc = nn.Sequential(
-            nn.Linear(ch, ch),
-            nn.BatchNorm1d(ch),
-            nn.LeakyReLU(),
-            nn.Linear(ch, ch),
+            nn.Linear(ch, ch // reduction),
+            nn.BatchNorm1d(ch // reduction),
+            nn.ReLU(),
+            nn.Linear(ch // reduction, ch),
             nn.Sigmoid(),
         )
 
@@ -28,22 +32,26 @@ class ChannelShrink(nn.Module):
         return x
 
 
-class SpatialEnhance(nn.Module):
-    def __init__(self, ch: int, kernel_size: int = 7):
+class CSE(nn.Module):
+    """
+    Channel-Spatial Excitation
+    """
+
+    def __init__(self, ch: int, reduction: int = 4, kernel_size: int = 7):
         super().__init__()
         self.conv = nn.Sequential(
             nn.Conv1d(
                 ch,
-                ch // 2,
+                ch // reduction,
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
                 bias=False,
             ),
-            nn.BatchNorm1d(ch // 2),
-            nn.LeakyReLU(),
+            nn.BatchNorm1d(ch // reduction),
+            nn.ReLU(),
             nn.Conv1d(
-                ch // 2,
-                1,
+                ch // reduction,
+                ch,
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
                 bias=False,
@@ -56,17 +64,21 @@ class SpatialEnhance(nn.Module):
         x_raw = x
         x_abs = x.abs()
         x_attention = self.conv(x_abs)
-        x = x_raw * x_attention.expand_as(x_raw)
+        x = x_raw * x_attention
         return x
 
 
-class CIAD(nn.Module):
-    def __init__(self, ch: int, spatial_kernel_size: int = 7):
+class DANCE(nn.Module):
+    """
+    Dual Adaptive Noise Compression and Core Excitation
+    """
+
+    def __init__(self, ch: int):
         super().__init__()
-        self.channel_shrink = ChannelShrink(ch)
-        self.spatial_enhance = SpatialEnhance(ch, spatial_kernel_size)
+        self.cac = CAC(ch)
+        self.cse = CSE(ch)
 
     def forward(self, x: torch.Tensor):
-        x = self.channel_shrink(x)
-        x = self.spatial_enhance(x)
+        x = self.cac(x)
+        x = self.cse(x)
         return x

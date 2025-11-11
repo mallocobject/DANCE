@@ -1,4 +1,4 @@
-from .ciad import CIAD, ChannelShrink, SpatialEnhance
+from .dance import DANCE, CAC, CSE
 from .cbam import CBAM
 from .drsn_block import DRSNBlock
 from .shcink import Shrink
@@ -7,7 +7,7 @@ from .se import SE
 
 
 __all__ = [
-    "CIAD",
+    "DANCE",
     "CBAM",
     "DRSNBlock",
     "Shrink",

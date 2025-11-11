@@ -14,7 +14,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import CIAD
+from layers import DANCE
 
 
 class APReLU(nn.Module):
@@ -76,7 +76,7 @@ class EncoderCell(nn.Module):
                 padding=padding,
                 stride=stride,
             ),
-            CIAD(out_channels),
+            # CIAD(out_channels),
         )
         if using_APReLU:
             self.activate = APReLU(out_channels)
@@ -192,13 +192,12 @@ class DecoderCell(nn.Module):
         super(DecoderCell, self).__init__()
         self.last = last
 
-        self.deconv = nn.ConvTranspose1d(
-            in_channels=in_channels,
-            out_channels=out_channels,
+        self.deconv = nn.Conv1d(
+            in_channels,
+            out_channels,
             kernel_size=kernel_size,
             padding=padding,
             stride=stride,
-            output_padding=1,  # ← 关键！
         )
         if using_APReLU:
             self.activate = APReLU(out_channels)

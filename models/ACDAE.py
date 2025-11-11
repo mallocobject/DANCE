@@ -8,7 +8,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import ECA, CIAD, ChannelShrink
+from layers import ECA, DANCE
 
 
 class EncBlock(nn.Module):
@@ -21,7 +21,6 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            CIAD(out_channels),
             nn.LeakyReLU(),
         )
 
@@ -33,7 +32,7 @@ class DecBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, act=True):
         super(DecBlock, self).__init__()
         self.act = act
-        self.conv = nn.ConvTranspose1d(
+        self.conv = nn.Conv1d(
             in_channels=in_channels,
             out_channels=out_channels,
             kernel_size=kernel_size,
@@ -54,7 +53,7 @@ class ACDAE(nn.Module):
         super(ACDAE, self).__init__()
 
         channels = [2, 16, 32, 64, 128]
-        Kernal_Size = [13, 7, 7, 7]
+        kernal_size = [13, 7, 7, 7]
         self.EncList = nn.ModuleList()
         self.DecList = nn.ModuleList()
         self.ens = nn.ModuleList()
@@ -76,7 +75,7 @@ class ACDAE(nn.Module):
                 EncBlock(
                     in_channels=channels[i],
                     out_channels=channels[i + 1],
-                    kernel_size=Kernal_Size[i],
+                    kernel_size=kernal_size[i],
                 )
             )
             self.ens.append(ECA())
@@ -84,7 +83,7 @@ class ACDAE(nn.Module):
                 DecBlock(
                     in_channels=channels[-(i + 1)],
                     out_channels=channels[-(i + 2)],
-                    kernel_size=Kernal_Size[-(i + 1)],
+                    kernel_size=kernal_size[-(i + 1)],
                     act=True if i != 3 else False,
                 )
             )
