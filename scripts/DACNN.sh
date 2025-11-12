@@ -14,7 +14,7 @@ for i in "${!snr_values[@]}"; do
         --batch_size 64 \
         --epochs 100 \
         --lr 1e-3 \
-        --noise_type emb \
+        --noise_type bw \
         --snr_db "${snr_values[i]}" \
         --gpu_id "${gpu_ids[i]}" \
         --checkpoint_dir ./checkpoints \

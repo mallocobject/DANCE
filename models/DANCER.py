@@ -8,7 +8,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import DANCE, CAC, CSE
+from layers import DANCE, CAC
 
 
 class EncBlock(nn.Module):
@@ -21,7 +21,7 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            DANCE(out_channels),
+            DANCE(out_channels),  # non-linear layer
         )
 
     def forward(self, x):

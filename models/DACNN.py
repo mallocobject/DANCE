@@ -95,7 +95,7 @@ class EncoderCell(nn.Module):
 class DeNoiseEnc(nn.Module):
     def __init__(self, using_APReLU=True):
         super(DeNoiseEnc, self).__init__()
-        self.conv_kernel = [11, 5, 5, 5]
+        self.conv_kernel = [13, 7, 7, 7]
         self.out_channels = [16, 32, 64, 128]
         self.EncoderList = nn.ModuleList()
         input_channel = 2
@@ -192,12 +192,13 @@ class DecoderCell(nn.Module):
         super(DecoderCell, self).__init__()
         self.last = last
 
-        self.deconv = nn.Conv1d(
+        self.deconv = nn.ConvTranspose1d(
             in_channels,
             out_channels,
             kernel_size=kernel_size,
             padding=padding,
             stride=stride,
+            output_padding=1,
         )
         if using_APReLU:
             self.activate = APReLU(out_channels)
@@ -256,7 +257,7 @@ class DeNoiseDec(nn.Module):
         self,
     ):
         super(DeNoiseDec, self).__init__()
-        self.conv_kernel = [5, 5, 5, 11]
+        self.conv_kernel = [7, 7, 7, 13]
         self.out_channels = [64, 32, 16, 2]
         DecoderList = []
         in_channels = 128
