@@ -19,7 +19,7 @@ class CAC(nn.Module):
             nn.Sigmoid(),
         )
 
-    def forward(self, x: torch.Tensor, return_stat: bool = False):
+    def forward(self, x: torch.Tensor):
         B, C, L = x.shape
         x_raw = x
         x_abs = x.abs()
@@ -30,10 +30,7 @@ class CAC(nn.Module):
         x = x_abs - x_threshold
         x = torch.sign(x_raw) * F.relu(x)
 
-        if return_stat:
-            return x, x_stat
-        else:
-            return x, None
+        return x, None
 
 
 class CSE(nn.Module):
@@ -46,15 +43,15 @@ class CSE(nn.Module):
         self.conv = nn.Sequential(
             nn.Conv1d(
                 ch,
-                ch // reduction,
-                kernel_size=kernel_size,
-                padding=(kernel_size - 1) // 2,
+                ch,
+                kernel_size=1,
+                groups=ch,
                 bias=False,
             ),
-            nn.BatchNorm1d(ch // reduction),
+            nn.BatchNorm1d(ch),
             nn.ReLU(),
             nn.Conv1d(
-                ch // reduction,
+                ch,
                 ch,
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
@@ -63,12 +60,9 @@ class CSE(nn.Module):
             nn.Sigmoid(),
         )
 
-    def forward(self, x: torch.Tensor, aux_stat: torch.Tensor = None):
+    def forward(self, x: torch.Tensor):
         B, C, L = x.shape
         x_attn = self.conv(x)
-
-        if aux_stat is not None:
-            pass
 
         x = x * x_attn
         return x
@@ -85,6 +79,6 @@ class DANCE(nn.Module):
         self.cse = CSE(ch)
 
     def forward(self, x: torch.Tensor):
-        x, aux = self.cac(x, return_stat=True)
-        x = self.cse(x, aux_stat=aux)
+        x = self.cac(x)
+        x = self.cse(x)
         return x
