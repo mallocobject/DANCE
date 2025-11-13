@@ -94,7 +94,7 @@ class ECGDenoisingExperiment:
     def train(self):
         metrics_dict = {"RMSE": [], "SNR": []}
 
-        for idx in range(10):
+        for idx in range(1):
             print(f"🚀 Starting training run {idx+1}/10")
             dataloader = self._get_dataloader("train")
 
@@ -124,12 +124,13 @@ class ECGDenoisingExperiment:
 
                 avg_loss = np.mean(losses)
 
-                # print(
-                #     f"--- Epoch {epoch+1}: Loss: {avg_loss:.4f}, RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
-                # )
+                metrics = self.test(model=model)
+                print(
+                    f"--- Epoch {epoch+1}: Loss: {avg_loss:.4f}, RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
+                )
 
                 if epoch == self.args.epochs - 1:
-                    metrics = self.test(model=model)
+
                     metrics_dict["RMSE"].append(metrics["RMSE"])
                     metrics_dict["SNR"].append(metrics["SNR"])
 
@@ -153,10 +154,10 @@ class ECGDenoisingExperiment:
                     mean_val = f"{mean_val:.4f}"
                     std_val = f"{std_val:.4f}"
                 print(f"{key}: {mean_val} ± {std_val}")
-                f.write(f"{key}: {mean_val} ± {std_val}\n")
-                f.write(f"{len(metrics_dict[key])} runs\n")
+                # f.write(f"{key}: {mean_val} ± {std_val}\n")
+                # f.write(f"{len(metrics_dict[key])} runs\n")
 
-            f.write("\n=== End Final Metrics ===\n")
+            # f.write("\n=== End Final Metrics ===\n")
             print("Results saved to:", self.results_file)
 
     def test(self, model: nn.Module = None):

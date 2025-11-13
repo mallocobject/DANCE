@@ -21,6 +21,7 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
+            # nn.LeakyReLU(),
             DANCE(out_channels),  # non-linear layer
         )
 

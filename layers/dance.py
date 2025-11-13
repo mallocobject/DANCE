@@ -8,18 +8,18 @@ class CAC(nn.Module):
     Channel Adaptive Compression
     """
 
-    def __init__(self, ch: int, reduction: int = 1):
+    def __init__(self, ch: int):
         super().__init__()
         self.gap = nn.AdaptiveAvgPool1d(1)
         self.fc = nn.Sequential(
-            nn.Linear(ch, ch // reduction),
-            nn.BatchNorm1d(ch // reduction),
+            nn.Linear(ch, ch),
+            nn.BatchNorm1d(ch),
             nn.ReLU(),
-            nn.Linear(ch // reduction, ch),
+            nn.Linear(ch, ch),
             nn.Sigmoid(),
         )
 
-    def forward(self, x: torch.Tensor):
+    def forward(self, x: torch.Tensor, return_stat: bool = False):
         B, C, L = x.shape
         x_raw = x
         x_abs = x.abs()
@@ -29,7 +29,11 @@ class CAC(nn.Module):
         x_threshold = x_stat * x_coef.unsqueeze(2)
         x = x_abs - x_threshold
         x = torch.sign(x_raw) * F.relu(x)
-        return x
+
+        if return_stat:
+            return x, x_stat
+        else:
+            return x, None
 
 
 class CSE(nn.Module):
@@ -59,12 +63,14 @@ class CSE(nn.Module):
             nn.Sigmoid(),
         )
 
-    def forward(self, x: torch.Tensor):
+    def forward(self, x: torch.Tensor, aux_stat: torch.Tensor = None):
         B, C, L = x.shape
-        x_raw = x
-        x_abs = x.abs()
-        x_attention = self.conv(x_abs)
-        x = x_raw * x_attention
+        x_attn = self.conv(x)
+
+        if aux_stat is not None:
+            pass
+
+        x = x * x_attn
         return x
 
 
@@ -79,6 +85,6 @@ class DANCE(nn.Module):
         self.cse = CSE(ch)
 
     def forward(self, x: torch.Tensor):
-        x = self.cac(x)
-        x = self.cse(x)
+        x, aux = self.cac(x, return_stat=True)
+        x = self.cse(x, aux_stat=aux)
         return x
