@@ -51,6 +51,13 @@ class APReLU(nn.Module):
         concatx = self.fcn(concatx)
         return posx + concatx.unsqueeze(2) * negx
 
+    # def __init__(self, channels):
+    #     super().__init__()
+    #     self.dance = DANCE(channels)
+
+    # def forward(self, x):
+    #     return self.dance(x)
+
 
 class EncoderCell(nn.Module):
 

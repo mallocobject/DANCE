@@ -50,7 +50,7 @@ class UNet(nn.Module):
         super().__init__()
 
         channels = [2, 16, 32, 64, 128]
-        kernal_size = [13, 7, 7, 7]
+        kernel_size = [13, 7, 7, 7]
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
 
@@ -71,14 +71,14 @@ class UNet(nn.Module):
                 EncBlock(
                     in_channels=channels[i],
                     out_channels=channels[i + 1],
-                    kernel_size=kernal_size[i],
+                    kernel_size=kernel_size[i],
                 )
             )
             self.decoder.append(
                 DecBlock(
                     in_channels=channels[-(i + 1)],
                     out_channels=channels[-(i + 2)],
-                    kernel_size=kernal_size[-(i + 1)],
+                    kernel_size=kernel_size[-(i + 1)],
                     act=True if i != 3 else False,
                 )
             )

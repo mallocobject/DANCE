@@ -8,7 +8,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import DANCE, CAC
+from layers import DANCE, ATNC
 
 
 class EncBlock(nn.Module):
@@ -21,8 +21,7 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            # nn.LeakyReLU(),
-            DANCE(out_channels),  # non-linear layer
+            ATNC(out_channels),  # non-linear layer
         )
 
     def forward(self, x):
@@ -58,7 +57,7 @@ class DANCER(nn.Module):
         super().__init__()
 
         channels = [2, 16, 32, 64, 128]
-        kernal_size = [13, 7, 7, 7]
+        kernel_size = [13, 7, 7, 7]
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
 
@@ -79,14 +78,14 @@ class DANCER(nn.Module):
                 EncBlock(
                     in_channels=channels[i],
                     out_channels=channels[i + 1],
-                    kernel_size=kernal_size[i],
+                    kernel_size=kernel_size[i],
                 )
             )
             self.decoder.append(
                 DecBlock(
                     in_channels=channels[-(i + 1)],
                     out_channels=channels[-(i + 2)],
-                    kernel_size=kernal_size[-(i + 1)],
+                    kernel_size=kernel_size[-(i + 1)],
                     act=True if i != 3 else False,
                 )
             )

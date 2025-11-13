@@ -3,9 +3,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-class CAC(nn.Module):
+class ATNC(nn.Module):
     """
-    Channel Adaptive Compression
+    Adaptive Threshold Noise Canceller
     """
 
     def __init__(self, ch: int):
@@ -19,33 +19,31 @@ class CAC(nn.Module):
             nn.Sigmoid(),
         )
 
-    def forward(self, x: torch.Tensor):
-        B, C, L = x.shape
-        x_raw = x
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        # x: (B, C, L)
+        x_sign = x.sign()
         x_abs = x.abs()
-        x_stat = self.gap(x_abs)
-        x_coef = torch.flatten(x_stat, 1)
-        x_coef = self.fc(x_coef)
-        x_threshold = x_stat * x_coef.unsqueeze(2)
-        x = x_abs - x_threshold
-        x = torch.sign(x_raw) * F.relu(x)
+        stat = self.gap(x_abs)
+        coef = stat.squeeze(-1)
+        coef = self.fc(coef)
+        x_threshold = stat * coef.unsqueeze(-1)
+        x_denoised = F.relu(x_abs - x_threshold)
 
-        return x, None
+        return x_sign * x_denoised
 
 
-class CSE(nn.Module):
+class STEM(nn.Module):
     """
-    Channel-Spatial Excitation
+    Spatio-Temporal Enhancement Module
     """
 
-    def __init__(self, ch: int, reduction: int = 4, kernel_size: int = 7):
+    def __init__(self, ch: int, kernel_size: int = 7):
         super().__init__()
-        self.conv = nn.Sequential(
+        self.attn = nn.Sequential(
             nn.Conv1d(
                 ch,
                 ch,
                 kernel_size=1,
-                groups=ch,
                 bias=False,
             ),
             nn.BatchNorm1d(ch),
@@ -55,30 +53,27 @@ class CSE(nn.Module):
                 ch,
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
+                groups=ch,
                 bias=False,
             ),
             nn.Sigmoid(),
         )
 
-    def forward(self, x: torch.Tensor):
-        B, C, L = x.shape
-        x_attn = self.conv(x)
-
-        x = x * x_attn
-        return x
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return x * self.attn(x)
 
 
 class DANCE(nn.Module):
     """
-    Dual Adaptive Noise Compression and Core Excitation
+    DANCE: Dual Adaptive Noise Cancellation and Enhancement
     """
 
     def __init__(self, ch: int):
         super().__init__()
-        self.cac = CAC(ch)
-        self.cse = CSE(ch)
+        self.atnc = ATNC(ch)
+        self.stem = STEM(ch)
 
     def forward(self, x: torch.Tensor):
-        x = self.cac(x)
-        x = self.cse(x)
+        x = self.atnc(x)
+        x = self.stem(x)
         return x
