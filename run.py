@@ -35,7 +35,10 @@ def parse_args():
     )
     parser.add_argument("--snr_db", type=int, default=0, choices=[-4, -2, 0, 2, 4])
     parser.add_argument(
-        "--seed", type=int, default=3407, help="seed(3407) is all you need"
+        "--seed",
+        type=int,
+        default=42,
+        help="you know 42 is the answer to life, universe and everything",
     )
 
     parser.add_argument(

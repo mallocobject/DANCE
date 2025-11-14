@@ -21,7 +21,7 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            ATNC(out_channels),  # non-linear layer
+            DANCE(out_channels),  # non-linear layer
         )
 
     def forward(self, x):

@@ -39,21 +39,30 @@ class STEM(nn.Module):
 
     def __init__(self, ch: int, kernel_size: int = 7):
         super().__init__()
+        mid_ch = ch * 2
         self.attn = nn.Sequential(
             nn.Conv1d(
                 ch,
-                ch,
+                mid_ch,
                 kernel_size=1,
                 bias=False,
             ),
-            nn.BatchNorm1d(ch),
+            nn.BatchNorm1d(mid_ch),
             nn.ReLU(),
             nn.Conv1d(
-                ch,
-                ch,
+                mid_ch,
+                mid_ch,
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
-                groups=ch,
+                groups=mid_ch,
+                bias=False,
+            ),
+            nn.BatchNorm1d(mid_ch),
+            nn.ReLU(),
+            nn.Conv1d(
+                mid_ch,
+                ch,
+                kernel_size=1,
                 bias=False,
             ),
             nn.Sigmoid(),
@@ -70,8 +79,8 @@ class DANCE(nn.Module):
 
     def __init__(self, ch: int):
         super().__init__()
-        self.atnc = ATNC(ch)
         self.stem = STEM(ch)
+        self.atnc = ATNC(ch)
 
     def forward(self, x: torch.Tensor):
         x = self.atnc(x)
