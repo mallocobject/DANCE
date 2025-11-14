@@ -10,12 +10,13 @@ class ATNC(nn.Module):
 
     def __init__(self, ch: int):
         super().__init__()
+        mid_ch = ch
         self.gap = nn.AdaptiveAvgPool1d(1)
         self.fc = nn.Sequential(
-            nn.Linear(ch, ch),
-            nn.BatchNorm1d(ch),
+            nn.Linear(ch, mid_ch),
+            nn.BatchNorm1d(mid_ch),
             nn.ReLU(),
-            nn.Linear(ch, ch),
+            nn.Linear(mid_ch, ch),
             nn.Sigmoid(),
         )
 
@@ -85,4 +86,20 @@ class DANCE(nn.Module):
     def forward(self, x: torch.Tensor):
         x = self.atnc(x)
         x = self.stem(x)
+        return x
+
+
+class DANCE_inv(nn.Module):
+    """
+    DANCE: Dual Adaptive Noise Cancellation and Enhancement
+    """
+
+    def __init__(self, ch: int):
+        super().__init__()
+        self.atnc = ATNC(ch)
+        self.stem = STEM(ch)
+
+    def forward(self, x: torch.Tensor):
+        x = self.stem(x)
+        x = self.atnc(x)
         return x

@@ -8,7 +8,9 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import DANCE, ATNC
+from layers import DANCE, ATNC, STEM, DANCE_inv
+
+PLUGIN = DANCE
 
 
 class EncBlock(nn.Module):
@@ -21,7 +23,7 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            DANCE(out_channels),  # non-linear layer
+            PLUGIN(out_channels),  # non-linear layer
         )
 
     def forward(self, x):
@@ -70,7 +72,7 @@ class DANCER(nn.Module):
                 kernel_size=3,
                 padding=1,
             ),
-            nn.LeakyReLU(),
+            PLUGIN(channels[-1]),
         )
 
         for i in range(4):

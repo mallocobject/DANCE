@@ -10,6 +10,7 @@ import numpy as np
 import time
 import warnings
 from tqdm import TqdmExperimentalWarning
+import math
 
 warnings.filterwarnings("ignore", category=TqdmExperimentalWarning)
 
@@ -102,15 +103,20 @@ class ECGDenoisingExperiment:
 
     def _select_scheduler(self, optimizer: optim.Optimizer):
         def lr_lambda(epoch):
-            if epoch < 40:
-                return 1.0  # 保持初始学习率
-            else:
+            if epoch < 50:
+                return 1.0
+            elif epoch < 70:
                 return 0.1
+            elif epoch < 80:
+                return 0.05
+            else:
+                return 0.01
 
         # scheduler = optim.lr_scheduler.CosineAnnealingLR(
         #     optimizer, T_max=self.args.epochs, eta_min=1e-5
         # )
         scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lr_lambda)
+
         return scheduler
 
     def train(self):
@@ -148,7 +154,7 @@ class ECGDenoisingExperiment:
 
                 metrics = self.test(model=model)
                 print(
-                    f"--- Epoch {epoch+1}: Loss: {avg_loss:.4f}, RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
+                    f"--- Epoch {epoch+1}({scheduler.get_last_lr()[0]:.5f}): Loss: {avg_loss:.4f}, RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
                 )
 
                 if epoch == self.args.epochs - 1:
