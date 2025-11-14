@@ -162,31 +162,31 @@ class ECGDenoisingExperiment:
                     metrics_dict["RMSE"].append(metrics["RMSE"])
                     metrics_dict["SNR"].append(metrics["SNR"])
 
-            # torch.save(model.state_dict(), self.checkpoint)
+            torch.save(model.state_dict(), self.checkpoint)
 
-        # print("🚀 Final Results after 10 runs:")
-        # print(
-        #     f"Model: {self.args.model}, Noise Type: {self.args.noise_type}, SNR: {self.args.snr_db} dB"
-        # )
-        with open(self.results_file, "a") as f:
+            # print("🚀 Final Results after 10 runs:")
+            # print(
+            #     f"Model: {self.args.model}, Noise Type: {self.args.noise_type}, SNR: {self.args.snr_db} dB"
+            # )
+            # with open(self.results_file, "a") as f:
             # f.write("\n=== Final Metrics ===\n")
-            for key in metrics_dict:
-                mean_val = np.mean(metrics_dict[key])
-                std_val = np.std(metrics_dict[key], ddof=1)
+        for key in metrics_dict:
+            mean_val = np.mean(metrics_dict[key])
+            std_val = np.std(metrics_dict[key], ddof=1)
 
-                # 分别格式化均值和标准差
-                if len(metrics_dict[key]) == 1:
-                    mean_val = f"{mean_val:.4f}"
-                    std_val = "N/A"  # 如果只有一个值，标准差不可用
-                else:
-                    mean_val = f"{mean_val:.4f}"
-                    std_val = f"{std_val:.4f}"
-                print(f"{key}: {mean_val} ± {std_val}")
-                # f.write(f"{key}: {mean_val} ± {std_val}\n")
-                # f.write(f"{len(metrics_dict[key])} runs\n")
+            # 分别格式化均值和标准差
+            if len(metrics_dict[key]) == 1:
+                mean_val = f"{mean_val:.4f}"
+                std_val = "N/A"  # 如果只有一个值，标准差不可用
+            else:
+                mean_val = f"{mean_val:.4f}"
+                std_val = f"{std_val:.4f}"
+            print(f"{key}: {mean_val} ± {std_val}")
+            # f.write(f"{key}: {mean_val} ± {std_val}\n")
+            # f.write(f"{len(metrics_dict[key])} runs\n")
 
             # f.write("\n=== End Final Metrics ===\n")
-            print("Results saved to:", self.results_file)
+        print("Results saved to:", self.results_file)
 
     def test(self, model: nn.Module = None):
         test_dataloader = self._get_dataloader("test")

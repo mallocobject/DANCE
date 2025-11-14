@@ -80,8 +80,8 @@ class DANCE(nn.Module):
 
     def __init__(self, ch: int):
         super().__init__()
-        self.stem = STEM(ch)
         self.atnc = ATNC(ch)
+        self.stem = STEM(ch)
 
     def forward(self, x: torch.Tensor):
         x = self.atnc(x)

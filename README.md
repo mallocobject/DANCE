@@ -103,55 +103,55 @@ DANCE 由两个串行子模块构成，分别从**全局统计压缩**与**局�
     </tr>
     <tr>
       <td>U-Net</td>
-      <td>7.1792</td>
-      <td>7.9122</td>
-      <td>8.7832</td>
-      <td>9.6826</td>
-      <td>10.6419</td>
+      <td>7.1990</td>
+      <td>8.0031</td>
+      <td>8.8498</td>
+      <td>9.7801</td>
+      <td>10.7494</td>
       <td>0.2098</td>
-      <td>0.1920</td>
-      <td>0.1731</td>
-      <td>0.1555</td>
-      <td>0.1387</td>
+      <td>0.1904</td>
+      <td>0.1715</td>
+      <td>0.1542</td>
+      <td>0.1369</td>
     </tr>
     <tr>
       <td>DACNN</td>
-      <td>8.0310</td>
-      <td>8.8935</td>
-      <td>9.7998</td>
-      <td>10.7158</td>
-      <td>11.5086</td>
-      <td>0.1884</td>
-      <td>0.1702</td>
-      <td>0.1526</td>
-      <td>0.1377</td>
-      <td>0.1253</td>
+      <td>8.1537</td>
+      <td>8.9806</td>
+      <td>9.9291</td>
+      <td>10.9754</td>
+      <td>11.7381</td>
+      <td>0.1857</td>
+      <td>0.1680</td>
+      <td>0.1508</td>
+      <td>0.1334</td>
+      <td>0.1225</td>
     </tr>
     <tr>
       <td>ACDAE</td>
-      <td>7.9996</td>
-      <td>8.8147</td>
-      <td>9.7136</td>
-      <td>10.7407</td>
-      <td>11.4073</td>
-      <td>0.1910</td>
-      <td>0.1734</td>
-      <td>0.1560</td>
-      <td>0.1385</td>
-      <td>0.1281</td>
+      <td>8.1164</td>
+      <td>8.7772</td>
+      <td>9.6396</td>
+      <td>10.4104</td>
+      <td>11.2274</td>
+      <td>0.1874</td>
+      <td>0.1729</td>
+      <td>0.1570</td>
+      <td>0.1433</td>
+      <td>0.1302</td>
     </tr>
     <tr>
       <td><strong>DANCER (ours)</strong></td>
-      <td><strong>8.9458</strong></td>
-      <td><strong>9.7525</strong></td>
-      <td><strong>10.5912</strong></td>
-      <td><strong>11.4206</strong></td>
-      <td><strong>12.2659</strong></td>
-      <td><strong>0.1743</strong></td>
-      <td><strong>0.1575</strong></td>
-      <td><strong>0.1424</strong></td>
-      <td><strong>0.1290</strong></td>
-      <td><strong>0.1168</strong></td>
+      <td><strong>9.1636</strong></td>
+      <td><strong>10.0173</strong></td>
+      <td><strong>10.9101</strong></td>
+      <td><strong>11.7258</strong></td>
+      <td><strong>12.5284</strong></td>
+      <td><strong>0.1692</strong></td>
+      <td><strong>0.1526</strong></td>
+      <td><strong>0.1365</strong></td>
+      <td><strong>0.1244</strong></td>
+      <td><strong>0.1132</strong></td>
     </tr>
   </tbody>
 </table>
@@ -185,42 +185,42 @@ DANCE 由两个串行子模块构成，分别从**全局统计压缩**与**局�
   <tbody>
     <tr>
       <td>Baseline (U-Net)</td>
-      <td>7.1792</td>
-      <td>7.9122</td>
-      <td>8.7832</td>
-      <td>9.6826</td>
-      <td>10.6419</td>
+      <td>7.1990</td>
+      <td>8.0031</td>
+      <td>8.8498</td>
+      <td>9.7801</td>
+      <td>10.7494</td>
       <td>0.2098</td>
-      <td>0.1920</td>
-      <td>0.1731</td>
-      <td>0.1555</td>
-      <td>0.1387</td>
+      <td>0.1904</td>
+      <td>0.1715</td>
+      <td>0.1542</td>
+      <td>0.1369</td>
     </tr>
     <tr>
-      <td>+ Channel Shrink</td>
-      <td>8.6951</td>
-      <td>9.4228</td>
-      <td>10.4438</td>
-      <td>11.2464</td>
-      <td>12.0682</td>
-      <td>0.1781</td>
-      <td>0.1627</td>
-      <td>0.1439</td>
-      <td>0.1307</td>
-      <td>0.1185</td>
+      <td>+ ATNC</td>
+      <td>8.8165</td>
+      <td>9.5850</td>
+      <td>10.4658</td>
+      <td>11.3711</td>
+      <td>12.0413</td>
+      <td>0.1762</td>
+      <td>0.1597</td>
+      <td>0.1437</td>
+      <td>0.1291</td>
+      <td>0.1191</td>
     </tr>
     <tr>
-      <td><strong>+ Channel & Spatial Shrink</strong></td>
-      <td><strong>8.9458</strong></td>
-      <td><strong>9.7525</strong></td>
-      <td><strong>10.5912</strong></td>
-      <td><strong>11.4206</strong></td>
-      <td><strong>12.2659</strong></td>
-      <td><strong>0.1743</strong></td>
-      <td><strong>0.1575</strong></td>
-      <td><strong>0.1424</strong></td>
-      <td><strong>0.1290</strong></td>
-      <td><strong>0.1168</strong></td>
+      <td><strong>+ ATNC & STEM</strong></td>
+      <td><strong>9.1636</strong></td>
+      <td><strong>10.0173</strong></td>
+      <td><strong>10.9101</strong></td>
+      <td><strong>11.7258</strong></td>
+      <td><strong>12.5284</strong></td>
+      <td><strong>0.1692</strong></td>
+      <td><strong>0.1526</strong></td>
+      <td><strong>0.1365</strong></td>
+      <td><strong>0.1244</strong></td>
+      <td><strong>0.1132</strong></td>
     </tr>
   </tbody>
 </table>
@@ -278,59 +278,124 @@ DANCE 由两个串行子模块构成，分别从**全局统计压缩**与**局�
     </tr>
     <tr>
       <td>U-Net</td>
-      <td>9.4762</td>
-      <td>10.0018</td>
-      <td>10.7111</td>
-      <td>11.5845</td>
-      <td>12.4903</td>
-      <td>0.1635</td>
-      <td>0.1540</td>
-      <td>0.1423</td>
-      <td>0.1296</td>
+      <td>9.5292</td>
+      <td>10.1480</td>
+      <td>10.7549</td>
+      <td>11.6637</td>
+      <td>12.5922</td>
+      <td>0.1633</td>
+      <td>0.1515</td>
+      <td>0.1413</td>
+      <td>0.1285</td>
+      <td>0.1157</td>
+    </tr>
+    <tr>
+      <td>DACNN</td>
+      <td>10.6044</td>
+      <td>11.3291</td>
+      <td>12.4020</td>
+      <td>13.1558</td>
+      <td>13.8094</td>
+      <td>0.1449</td>
+      <td>0.1344</td>
+      <td>0.1193</td>
+      <td>0.1108</td>
+      <td>0.1034</td>
+    </tr>
+    <tr>
+      <td>ACDAE</td>
+      <td>10.4280</td>
+      <td>10.9470</td>
+      <td>11.9196</td>
+      <td>12.6076</td>
+      <td>13.4526</td>
+      <td>0.1464</td>
+      <td>0.1384</td>
+      <td>0.1257</td>
       <td>0.1174</td>
-    </tr>
-    <tr>
-      <td>DACNN</td>
-      <td>10.3958</td>
-      <td>11.1785</td>
-      <td>11.8643</td>
-      <td>12.7837</td>
-      <td>13.6798</td>
-      <td>0.1484</td>
-      <td>0.1363</td>
-      <td>0.1260</td>
-      <td>0.1150</td>
-      <td>0.1046</td>
-    </tr>
-    <tr>
-      <td>ACDAE</td>
-      <td>10.4238</td>
-      <td>11.0144</td>
-      <td>11.8713</td>
-      <td>12.6993</td>
-      <td>13.5933</td>
-      <td>0.1478</td>
-      <td>0.1385</td>
-      <td>0.1267</td>
-      <td>0.1168</td>
-      <td>0.1062</td>
+      <td>0.1066</td>
     </tr>
     <tr style="background-color: #ecf3ecff;">
       <td><strong>DANCER (ours)</strong></td>
-      <td><strong>11.4086</strong></td>
-      <td><strong>12.1023</strong></td>
-      <td><strong>12.9022</strong></td>
-      <td><strong>13.7191</strong></td>
-      <td><strong>14.4682</strong></td>
-      <td><strong>0.1351</strong></td>
-      <td><strong>0.1245</strong></td>
-      <td><strong>0.1143</strong></td>
-      <td><strong>0.1053</strong></td>
-      <td><strong>0.0973</strong></td>
+      <td><strong>11.6337</strong></td>
+      <td><strong>12.3434</strong></td>
+      <td><strong>13.1573</strong></td>
+      <td><strong>13.9295</strong></td>
+      <td><strong>14.8686</strong></td>
+      <td><strong>0.1321</strong></td>
+      <td><strong>0.1219</strong></td>
+      <td><strong>0.1109</strong></td>
+      <td><strong>0.1034</strong></td>
+      <td><strong>0.0930</strong></td>
     </tr>
   </tbody>
 </table>
-基线漂移 (bw) 下的去噪性能对比 (10 runs)
+基线漂移 (bw) 下的去噪性能对比
+
+---
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="3">Methods</th>
+      <th colspan="5">SNR(dB)</th>
+      <th colspan="5">RMSE</th>
+    </tr>
+    <tr>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Baseline (U-Net)</td>
+      <td>9.5292</td>
+      <td>10.1480</td>
+      <td>10.7549</td>
+      <td>11.6637</td>
+      <td>12.5922</td>
+      <td>0.1633</td>
+      <td>0.1515</td>
+      <td>0.1413</td>
+      <td>0.1285</td>
+      <td>0.1157</td>
+    </tr>
+    <tr>
+      <td>+ ATNC</td>
+      <td>11.1428</td>
+      <td>11.8738</td>
+      <td>12.6695</td>
+      <td>13.6302</td>
+      <td>14.4109</td>
+      <td>0.1388</td>
+      <td>0.1280</td>
+      <td>0.1161</td>
+      <td>0.1066</td>
+      <td>0.0979</td>
+    </tr>
+    <tr>
+      <td><strong>+ ATNC & STEM</strong></td>
+      <td><strong>11.6337</strong></td>
+      <td><strong>12.3434</strong></td>
+      <td><strong>13.1573</strong></td>
+      <td><strong>13.9295</strong></td>
+      <td><strong>14.8686</strong></td>
+      <td><strong>0.1321</strong></td>
+      <td><strong>0.1219</strong></td>
+      <td><strong>0.1109</strong></td>
+      <td><strong>0.1034</strong></td>
+      <td><strong>0.0930</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -383,59 +448,59 @@ DANCE 由两个串行子模块构成，分别从**全局统计压缩**与**局�
     </tr>
     <tr>
       <td>U-Net</td>
-      <td>7.0895</td>
-      <td>7.7027</td>
-      <td>8.3145</td>
-      <td>9.1401</td>
-      <td>10.0686</td>
-      <td>0.2157</td>
-      <td>0.2004</td>
-      <td>0.1860</td>
-      <td>0.1679</td>
-      <td>0.1493</td>
+      <td>7.2130</td>
+      <td>7.7668</td>
+      <td>8.3700</td>
+      <td>9.3446</td>
+      <td>10.1713</td>
+      <td>0.2124</td>
+      <td>0.1989</td>
+      <td>0.1841</td>
+      <td>0.1637</td>
+      <td>0.1475</td>
     </tr>
     <tr>
       <td>DACNN</td>
-      <td>8.2003</td>
-      <td>8.8572</td>
-      <td>9.5993</td>
-      <td>10.4399</td>
-      <td>11.1198</td>
-      <td>0.1912</td>
-      <td>0.1762</td>
-      <td>0.1609</td>
-      <td>0.1456</td>
-      <td>0.1334</td>
+      <td>8.3792</td>
+      <td>9.0164</td>
+      <td>9.7187</td>
+      <td>10.3924</td>
+      <td>11.3412</td>
+      <td>0.1876</td>
+      <td>0.1738</td>
+      <td>0.1585</td>
+      <td>0.1454</td>
+      <td>0.1300</td>
     </tr>
     <tr>
       <td>ACDAE</td>
-      <td>8.2452</td>
-      <td>8.9140</td>
-      <td>9.6430</td>
-      <td>10.2493</td>
-      <td>11.1859</td>
-      <td>0.1899</td>
-      <td>0.1754</td>
-      <td>0.1602</td>
-      <td>0.1490</td>
-      <td>0.1325</td>
+      <td>8.3792</td>
+      <td>8.8704</td>
+      <td>9.5265</td>
+      <td>10.2566</td>
+      <td>11.2493</td>
+      <td>0.1872</td>
+      <td>0.1745</td>
+      <td>0.1616</td>
+      <td>0.1495</td>
+      <td>0.1317</td>
     </tr>
     <tr style="background-color: #ecf3ecff;">
       <td><strong>DANCER (ours)</strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
+      <td><strong>9.1507</strong></td>
+      <td><strong>9.8982</strong></td>
+      <td><strong>10.6039</strong></td>
+      <td><strong>11.3618</strong></td>
+      <td><strong>12.1724</strong></td>
+      <td><strong>0.1731</strong></td>
+      <td><strong>0.1590</strong></td>
+      <td><strong>0.1450</strong></td>
+      <td><strong>0.1324</strong></td>
+      <td><strong>0.1192</strong></td>
     </tr>
   </tbody>
 </table>
-肌肉伪迹 (ma) 下的去噪性能对比 (10 runs)
+肌肉伪迹 (ma) 下的去噪性能对比
 
 ---
 
@@ -540,7 +605,7 @@ DANCE 由两个串行子模块构成，分别从**全局统计压缩**与**局�
     </tr>
   </tbody>
 </table>
-电机移动伪迹 (em) 下的去噪性能对比 (10 runs)
+电机移动伪迹 (em) 下的去噪性能对比
 
 ---
 
