@@ -2,6 +2,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from .cbam import CBAM
+from .eca import ECA
+from .se import SE
+
 
 class ATNC(nn.Module):
     """

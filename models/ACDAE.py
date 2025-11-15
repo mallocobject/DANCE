@@ -7,7 +7,9 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import ECA, DANCE
+from layers import ECA, DANCE, ATNC
+
+PLUGIN = DANCE
 
 
 class EncBlock(nn.Module):
@@ -20,7 +22,7 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            nn.LeakyReLU(),
+            PLUGIN(out_channels),
         )
 
     def forward(self, x):
@@ -64,7 +66,7 @@ class ACDAE(nn.Module):
                 kernel_size=3,
                 padding=1,
             ),
-            nn.LeakyReLU(),
+            PLUGIN(channels[-1]),
         )
         self.down = nn.MaxPool1d(2)
         self.up = nn.Upsample(scale_factor=2, mode="linear")

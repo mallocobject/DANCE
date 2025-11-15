@@ -10,7 +10,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import DANCE
+from layers import DANCE, ATNC
 
 
 class APReLU(nn.Module):
@@ -79,10 +79,9 @@ class EncoderCell(nn.Module):
                 padding=padding,
                 stride=stride,
             ),
-            # CIAD(out_channels),
         )
         if using_APReLU:
-            self.activate = APReLU(out_channels)
+            self.activate = ATNC(out_channels)
         else:
             self.activate = nn.LeakyReLU(0.2)
         self.bn = nn.BatchNorm1d(out_channels)

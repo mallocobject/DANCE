@@ -27,7 +27,7 @@ class ChannelAttention(nn.Module):
 
 
 class SpatialAttention(nn.Module):
-    def __init__(self, kernel_size: int = 5):
+    def __init__(self, kernel_size: int = 7):
         super().__init__()
 
         self.conv = nn.Conv1d(
@@ -46,7 +46,7 @@ class SpatialAttention(nn.Module):
 
 
 class CBAM(nn.Module):
-    def __init__(self, ch: int, reduction: int = 2, kernel_size: int = 5):
+    def __init__(self, ch: int, reduction: int = 2, kernel_size: int = 7):
         super().__init__()
         self.ca = ChannelAttention(ch, reduction)
         self.sa = SpatialAttention(kernel_size)
