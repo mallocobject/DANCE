@@ -526,6 +526,71 @@ DANCE 由两个串行子模块构成，分别从**全局统计压缩**与**局�
   </thead>
   <tbody>
     <tr>
+      <td>Baseline (U-Net)</td>
+      <td>7.2130</td>
+      <td>7.7668</td>
+      <td>8.3700</td>
+      <td>9.3446</td>
+      <td>10.1713</td>
+      <td>0.2124</td>
+      <td>0.1989</td>
+      <td>0.1841</td>
+      <td>0.1637</td>
+      <td>0.1475</td>
+    </tr>
+    <tr>
+      <td>+ ATNC</td>
+      <td>8.8483</td>
+      <td>9.5550</td>
+      <td>10.2312</td>
+      <td>10.9499</td>
+      <td>11.7030</td>
+      <td>0.1787</td>
+      <td>0.1656</td>
+      <td>0.1511</td>
+      <td>0.1387</td>
+      <td>0.1249</td>
+    </tr>
+    <tr>
+      <td><strong>+ ATNC & STEM</strong></td>
+      <td><strong>9.1507</strong></td>
+      <td><strong>9.8982</strong></td>
+      <td><strong>10.6039</strong></td>
+      <td><strong>11.3618</strong></td>
+      <td><strong>12.1724</strong></td>
+      <td><strong>0.1731</strong></td>
+      <td><strong>0.1590</strong></td>
+      <td><strong>0.1450</strong></td>
+      <td><strong>0.1324</strong></td>
+      <td><strong>0.1192</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="3">Methods</th>
+      <th colspan="5">SNR(dB)</th>
+      <th colspan="5">RMSE</th>
+    </tr>
+    <tr>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
       <td>FFT</td>
       <td></td>
       <td></td>
@@ -553,59 +618,124 @@ DANCE 由两个串行子模块构成，分别从**全局统计压缩**与**局�
     </tr>
     <tr>
       <td>U-Net</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>8.2633</td>
+      <td>9.0273</td>
+      <td>9.8888</td>
+      <td>10.7124</td>
+      <td>11.5022</td>
+      <td>0.1826</td>
+      <td>0.1668</td>
+      <td>0.1510</td>
+      <td>0.1369</td>
+      <td>0.1246</td>
     </tr>
     <tr>
       <td>DACNN</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>9.1970</td>
+      <td>10.0596</td>
+      <td>10.9456</td>
+      <td>11.8838</td>
+      <td>12.7189</td>
+      <td>0.1644</td>
+      <td>0.1483</td>
+      <td>0.1330</td>
+      <td>0.1199</td>
+      <td>0.1089</td>
     </tr>
     <tr>
       <td>ACDAE</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>8.8527</td>
+      <td>9.7433</td>
+      <td>10.6783</td>
+      <td>11.5174</td>
+      <td>12.1582</td>
+      <td>0.1705</td>
+      <td>0.1548</td>
+      <td>0.1392</td>
+      <td>0.1259</td>
+      <td>0.1165</td>
     </tr>
     <tr style="background-color: #ecf3ecff;">
       <td><strong>DANCER (ours)</strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
+      <td><strong>10.1728</strong></td>
+      <td><strong>11.1074</strong></td>
+      <td><strong>12.0221</strong></td>
+      <td><strong>12.8331</strong></td>
+      <td><strong>13.8240</strong></td>
+      <td><strong>0.1488</strong></td>
+      <td><strong>0.1331</strong></td>
+      <td><strong>0.1197</strong></td>
+      <td><strong>0.1088</strong></td>
+      <td><strong>0.0977</strong></td>
     </tr>
   </tbody>
 </table>
 电机移动伪迹 (em) 下的去噪性能对比
+
+---
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="3">Methods</th>
+      <th colspan="5">SNR(dB)</th>
+      <th colspan="5">RMSE</th>
+    </tr>
+    <tr>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+      <th>-4dB</th>
+      <th>-2dB</th>
+      <th>0dB</th>
+      <th>2dB</th>
+      <th>4dB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Baseline (U-Net)</td>
+      <td>8.2633</td>
+      <td>9.0273</td>
+      <td>9.8888</td>
+      <td>10.7124</td>
+      <td>11.5022</td>
+      <td>0.1826</td>
+      <td>0.1668</td>
+      <td>0.1510</td>
+      <td>0.1369</td>
+      <td>0.1246</td>
+    </tr>
+    <tr>
+      <td>+ ATNC</td>
+      <td>9.7462</td>
+      <td>10.6601</td>
+      <td>11.5066</td>
+      <td>12.2579</td>
+      <td>13.2199</td>
+      <td>0.1562</td>
+      <td>0.1399</td>
+      <td>0.1268</td>
+      <td>0.1153</td>
+      <td>0.1040</td>
+    </tr>
+    <tr>
+      <td><strong>+ ATNC & STEM</strong></td>
+      <td><strong>10.1728</strong></td>
+      <td><strong>11.1074</strong></td>
+      <td><strong>12.0221</strong></td>
+      <td><strong>12.8331</strong></td>
+      <td><strong>13.8240</strong></td>
+      <td><strong>0.1488</strong></td>
+      <td><strong>0.1331</strong></td>
+      <td><strong>0.1197</strong></td>
+      <td><strong>0.1088</strong></td>
+      <td><strong>0.0977</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 

@@ -3,8 +3,8 @@
 # 定义SNR值和对应的GPU ID（避免内存冲突）
 i=4
 snr_values=(-4 -2 0 2 4)
-gpu_ids=(1 2 2 3 7)  # 交替使用GPU
-# 1 2 2 3 7
+gpu_ids=(0 2 2 3 7)  # 交替使用GPU
+# 0 2 2 3 7
 
 echo "开始并行训练所有SNR配置..."
 
@@ -12,11 +12,11 @@ echo "开始并行训练所有SNR配置..."
     echo "启动 SNR=${snr_values[i]} 在 GPU ${gpu_ids[i]}"
     python run.py \
         --split_dir ./data_split \
-        --model DACNN \
+        --model RALENet \
         --batch_size 64 \
         --epochs 100 \
         --lr 1e-3 \
-        --noise_type em \
+        --noise_type emb \
         --snr_db "${snr_values[i]}" \
         --gpu_id "${gpu_ids[i]}" \
         --checkpoint_dir ./checkpoints \
@@ -26,4 +26,4 @@ echo "开始并行训练所有SNR配置..."
 
 # 等待所有后台任务完成
 wait
-echo "所有DACNN训练任务已完成!"
+echo "所有RALENet训练任务已完成!"

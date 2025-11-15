@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from layers import DANCE, ATNC, STEM, DANCE_inv
 
-PLUGIN = DANCE
+PLUGIN = ATNC
 
 
 class EncBlock(nn.Module):

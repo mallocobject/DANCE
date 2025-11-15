@@ -46,6 +46,7 @@ class ECGDenoisingExperiment:
             "DANCER": DANCER,
             "ACDAE": ACDAE,
             "DACNN": DACNN,
+            "RALENet": RALENet,
         }
 
         self.checkpoint = os.path.join(
