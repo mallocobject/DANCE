@@ -4,6 +4,13 @@ import os
 import numpy as np
 import json
 
+import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from utils import compute_metrics
+
 
 class ECGDataset(Dataset):
     def __init__(
