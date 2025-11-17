@@ -10,8 +10,6 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import DANCE, ATNC
-
 
 class APReLU(nn.Module):
     """An implementation of APReLU(Adaptively Parametric ReLU) from the paper 'Deep Residual Networks With Adaptively Parametric Rectifier Linear Units for Fault Diagnosis'
@@ -81,7 +79,7 @@ class EncoderCell(nn.Module):
             ),
         )
         if using_APReLU:
-            self.activate = ATNC(out_channels)
+            self.activate = APReLU(out_channels)
         else:
             self.activate = nn.LeakyReLU(0.2)
         self.bn = nn.BatchNorm1d(out_channels)

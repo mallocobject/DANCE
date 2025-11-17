@@ -8,7 +8,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import DANCE, ATNC, STEM, DANCE_inv
+from layers import DANCE, ATNC, STEM, SE, CBAM, ECA
 
 PLUGIN = DANCE
 
@@ -23,7 +23,7 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            PLUGIN(out_channels),  # non-linear layer
+            PLUGIN(out_channels),
         )
 
     def forward(self, x):
