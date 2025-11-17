@@ -775,7 +775,7 @@ $$
     <tr>
       <td rowspan="4">emb</td>
       <tr>
-      <td">Baseline (U-Net)</td>
+      <td>Baseline (U-Net)</td>
       <td>7.1990</td>
       <td>8.0031</td>
       <td>8.8498</td>

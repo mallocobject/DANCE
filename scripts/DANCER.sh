@@ -16,7 +16,7 @@ echo "开始并行训练所有SNR配置..."
         --batch_size 64 \
         --epochs 100 \
         --lr 1e-3 \
-        --noise_type ma \
+        --noise_type em \
         --snr_db "${snr_values[i]}" \
         --gpu_id "${gpu_ids[i]}" \
         --checkpoint_dir ./checkpoints \
