@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from layers import DANCE, ATNC, STEM, SE, CBAM, ECA
 
-PLUGIN = DANCE
+PLUGIN = STEM
 
 
 class EncBlock(nn.Module):

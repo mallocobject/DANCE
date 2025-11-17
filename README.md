@@ -650,7 +650,7 @@ $$
   </thead>
   <tbody>
     <tr>
-      <td rowspan="4">bw</td>
+      <td rowspan="5">bw</td>
       <tr>
       <td>Baseline (U-Net)</td>
       <td>9.5292</td>
@@ -678,6 +678,19 @@ $$
       <td>0.0979</td>
     </tr>
     <tr>
+      <td>+ STEM</td>
+      <td>10.5171</td>
+      <td>11.0747</td>
+      <td>11.8112</td>
+      <td>12.7277</td>
+      <td>13.4625</td>
+      <td>0.1465</td>
+      <td>0.1373</td>
+      <td>0.1256</td>
+      <td>0.1143</td>
+      <td>0.1066</td>
+    </tr>
+    <tr>
       <td style="background-color: #afeef7ff;"><strong>+ ATNC & STEM</strong></td>
       <td><strong>11.6337</strong></td>
       <td><strong>12.3434</strong></td>
@@ -691,7 +704,7 @@ $$
       <td><strong>0.0930</strong></td>
     </tr>
     <tr>
-      <td rowspan="4">ma</td>
+      <td rowspan="5">ma</td>
       <tr>
       <td>Baseline (U-Net)</td>
       <td>7.2130</td>
@@ -719,6 +732,19 @@ $$
       <td>0.1249</td>
     </tr>
     <tr>
+      <td>+ STEM</td>
+      <td>8.1146</td>
+      <td>8.6506</td>
+      <td>9.3925</td>
+      <td>10.0354</td>
+      <td>10.9139</td>
+      <td>0.1924</td>
+      <td>0.1797</td>
+      <td>0.1645</td>
+      <td>0.1515</td>
+      <td>0.1355</td>
+    </tr>
+    <tr>
       <td style="background-color: #afeef7ff;"><strong>+ ATNC & STEM</strong></td>
       <td><strong>9.1507</strong></td>
       <td><strong>9.8982</strong></td>
@@ -732,7 +758,7 @@ $$
       <td><strong>0.1192</strong></td>
     </tr>
     <tr>
-      <td rowspan="4">em</td>
+      <td rowspan="5">em</td>
       <tr>
       <td>Baseline (U-Net)</td>
       <td>8.2633</td>
@@ -760,6 +786,19 @@ $$
       <td>0.1040</td>
     </tr>
     <tr>
+      <td>+ STEM</td>
+      <td>9.2341</td>
+      <td>9.9263</td>
+      <td>10.7868</td>
+      <td>11.5670</td>
+      <td>12.5154</td>
+      <td>0.1628</td>
+      <td>0.1510</td>
+      <td>0.1364</td>
+      <td>0.1243</td>
+      <td>0.1116</td>
+    </tr>
+    <tr>
       <td style="background-color: #afeef7ff;"><strong>+ ATNC & STEM</strong></td>
       <td><strong>10.1728</strong></td>
       <td><strong>11.1074</strong></td>
@@ -773,7 +812,7 @@ $$
       <td><strong>0.0977</strong></td>
     </tr>
     <tr>
-      <td rowspan="4">emb</td>
+      <td rowspan="5">emb</td>
       <tr>
       <td>Baseline (U-Net)</td>
       <td>7.1990</td>
@@ -799,6 +838,19 @@ $$
       <td>0.1437</td>
       <td>0.1291</td>
       <td>0.1191</td>
+    </tr>
+    <tr>
+      <td>+ STEM</td>
+      <td>8.1553</td>
+      <td>8.8737</td>
+      <td>9.6007</td>
+      <td>10.5840</td>
+      <td>11.4104</td>
+      <td>0.1876</td>
+      <td>0.1713</td>
+      <td>0.1576</td>
+      <td>0.1397</td>
+      <td>0.1272</td>
     </tr>
     <tr>
       <td style="background-color: #afeef7ff;"><strong>+ ATNC & STEM</strong></td>
