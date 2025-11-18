@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 定义SNR值和对应的GPU ID（避免内存冲突）
-i=4
+i=0
 snr_values=(-4 -2 0 2 4)
 gpu_ids=(0 1 2 2 3)  # 交替使用GPU
 # 0 2 2 3 7

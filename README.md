@@ -2,85 +2,88 @@
 
 ## 网络概述
 
-**DANCE** (Dual Adaptive Noise Cancellation and Enhancement) 是一种轻量级的 ECG 信号去噪与特征增强模块，专为强噪声环境下的心电信号鲁棒处理设计。通过**自适应阈值噪声消除(ATNC)**与**时空增强模块(STEM)**的协同机制，实现对噪声的精准抑制，同时显著增强**QRS复合波、P/T波**等临床关键特征。
+**DANCE**（Dual Adaptive Noise-Cancellation and Enhancement）是一种轻量级、可解释的 ECG 信号去噪与特征增强模块，由两个互补的子模块组成：
 
-模型采用全卷积与全局统计的混合架构，**无需外部参考信号**，可直接从单通道含噪ECG中学习纯净波形。具备**参数效率高、可解释性强、易于集成**的优势，可作为插件模块灵活嵌入各类ECG处理网络。
+- **ATNC** — Adaptive Threshold Noise Cancellation（自适应阈值噪声消除）
+- **ALEM** — Adaptive Local Enhancement Module（自适应局部增强）
+
+DANCE 无需参考信号，可在强噪声背景下恢复关键 ECG 波形（P/QRS/T），具备参数效率高、可解释性强、易于集成等优势。
 
 ---
 
 ## 核心设计
 
-### 双重自适应降噪与增强 (DANCE)
+### 双模块结构：DANCE
 
-**DANCE** 由 **ATNC**（自适应阈值噪声消除模块）与 **STEM**（时空增强模块）两个子模块串行组成，分别实现 **全局能量感知的软阈值去噪** 与 **局部时空上下文的特征增强**，形成独特的信号净化与激励机制。
+DANCE 采用串行处理策略，将去噪与增强解耦：
 
-**DANCE 整体流程**：
+**DANCE 整体流程：**
+
 $$
 \mathbf{x} 
 \xrightarrow{\text{ATNC}} \hat{\mathbf{x}}\ \text{(去噪)} 
-\xrightarrow{\text{STEM}} \mathbf{y}\ \text{(增强)}
+\xrightarrow{\text{ALEM}} \mathbf{y}\ \text{(增强)}
 $$
-
 
 ---
 
-### 1. 自适应阈值噪声消除 (ATNC)
+## 1. 自适应阈值噪声消除 (ATNC)
 
 **通道级动态软阈值收缩模块**
 
-**前向传播过程**：
+### 前向传播过程
 
-1. **信号分解**
+#### 1. 信号分解
    $$
    \mathbf{s} = \operatorname{sign}(\mathbf{x}), \quad \mathbf{a} = |\mathbf{x}|
    $$
    其中 $\mathbf{x} \in \mathbb{R}^{B \times C \times L}$ 为输入特征
 
-2. **通道级全局统计提取**
+#### 2. **通道级全局统计提取**
    $$
    \mathbf{g} = \operatorname{GAP}(\mathbf{a}) = \frac{1}{L}\sum_{i=1}^{L}\mathbf{a}[:,:,i] \in \mathbb{R}^{B \times C \times 1}
    $$
 
-3. **自适应阈值系数生成**
+#### 3. **自适应阈值系数生成**
    $$
    \boldsymbol{\alpha} = \sigma\left(\mathbf{W}_2 \operatorname{ReLU}(\operatorname{BN}\left(\mathbf{W}_1 \mathbf{g}^\top + \mathbf{b}_1\right)) + \mathbf{b}_2\right) \in \mathbb{R}^{B \times C}
    $$
 
-4. **动态阈值计算**
+#### 4. **动态阈值计算**
    $$
    \boldsymbol{\tau} = \mathbf{g} \odot \boldsymbol{\alpha}_{:,:,\text{None}} \in \mathbb{R}^{B \times C \times 1}
    $$
 
-5. **软阈值去噪处理**
+#### 5. **软阈值去噪处理**
    $$
    \hat{\mathbf{a}} = \operatorname{ReLU}(\mathbf{a} - \boldsymbol{\tau}), \quad \hat{\mathbf{x}} = \mathbf{s} \odot \hat{\mathbf{a}}
    $$
 
 ---
 
-### 2. 时空增强模块 (STEM)
+## 2. 自适应局部增强模块 (ALEM)
 
-**局部时空注意力激励模块**
+**基于局部时序建模的特征权重增强**
 
-**前向传播过程**：
+### 前向传播过程
 
-1. **通道扩展与特征融合**
+#### 1. 通道扩展与特征融合
    $$
    \mathbf{h}_1 = \operatorname{ReLU}\left(\operatorname{BN}\left(\mathbf{W}_{\text{in}} * \hat{\mathbf{x}}\right)\right) \in \mathbb{R}^{B \times 2C \times L}
    $$
 
-2. **深度可分离时序建模**
+#### 2. 深度可分离时序建模
    $$
    \mathbf{h}_2 = \operatorname{ReLU}\left(\operatorname{BN}\left(\mathbf{W}_{\text{dw}} * \mathbf{h}_1\right)\right)
    $$
    其中 $\mathbf{W}_{\text{dw}}$ 为深度可分离卷积，组数=$2C$
 
-3. **注意力图生成**
+#### 3. **增强掩码生成**
    $$
    \boldsymbol{\beta} = \sigma\left(\mathbf{W}_{\text{out}} * \mathbf{h}_2\right) \in [0,1]^{B \times C \times L}
    $$
 
-4. **选择性特征增强**
+#### 4. **选择性特征增强**
    $$
    \mathbf{y} = \hat{\mathbf{x}} \odot \boldsymbol{\beta}
    $$
@@ -335,10 +338,10 @@ $$
 
 ---
 
-## 📉 DANCE与多种注意力模块性能对比
+## 📈 DANCE与多种注意力模块性能对比
 
 ### 实验设计
-在相同的U-Net基线架构上，评估DANCE模块与不同的注意力机制 (编码阶段) 在emb噪声类型下的去噪性能：
+在相同的U-Net基线架构上，评估DANCE模块与不同的注意力机制在emb噪声类型下的去噪性能：
 
 <table>
   <thead>
@@ -412,102 +415,6 @@ $$
       <td>0.1638</td>
       <td>0.1466</td>
       <td>0.1303</td>
-    </tr>
-    <tr style="background-color: #cdeecdff;">
-      <td><strong>+ DANCE</strong></td>
-      <td><strong>9.1636</strong></td>
-      <td><strong>10.0173</strong></td>
-      <td><strong>10.9101</strong></td>
-      <td><strong>11.7258</strong></td>
-      <td><strong>12.5284</strong></td>
-      <td><strong>0.1692</strong></td>
-      <td><strong>0.1526</strong></td>
-      <td><strong>0.1365</strong></td>
-      <td><strong>0.1244</strong></td>
-      <td><strong>0.1132</strong></td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## 📈 DANCE与多种注意力模块性能对比
-
-### 实验设计
-在相同的U-Net基线架构上，评估DANCE模块与不同的注意力机制 (解码阶段) 在emb噪声类型下的去噪性能：
-
-<table>
-  <thead>
-    <tr>
-      <th rowspan="2">Methods</th>
-      <th colspan="5">SNR(dB)</th>
-      <th colspan="5">RMSE</th>
-    </tr>
-    <tr>
-      <th>-4dB</th>
-      <th>-2dB</th>
-      <th>0dB</th>
-      <th>2dB</th>
-      <th>4dB</th>
-      <th>-4dB</th>
-      <th>-2dB</th>
-      <th>0dB</th>
-      <th>2dB</th>
-      <th>4dB</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>U-Net</td>
-      <td>7.1990</td>
-      <td>8.0031</td>
-      <td>8.8498</td>
-      <td>9.7801</td>
-      <td>10.7494</td>
-      <td>0.2098</td>
-      <td>0.1904</td>
-      <td>0.1715</td>
-      <td>0.1542</td>
-      <td>0.1369</td>
-    </tr>
-    <tr>
-      <td>+ SE</td>
-      <td>8.0922</td>
-      <td>8.8490</td>
-      <td>9.7130</td>
-      <td>10.6370</td>
-      <td>11.5692</td>
-      <td>0.1887</td>
-      <td>0.1717</td>
-      <td>0.1560</td>
-      <td>0.1400</td>
-      <td>0.1260</td>
-    </tr>
-    <tr>
-      <td>+ CBAM</td>
-      <td>8.4976</td>
-      <td>9.1831</td>
-      <td>9.8560</td>
-      <td>10.6545</td>
-      <td>11.7688</td>
-      <td>0.1828</td>
-      <td>0.1659</td>
-      <td>0.1530</td>
-      <td>0.1391</td>
-      <td>0.1227</td>
-    </tr>
-    <tr>
-      <td>+ ECA</td>
-      <td>7.5755</td>
-      <td>8.4286</td>
-      <td>9.1713</td>
-      <td>10.0636</td>
-      <td>10.9302</td>
-      <td>0.1970</td>
-      <td>0.1797</td>
-      <td>0.1646</td>
-      <td>0.1487</td>
-      <td>0.1346</td>
     </tr>
     <tr style="background-color: #cdeecdff;">
       <td><strong>+ DANCE</strong></td>
@@ -606,7 +513,7 @@ $$
       <td>0.1163</td>
     </tr>
     <tr style="background-color: #cdeecdff;">
-      <td><strong>+ ATNC & STEM (DANCE)</strong></td>
+      <td><strong>+ ATNC & ALEM (DANCE)</strong></td>
       <td><strong>9.1636</strong></td>
       <td><strong>10.0173</strong></td>
       <td><strong>10.9101</strong></td>
@@ -678,7 +585,7 @@ $$
       <td>0.0979</td>
     </tr>
     <tr>
-      <td>+ STEM</td>
+      <td>+ ALEM</td>
       <td>10.5171</td>
       <td>11.0747</td>
       <td>11.8112</td>
@@ -691,7 +598,7 @@ $$
       <td>0.1066</td>
     </tr>
     <tr>
-      <td style="background-color: #afeef7ff;"><strong>+ ATNC & STEM</strong></td>
+      <td style="background-color: #afeef7ff;"><strong>+ ATNC & ALEM</strong></td>
       <td><strong>11.6337</strong></td>
       <td><strong>12.3434</strong></td>
       <td><strong>13.1573</strong></td>
@@ -732,7 +639,7 @@ $$
       <td>0.1249</td>
     </tr>
     <tr>
-      <td>+ STEM</td>
+      <td>+ ALEM</td>
       <td>8.1146</td>
       <td>8.6506</td>
       <td>9.3925</td>
@@ -745,7 +652,7 @@ $$
       <td>0.1355</td>
     </tr>
     <tr>
-      <td style="background-color: #afeef7ff;"><strong>+ ATNC & STEM</strong></td>
+      <td style="background-color: #afeef7ff;"><strong>+ ATNC & ALEM</strong></td>
       <td><strong>9.1507</strong></td>
       <td><strong>9.8982</strong></td>
       <td><strong>10.6039</strong></td>
@@ -786,7 +693,7 @@ $$
       <td>0.1040</td>
     </tr>
     <tr>
-      <td>+ STEM</td>
+      <td>+ ALEM</td>
       <td>9.2341</td>
       <td>9.9263</td>
       <td>10.7868</td>
@@ -799,7 +706,7 @@ $$
       <td>0.1116</td>
     </tr>
     <tr>
-      <td style="background-color: #afeef7ff;"><strong>+ ATNC & STEM</strong></td>
+      <td style="background-color: #afeef7ff;"><strong>+ ATNC & ALEM</strong></td>
       <td><strong>10.1728</strong></td>
       <td><strong>11.1074</strong></td>
       <td><strong>12.0221</strong></td>
@@ -840,7 +747,7 @@ $$
       <td>0.1191</td>
     </tr>
     <tr>
-      <td>+ STEM</td>
+      <td>+ ALEM</td>
       <td>8.1553</td>
       <td>8.8737</td>
       <td>9.6007</td>
@@ -853,7 +760,7 @@ $$
       <td>0.1272</td>
     </tr>
     <tr>
-      <td style="background-color: #afeef7ff;"><strong>+ ATNC & STEM</strong></td>
+      <td style="background-color: #afeef7ff;"><strong>+ ATNC & ALEM</strong></td>
       <td><strong>9.1636</strong></td>
       <td><strong>10.0173</strong></td>
       <td><strong>10.9101</strong></td>
@@ -884,7 +791,7 @@ $$
 实验结果表明，**DANCE模块**在多种噪声类型和信噪比水平下均表现出优异的性能：
 
 - **全面的性能优势**：在bw、ma、em、emb四类噪声中，DANCE均取得最佳的信噪比提升和最低的重建误差
-- **有效的模块协同**：消融实验证明ATNC与STEM的协同作用，两者结合可获得最大性能增益
+- **有效的模块协同**：消融实验证明ATNC与ALEM的协同作用，两者结合可获得最大性能增益
 - **鲁棒的特征保持**：在有效抑制噪声的同时，能够保持ECG信号的临床关键特征
 
 ---

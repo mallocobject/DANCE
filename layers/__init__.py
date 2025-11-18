@@ -1,4 +1,4 @@
-from .dance import DANCE, ATNC, STEM, DANCE_inv
+from .dance import DANCE, ATNC, ALEM
 from .cbam import CBAM
 from .drsn_block import DRSNBlock
 from .shcink import Shrink

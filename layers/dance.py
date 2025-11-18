@@ -37,15 +37,15 @@ class ATNC(nn.Module):
         return x_sign * x_denoised
 
 
-class STEM(nn.Module):
+class ALEM(nn.Module):
     """
-    Spatio-Temporal Enhancement Module
+    Adaptive Local Enhancement Module
     """
 
     def __init__(self, ch: int, kernel_size: int = 7):
         super().__init__()
         mid_ch = ch * 2
-        self.attn = nn.Sequential(
+        self.enh_mask = nn.Sequential(
             nn.Conv1d(
                 ch,
                 mid_ch,
@@ -74,7 +74,7 @@ class STEM(nn.Module):
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return x * self.attn(x)
+        return x * self.enh_mask(x)
 
 
 class DANCE(nn.Module):
@@ -85,7 +85,7 @@ class DANCE(nn.Module):
     def __init__(self, ch: int):
         super().__init__()
         self.atnc = ATNC(ch)
-        self.stem = STEM(ch)
+        self.stem = ALEM(ch)
 
     def forward(self, x: torch.Tensor):
         x = self.atnc(x)
@@ -93,17 +93,17 @@ class DANCE(nn.Module):
         return x
 
 
-class DANCE_inv(nn.Module):
-    """
-    DANCE: Dual Adaptive Noise Cancellation and Enhancement
-    """
+# class DANCE_inv(nn.Module):
+#     """
+#     DANCE: Dual Adaptive Noise Cancellation and Enhancement
+#     """
 
-    def __init__(self, ch: int):
-        super().__init__()
-        self.atnc = ATNC(ch)
-        self.stem = STEM(ch)
+#     def __init__(self, ch: int):
+#         super().__init__()
+#         self.atnc = ATNC(ch)
+#         self.stem = ALEM(ch)
 
-    def forward(self, x: torch.Tensor):
-        x = self.stem(x)
-        x = self.atnc(x)
-        return x
+#     def forward(self, x: torch.Tensor):
+#         x = self.stem(x)
+#         x = self.atnc(x)
+#         return x
