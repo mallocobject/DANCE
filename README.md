@@ -35,21 +35,21 @@ $$
 
 #### 1. 信号分解（符号与绝对值）
 $$
-\mathbf{s} = \operatorname{sign}(\mathbf{x}), \quad 
+\mathbf{s} = \mathrm{sign}(\mathbf{x}), \quad 
 \mathbf{a} = |\mathbf{x}|
 $$
 其中 $\mathbf{x} \in \mathbb{R}^{B \times C \times L}$ 为输入特征图。
 
 #### 2. 通道级全局统计量提取（Global Average Pooling）
 $$
-\mathbf{g} = \operatorname{GAP}(\mathbf{a}) = \frac{1}{L} \sum_{i=1}^{L} \mathbf{a}[:,:,i] \in \mathbb{R}^{B \times C \times 1}
+\mathbf{g} = \mathrm{GAP}(\mathbf{a}) = \frac{1}{L} \sum_{i=1}^{L} \mathbf{a}[:,:,i] \in \mathbb{R}^{B \times C \times 1}
 $$
 
 #### 3. 自适应阈值系数生成（小 MLP）
 $$
-\boldsymbol{\alpha} = \sigma\!\left( \mathbf{W}_2 \, \operatorname{ReLU}\!\left( \operatorname{BN}(\mathbf{W}_1 \mathbf{g}[:,:] + \mathbf{b}_1) \right) + \mathbf{b}_2 \right) \in \mathbb{R}^{B \times C}
+\boldsymbol{\alpha} = \sigma\!\left( \mathbf{W}_2 \, \mathrm{ReLU}\!\left( \mathrm{BN}(\mathbf{W}_1 \mathbf{g}[:,:] + \mathbf{b}_1) \right) + \mathbf{b}_2 \right) \in \mathbb{R}^{B \times C}
 $$
-（注：先把 $\mathbf{g}$ 从 $B\times C\times 1$ 压成 $B\times C$ 再送入 FC）
+（注：先将 $\mathbf{g}$ 从 $B \times C \times 1$ 压平成 $B \times C$ 后送入全连接层）
 
 #### 4. 动态阈值计算（逐通道广播）
 $$
@@ -58,7 +58,7 @@ $$
 
 #### 5. 软阈值去噪（Soft Thresholding）
 $$
-\hat{\mathbf{a}} = \operatorname{ReLU}(\mathbf{a} - \boldsymbol{\tau}), \quad 
+\hat{\mathbf{a}} = \mathrm{ReLU}(\mathbf{a} - \boldsymbol{\tau}), \quad 
 \hat{\mathbf{x}} = \mathbf{s} \odot \hat{\mathbf{a}}
 $$
 
@@ -72,17 +72,17 @@ $$
 
 #### 1. 通道扩展与特征融合
 $$
-\mathbf{h}_1 = \operatorname{ReLU}\left( \operatorname{BN}\left( \mathbf{W}_{\text{in}} * \hat{\mathbf{x}} \right) \right) 
+\mathbf{h}_1 = \mathrm{ReLU}\left( \mathrm{BN}\left( \mathbf{W}_{\text{in}} * \hat{\mathbf{x}} \right) \right) 
 \in \mathbb{R}^{B \times 2C \times L}
 $$
 $\mathbf{W}_{\text{in}}$ 为 $1\!\times\!1$ 点卷积，将通道数扩展至 2C。
 
 #### 2. 深度可分离时序建模（Depthwise Temporal Modeling）
 $$
-\mathbf{h}_2 = \operatorname{ReLU}\left( \operatorname{BN}\left( \mathbf{W}_{\text{dw}} * \mathbf{h}_1 \right) \right)
+\mathbf{h}_2 = \mathrm{ReLU}\left( \mathrm{BN}\left( \mathbf{W}_{\text{dw}} * \mathbf{h}_1 \right) \right)
 \in \mathbb{R}^{B \times 2C \times L}
 $$
-其中 $\mathbf{W}_{\text{dw}}$ 为深度可分离卷积（groups = 2C），主要捕获局部时序依赖。
+其中 $\mathbf{W}_{\text{dw}}$ 为深度可分离卷积（groups = 2C），用于捕获局部时序依赖。
 
 #### 3. 增强掩码生成（Sigmoid 激活）
 $$
@@ -91,7 +91,7 @@ $$
 $$
 $\mathbf{W}_{\text{out}}$ 为 $1\!\times\!1$ 卷积，将通道压缩回 C 并生成逐位置、逐通道的增强权重。
 
-#### 4. 选择性特征增强（残差式加权）
+#### 4. 选择性特征增强
 $$
 \mathbf{y} = \hat{\mathbf{x}} \odot \boldsymbol{\beta}
 $$
