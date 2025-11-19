@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 定义SNR值和对应的GPU ID（避免内存冲突）
-i=4
+i=0
 snr_values=(-4 -2 0 2 4)
 gpu_ids=(0 2 3 7 7)  # 交替使用GPU
 # 1 2 2 3 7
@@ -16,7 +16,7 @@ echo "开始并行训练所有SNR配置..."
         --batch_size 64 \
         --epochs 100 \
         --lr 1e-3 \
-        --noise_type em \
+        --noise_type emb \
         --snr_db "${snr_values[i]}" \
         --gpu_id "${gpu_ids[i]}" \
         --checkpoint_dir ./checkpoints \

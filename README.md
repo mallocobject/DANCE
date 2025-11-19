@@ -7,7 +7,7 @@
 - **ATNC** — Adaptive Threshold Noise Cancellation（自适应阈值噪声消除）
 - **ALEM** — Adaptive Local Enhancement Module（自适应局部增强）
 
-DANCE 无需参考信号，可在强噪声背景下恢复关键 ECG 波形（P/QRS/T），具备参数效率高、可解释性强、易于集成等优势。
+DANCE 可在强噪声背景下恢复关键 ECG 波形（P/QRS/T），具备参数效率高、可解释性强、易于集成等优势。
 
 ---
 
