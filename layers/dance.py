@@ -85,25 +85,25 @@ class DANCE(nn.Module):
     def __init__(self, ch: int):
         super().__init__()
         self.atnc = ATNC(ch)
-        self.stem = ALEM(ch)
+        self.alem = ALEM(ch)
 
     def forward(self, x: torch.Tensor):
         x = self.atnc(x)
-        x = self.stem(x)
+        x = self.alem(x)
         return x
 
 
-# class DANCE_inv(nn.Module):
-#     """
-#     DANCE: Dual Adaptive Noise Cancellation and Enhancement
-#     """
+class DANCE_inv(nn.Module):
+    """
+    DANCE: Dual Adaptive Noise Cancellation and Enhancement
+    """
 
-#     def __init__(self, ch: int):
-#         super().__init__()
-#         self.atnc = ATNC(ch)
-#         self.stem = ALEM(ch)
+    def __init__(self, ch: int):
+        super().__init__()
+        self.alem = ALEM(ch)
+        self.atnc = ATNC(ch)
 
-#     def forward(self, x: torch.Tensor):
-#         x = self.stem(x)
-#         x = self.atnc(x)
-#         return x
+    def forward(self, x: torch.Tensor):
+        x = self.alem(x)
+        x = self.atnc(x)
+        return x

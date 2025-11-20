@@ -8,7 +8,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import DANCE, ATNC, ALEM, SE, CBAM, ECA
+from layers import DANCE, ATNC, ALEM, SE, CBAM, ECA, DANCE_inv
 
 PLUGIN = DANCE
 

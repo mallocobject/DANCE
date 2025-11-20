@@ -570,7 +570,7 @@ $$
   </thead>
   <tbody>
     <tr>
-      <td rowspan="5">bw</td>
+      <td rowspan="6">bw</td>
       <tr>
       <td>Baseline (U-Net)</td>
       <td>9.5292</td>
@@ -611,20 +611,33 @@ $$
       <td>0.1066</td>
     </tr>
     <tr>
+      <td>+ ALEM & ALEM</td>
+      <td>11.5189</td>
+      <td>12.2304</td>
+      <td><strong>13.1643</strong></td>
+      <td><strong>13.9455</strong></td>
+      <td>14.7796</td>
+      <td>0.1342</td>
+      <td>0.1229</td>
+      <td><strong>0.1103</strong></td>
+      <td><strong>0.1026</strong></td>
+      <td>0.0940</td>
+    </tr>
+    <tr>
       <td style="background-color: #afeef7ff;"><strong>+ ATNC & ALEM</strong></td>
       <td><strong>11.6337</strong></td>
       <td><strong>12.3434</strong></td>
-      <td><strong>13.1573</strong></td>
-      <td><strong>13.9295</strong></td>
+      <td>13.1573</td>
+      <td>13.9295</td>
       <td><strong>14.8686</strong></td>
       <td><strong>0.1321</strong></td>
       <td><strong>0.1219</strong></td>
-      <td><strong>0.1109</strong></td>
-      <td><strong>0.1034</strong></td>
+      <td>0.1109</td>
+      <td>0.1034</td>
       <td><strong>0.0930</strong></td>
     </tr>
     <tr>
-      <td rowspan="5">ma</td>
+      <td rowspan="6">ma</td>
       <tr>
       <td>Baseline (U-Net)</td>
       <td>7.2130</td>
@@ -665,12 +678,25 @@ $$
       <td>0.1355</td>
     </tr>
     <tr>
+      <td>+ ALEM & ATNC</td>
+      <td>9.0836</td>
+      <td>9.8680</td>
+      <td>10.5338</td>
+      <td>11.2546</td>
+      <td><strong>12.1942</strong></td>
+      <td>0.1750</td>
+      <td>0.1594</td>
+      <td>0.1464</td>
+      <td>0.1344</td>
+      <td>0.1195</td>
+    </tr>
+    <tr>
       <td style="background-color: #afeef7ff;"><strong>+ ATNC & ALEM</strong></td>
       <td><strong>9.1507</strong></td>
       <td><strong>9.8982</strong></td>
       <td><strong>10.6039</strong></td>
       <td><strong>11.3618</strong></td>
-      <td><strong>12.1724</strong></td>
+      <td>12.1724</td>
       <td><strong>0.1731</strong></td>
       <td><strong>0.1590</strong></td>
       <td><strong>0.1450</strong></td>
@@ -678,7 +704,7 @@ $$
       <td><strong>0.1192</strong></td>
     </tr>
     <tr>
-      <td rowspan="5">em</td>
+      <td rowspan="6">em</td>
       <tr>
       <td>Baseline (U-Net)</td>
       <td>8.2633</td>
@@ -719,20 +745,33 @@ $$
       <td>0.1116</td>
     </tr>
     <tr>
+      <td>+ ALEM & ATNC</td>
+      <td>10.1336</td>
+      <td>10.8773</td>
+      <td>11.9074</td>
+      <td><strong>12.8839</strong></td>
+      <td>13.7106</td>
+      <td>0.1496</td>
+      <td>0.1367</td>
+      <td>0.1213</td>
+      <td><strong>0.1086</strong></td>
+      <td>0.0986</td>
+    </tr>
+    <tr>
       <td style="background-color: #afeef7ff;"><strong>+ ATNC & ALEM</strong></td>
       <td><strong>10.1728</strong></td>
       <td><strong>11.1074</strong></td>
       <td><strong>12.0221</strong></td>
-      <td><strong>12.8331</strong></td>
+      <td>12.8331</td>
       <td><strong>13.8240</strong></td>
       <td><strong>0.1488</strong></td>
       <td><strong>0.1331</strong></td>
       <td><strong>0.1197</strong></td>
-      <td><strong>0.1088</strong></td>
+      <td>0.1088</td>
       <td><strong>0.0977</strong></td>
     </tr>
     <tr>
-      <td rowspan="5">emb</td>
+      <td rowspan="6">emb</td>
       <tr>
       <td>Baseline (U-Net)</td>
       <td>7.1990</td>
@@ -773,6 +812,19 @@ $$
       <td>0.1272</td>
     </tr>
     <tr>
+      <td>+ ALEM & ATNC</td>
+      <td>9.0582</td>
+      <td>9.9501</td>
+      <td>10.7778</td>
+      <td>11.6954</td>
+      <td><strong>12.5284</strong></td>
+      <td>0.1720</td>
+      <td><strong>0.1521</strong></td>
+      <td>0.1385</td>
+      <td>0.1252</td>
+      <td>0.1136</td>
+    </tr>
+    <tr>
       <td style="background-color: #afeef7ff;"><strong>+ ATNC & ALEM</strong></td>
       <td><strong>9.1636</strong></td>
       <td><strong>10.0173</strong></td>
@@ -780,7 +832,7 @@ $$
       <td><strong>11.7258</strong></td>
       <td><strong>12.5284</strong></td>
       <td><strong>0.1692</strong></td>
-      <td><strong>0.1526</strong></td>
+      <td>0.1526</td>
       <td><strong>0.1365</strong></td>
       <td><strong>0.1244</strong></td>
       <td><strong>0.1132</strong></td>
