@@ -21,13 +21,11 @@ class SplitManager:
         np.random.seed(seed)
 
     def _get_all_records(self) -> List[str]:
-        """获取所有记录文件名（不带扩展名）"""
         return [
             f.split(".")[0] for f in os.listdir(self.mitdb_dir) if f.endswith(".dat")
         ]
 
     def _load_noise_segments(self) -> Dict[str, np.ndarray]:
-        """加载三种单一噪声类型: bw, em, ma"""
         nstdb_files = ["bw", "em", "ma"]
         noise_segments = {}
 
@@ -50,7 +48,6 @@ class SplitManager:
         return noise_segments
 
     def _load_clean_segments(self) -> np.ndarray:
-        """加载干净ECG信号片段"""
         records = self._get_all_records()
         clean_segments = []
 
@@ -80,7 +77,6 @@ class SplitManager:
     def _calculate_snr_adjustment(
         self, clean_signal: np.ndarray, noise: np.ndarray, target_snr_db: float
     ) -> float:
-        """计算调整噪声所需的缩放因子以达到目标SNR"""
         clean_power = np.mean(clean_signal**2, axis=(0, 1), keepdims=True)
         noise_power = np.mean(noise**2, axis=(0, 1), keepdims=True)
 
@@ -94,10 +90,8 @@ class SplitManager:
         noise_segments: Dict[str, np.ndarray],
         snr_db: float,
     ) -> Dict[str, np.ndarray]:
-        """为四种噪声类型创建带噪声的信号"""
         noisy_signals = {}
 
-        # 创建三种单一噪声信号
         for noise_type, noise_data in noise_segments.items():
             noisy_segments = []
 
@@ -117,12 +111,10 @@ class SplitManager:
                 f"Created {len(noisy_segments)} {noise_type} noisy segments at SNR {snr_db}dB"
             )
 
-        # 创建混合噪声信号（emb：三种噪声均等混合）
         mixed_noisy_segments = []
         for i, clean_sig in enumerate(clean_segments):
             mixed_noise = np.zeros((self.window_size, 2), dtype=np.float32)
 
-            # 均等混合三种噪声
             for noise_type in ["bw", "em", "ma"]:
                 noise_idx = i % len(noise_segments[noise_type])
                 noise_segment = noise_segments[noise_type][noise_idx].copy()
@@ -146,7 +138,6 @@ class SplitManager:
     def _zscore_normalize(
         self, signals: np.ndarray, mean: np.ndarray, std: np.ndarray
     ) -> np.ndarray:
-        """Z-score标准化"""
         normalized = (signals - mean) / (std)
         return normalized
 
@@ -156,9 +147,8 @@ class SplitManager:
         train_ratio: float = 0.8,
         snr_levels: List[float] = None,
     ):
-        """保存数据集划分"""
         if snr_levels is None:
-            snr_levels = [-4, -2, 0, 2, 4]  # 论文中使用的SNR级别
+            snr_levels = [-4, -2, 0, 2, 4]
 
         print("Loading noise segments...")
         noise_segments = self._load_noise_segments()  # (10000, window_size, 2)
@@ -167,7 +157,6 @@ class SplitManager:
         clean_segments = self._load_clean_segments()  # (10000, window_size, 2)
         print(f"Using {len(clean_segments)} clean segments")
 
-        # 划分索引（4:1训练测试划分）
         n_total = len(clean_segments)
         indices = np.random.permutation(n_total)
 
@@ -175,7 +164,6 @@ class SplitManager:
         train_indices = indices[:n_train]
         test_indices = indices[n_train:]
 
-        # 确保目录存在
         os.makedirs(split_dir, exist_ok=True)
 
         np.save(os.path.join(split_dir, "clean_signals.npy"), clean_segments)
@@ -188,7 +176,6 @@ class SplitManager:
                 filename = f"noisy_{noise_type}_snr_{snr_db}.npy"
                 np.save(os.path.join(split_dir, filename), noisy_data)
 
-        # 保存划分信息
         split_info = {
             "train_indices": train_indices.tolist(),
             "test_indices": test_indices.tolist(),
@@ -197,11 +184,10 @@ class SplitManager:
             "test_ratio": 1.0 - train_ratio,
             "window_size": self.window_size,
             "snr_levels": snr_levels,
-            "noise_types": ["bw", "em", "ma", "emb"],  # 四种噪声类型
+            "noise_types": ["bw", "em", "ma", "emb"],
             "seed": self.seed,
         }
 
-        # 保存划分信息
         split_path = os.path.join(split_dir, "split_info.json")
         with open(split_path, "w") as f:
             json.dump(split_info, f, indent=2)
@@ -222,7 +208,6 @@ if __name__ == "__main__":
 
     manager = SplitManager(mitdb_dir, nstdb_dir)
 
-    # 生成数据集
     manager.save_split(
         split_dir=split_dir, train_ratio=0.8, snr_levels=[-4, -2, 0, 2, 4]
     )

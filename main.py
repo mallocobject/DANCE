@@ -1,76 +1,138 @@
-# test_denoise.py
-import numpy as np
-import os
-import json
-import sys
 import torch
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+
+plt.rcParams["mathtext.fontset"] = "stix"
+plt.rcParams["axes.labelsize"] = 14
+plt.rcParams["xtick.labelsize"] = 12
+plt.rcParams["ytick.labelsize"] = 12
+
+import os
+import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from utils import compute_metrics, wavelet_denoise, fft_denoise
+from models import DANCER
+from datasets import ECGDataset
 
-# ==================== 配置 ====================
-method = "wt"  # "wt" or "fft"
-noisy_type = "emb"  # "bw", "em", "ma", "emb"
-snr_db = 4  # -4, -2, 0, 2, 4
-# ============================================
 
-split_dir = "./data_split"
-with open(os.path.join(split_dir, "split_info.json"), "r") as f:
-    split_data = json.load(f)
+model = DANCER()
 
-indices = split_data["test_indices"]
-noisy_signals = np.load(os.path.join(split_dir, f"noisy_{noisy_type}_snr_{snr_db}.npy"))
-clean_signals = np.load(os.path.join(split_dir, "clean_signals.npy"))
+ckpt = torch.load("./checkpoints/best_DANCER_emb_snr_-4.pth", map_location="cpu")
+model.load_state_dict(ckpt)
+model.eval()
 
-# (N, L, C) → (N, C, L)
-# noisy_signals = noisy_signals.transpose(0, 2, 1)
-clean_signals = clean_signals.transpose(0, 2, 1)
 
-# test_noisy = noisy_signals[indices]
-test_clean = clean_signals[indices]
+# noisy_input shape: [1, Channels, Length]
+noise_type = "emb"
+snr_db = -4
 
-print(f"Number of test samples: {len(indices)}")
-# print(f"Signal shape: {test_noisy.shape}")  # (N, C, L)
+dataset = ECGDataset(
+    split="test",
+    noise_type=noise_type,
+    snr_db=snr_db,
+    split_dir="./data_split",
+)
 
-# # ==================== 原始 SNR ====================
-# noisy_metrics = compute_metrics(
-#     denoised=torch.tensor(test_noisy), clean=torch.tensor(test_clean)
-# )
-# print(
-#     f"\n[原始] SNR: {noisy_metrics['SNR']:+.3f} dB, RMSE: {noisy_metrics['RMSE']:.4f}"
-# )
+# idx = np.random.randint(0, len(dataset) - 1)
+# print(idx)
+# idx = 860
+idx = 860
+noisy, clean = dataset[idx]
+noisy_input = torch.tensor(noisy).unsqueeze(0).float()
 
-# ==================== 去噪 ====================
-for n_type in ["emb", "bw", "ma", "em"]:
-    print(f"\n--- Denoising for noise type: {n_type.upper()} ---")
-    for snr in [-4, -2, 0, 2, 4]:
-        print(f"\n--- SNR: {snr} dB ---")
-        noisy_path = os.path.join(split_dir, f"noisy_{n_type}_snr_{snr}.npy")
-        noisy_data = np.load(noisy_path).transpose(0, 2, 1)
-        test_noisy_data = noisy_data[indices]
 
-        denoised_signals = wavelet_denoise(test_noisy_data)
+with torch.no_grad():
+    _ = model(noisy_input)
 
-        metrics = compute_metrics(
-            denoised=torch.tensor(denoised_signals),
-            clean=torch.tensor(test_clean),
-        )
 
-        print(
-            f"Type: {n_type.upper()}, SNR: {metrics['SNR']:.4f} dB, RMSE: {metrics['RMSE']:.4f}"
-        )
+cache = model.encoder[0].conv[1].atnc.vis_cache
 
-# # ==================== 去噪后 SNR ====================
-# metrics = compute_metrics(
-#     denoised=torch.tensor(denoised_signals),
-#     clean=torch.tensor(test_clean),
-# )
 
-# print(f"\n=== 最终结果 ===")
-# print(f"Method: {method.upper()}, Noisy: {noisy_type}, SNR: {snr_db} dB")
-# print(f"原始 SNR : {noisy_metrics['SNR']:+.4f} dB")
-# print(
-#     f"去噪后 SNR: {metrics['SNR']:+.4f} dB  ↑ {metrics['SNR'] - noisy_metrics['SNR']:+.4f} dB"
-# )
-# print(f"RMSE     : {metrics['RMSE']:.4f}")
+feat_in = cache["input_abs"][0].numpy()
+feat_thresh = cache["threshold"][0].numpy()  # [C, 1]
+feat_out = cache["output_abs"][0].numpy()
+
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6))
+
+
+vmax = np.max(feat_in)
+
+
+cbar_ax = fig.add_axes([0.92, 0.12, 0.02, 0.76])
+
+
+sns.heatmap(feat_in, ax=ax1, cmap="viridis", vmin=0, vmax=vmax, cbar=False)
+ax1.set_title("Input Feature Map (Before ATNC): Dense & Noisy", fontweight="bold")
+ax1.set_ylabel("Channels")
+ax1.set_xticks([])
+
+
+sns.heatmap(
+    feat_out,
+    ax=ax2,
+    cmap="viridis",
+    vmin=0,
+    vmax=vmax,
+    cbar=True,
+    cbar_ax=cbar_ax,
+    cbar_kws={"label": "Magnitude"},
+)
+ax2.set_title("Output Feature Map (After ATNC): Sparse & Purified", fontweight="bold")
+ax2.set_ylabel("Channels")
+ax2.set_xlabel("Time Steps")
+
+
+plt.subplots_adjust(right=0.9)
+
+
+plt.savefig("Figure7_Feature_Sparsity.svg", bbox_inches="tight", dpi=300)
+plt.show()
+
+ch_idx = 2
+time = np.arange(feat_in.shape[1])
+
+fig, ax = plt.subplots(figsize=(8, 4))
+
+
+ax.plot(
+    time,
+    feat_in[ch_idx],
+    color="lightgray",
+    label="Input Magnitude (|x|)",
+    linewidth=1.5,
+)
+
+
+thresh_val = feat_thresh[ch_idx, 0]
+ax.axhline(
+    thresh_val,
+    color="red",
+    linestyle="--",
+    label="Adaptive Threshold (τ)",
+    linewidth=1.5,
+)
+
+ax.fill_between(time, 0, thresh_val, color="red", alpha=0.1)
+
+
+ax.plot(
+    time,
+    feat_out[ch_idx],
+    color="#1f77b4",
+    label="Output Magnitude (ReLU(|x|-τ))",
+    linewidth=2,
+)
+
+ax.set_xlabel("Time Steps")
+ax.set_ylabel("Feature Magnitude")
+ax.legend(loc="upper right", frameon=True, edgecolor="black")
+ax.set_title(f"Channel {ch_idx} Mechanism Visualization", fontweight="bold")
+ax.grid(True, linestyle=":", alpha=0.6)
+
+plt.tight_layout()
+plt.savefig("Figure_Mechanism_Curve.svg", bbox_inches="tight")
+plt.show()

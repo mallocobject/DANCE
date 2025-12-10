@@ -11,7 +11,6 @@ from exps import ECGDenoisingExperiment
 def parse_args():
     parser = argparse.ArgumentParser(description="ECG Denoising Experiment")
 
-    # ====== 数据路径 ======
     parser.add_argument(
         "--split_dir",
         type=str,
@@ -19,12 +18,11 @@ def parse_args():
         help="Path to split directory containing data splits and files",
     )
 
-    # ====== 模型与训练参数 ======
     parser.add_argument(
         "--model",
         type=str,
         default="U-Net",
-        choices=["U-Net", "DANCER", "ACDAE", "DACNN", "RALENet"],
+        choices=["U-Net", "DANCER", "ACDAE", "DACNN"],
         help="Model architecture to use",
     )
     parser.add_argument("--batch_size", type=int, default=64)
@@ -45,10 +43,8 @@ def parse_args():
         "--gpu_id", type=int, default=0, help="GPU id to use for training/testing"
     )
 
-    # ====== 模型保存与加载 ======
     parser.add_argument("--checkpoint_dir", type=str, default="./checkpoints/")
 
-    # ====== 模式选择 ======
     parser.add_argument("--mode", type=str, default="train", choices=["train", "test"])
 
     return parser.parse_args()

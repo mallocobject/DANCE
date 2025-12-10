@@ -1,29 +1,28 @@
 #!/bin/bash
 
-# 定义SNR值和对应的GPU ID（避免内存冲突）
-i=0
-snr_values=(-4 -2 0 2 4)
-gpu_ids=(1 2 2 3 7)  # 交替使用GPU
-# 1 2 2 3 7
 
-echo "开始并行训练所有SNR配置..."
+i=0
+snr_values=-4
+gpu_ids=(0 1 1 2 3) 
+
+echo "starting..."
 
 # for i in "${!snr_values[@]}"; do
-    echo "启动 SNR=${snr_values[i]} 在 GPU ${gpu_ids[i]}"
+    echo "启动 SNR=${snr_values} 在 GPU ${gpu_ids[i]}"
     python run.py \
         --split_dir ./data_split \
         --model U-Net \
         --batch_size 64 \
-        --epochs 100 \
+        --epochs 80 \
         --lr 1e-3 \
         --noise_type emb \
-        --snr_db "${snr_values[i]}" \
+        --snr_db "${snr_values}" \
         --gpu_id "${gpu_ids[i]}" \
         --checkpoint_dir ./checkpoints \
         --mode train 
-    # sleep 5  # 间隔5秒启动，避免冲突
+    # sleep 5  
 # done
 
-# 等待所有后台任务完成
+
 wait
 echo "所有UNet训练任务已完成!"

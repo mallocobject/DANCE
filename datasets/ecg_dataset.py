@@ -32,7 +32,6 @@ class ECGDataset(Dataset):
         if noise_type not in ["bw", "em", "ma", "emb"]:
             raise ValueError(f"Unsupported noise type: {noise_type}")
 
-        # 加载分割信息
         split_path = os.path.join(split_dir, "split_info.json")
         if not os.path.exists(split_path):
             raise FileNotFoundError(f"Split file not found: {split_path}")
@@ -40,7 +39,6 @@ class ECGDataset(Dataset):
         with open(split_path, "r") as f:
             self.split_data = json.load(f)
 
-        # 获取当前分割的索引
         if split == "train":
             self.indices = self.split_data["train_indices"]
         elif split == "test":
@@ -48,7 +46,6 @@ class ECGDataset(Dataset):
         else:
             raise ValueError(f"Unknown split: {split}")
 
-        # 加载数据文件
         self.noisy_signals = np.load(
             os.path.join(split_dir, f"noisy_{noise_type}_snr_{snr_db}.npy")
         )
@@ -81,33 +78,28 @@ class ECGDataset(Dataset):
         return len(self.indices)
 
     def __getitem__(self, idx):
-        # 获取实际数据索引
         data_idx = self.indices[idx]
 
-        # 获取带噪声的信号和干净信号
         noisy_signal = self.noisy_signals[data_idx]
         clean_signal = self.clean_signals[data_idx]
 
-        # 转换为PyTorch张量
         noisy_tensor = torch.FloatTensor(noisy_signal)
         clean_tensor = torch.FloatTensor(clean_signal)
 
         return noisy_tensor, clean_tensor
 
 
-# 测试代码
 if __name__ == "__main__":
-    # 测试数据集加载
+
     train_dataset = ECGDataset(split="train", split_dir="./data_split")
     test_dataset = ECGDataset(split="test", split_dir="./data_split")
 
     clean = train_dataset[0][1]
-    print(f"样本信号形状: {clean.shape}")
+    print(f"sample shape: {clean.shape}")
 
-    print(f"训练集形状: {len(train_dataset)}")
-    print(f"测试集形状: {len(test_dataset)}")
+    print(f"trainset shape: {len(train_dataset)}")
+    print(f"testset shape: {len(test_dataset)}")
 
-    # 测试一个样本
     noisy, clean = train_dataset[0]
     import matplotlib.pyplot as plt
 

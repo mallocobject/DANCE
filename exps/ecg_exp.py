@@ -7,10 +7,8 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from tqdm.rich import tqdm
 import numpy as np
-import time
 import warnings
 from tqdm import TqdmExperimentalWarning
-import math
 
 warnings.filterwarnings("ignore", category=TqdmExperimentalWarning)
 
@@ -24,29 +22,15 @@ from datasets import ECGDataset
 from models import *
 
 
-def seed_everything(seed: int = 42):
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-
-
 class ECGDenoisingExperiment:
     def __init__(self, args: argparse.Namespace):
         self.args = args
-
-        seed_everything(self.args.seed)
 
         self.model_dict = {
             "U-Net": UNet,
             "DANCER": DANCER,
             "ACDAE": ACDAE,
             "DACNN": DACNN,
-            "RALENet": RALENet,
         }
 
         self.checkpoint = os.path.join(
@@ -108,10 +92,8 @@ class ECGDenoisingExperiment:
                 return 1.0
             elif epoch < 70:
                 return 0.1
-            elif epoch < 80:
-                return 0.05
             else:
-                return 0.01
+                return 0.05
 
         # scheduler = optim.lr_scheduler.CosineAnnealingLR(
         #     optimizer, T_max=self.args.epochs, eta_min=1e-5
@@ -121,72 +103,47 @@ class ECGDenoisingExperiment:
         return scheduler
 
     def train(self):
-        metrics_dict = {"RMSE": [], "SNR": []}
+        metrics = {}
 
-        for idx in range(1):
-            print(f"🚀 Starting training run {idx+1}/10")
-            dataloader = self._get_dataloader("train")
+        print(f"🚀 Starting training")
+        dataloader = self._get_dataloader("train")
 
-            model = self._build_model()
+        model = self._build_model()
 
-            criterion = self._select_criterion()
+        criterion = self._select_criterion()
 
-            optimizer = self._select_optimizer(model)
-            scheduler = self._select_scheduler(optimizer)
+        optimizer = self._select_optimizer(model)
+        scheduler = self._select_scheduler(optimizer)
 
-            model = model.to(self.device)
+        model = model.to(self.device)
 
-            for epoch in range(self.args.epochs):
-                model.train()
-                losses = []
-                for x, label in dataloader:
-                    x, label = x.to(self.device), label.to(self.device)
+        for epoch in range(self.args.epochs):
+            model.train()
+            losses = []
+            for x, label in dataloader:
+                x, label = x.to(self.device), label.to(self.device)
 
-                    optimizer.zero_grad()
-                    outputs = model(x)
-                    loss = criterion(outputs, label)
-                    losses.append(loss.item())
-                    loss.backward()
-                    optimizer.step()
+                optimizer.zero_grad()
+                outputs = model(x)
+                loss = criterion(outputs, label)
+                losses.append(loss.item())
+                loss.backward()
+                optimizer.step()
 
-                scheduler.step()
+            scheduler.step()
 
-                avg_loss = np.mean(losses)
+            avg_loss = np.mean(losses)
 
+            print(
+                f"--- Epoch {epoch+1}({scheduler.get_last_lr()[0]:.5f}): Loss: {avg_loss:.4f}"
+            )
+
+            if epoch == self.args.epochs - 1:
                 metrics = self.test(model=model)
-                print(
-                    f"--- Epoch {epoch+1}({scheduler.get_last_lr()[0]:.5f}): Loss: {avg_loss:.4f}, RMSE: {metrics['RMSE']:.4f}, SNR: {metrics['SNR']:.4f}"
-                )
 
-                if epoch == self.args.epochs - 1:
+        torch.save(model.state_dict(), self.checkpoint)
 
-                    metrics_dict["RMSE"].append(metrics["RMSE"])
-                    metrics_dict["SNR"].append(metrics["SNR"])
-
-            torch.save(model.state_dict(), self.checkpoint)
-
-            # print("🚀 Final Results after 10 runs:")
-            # print(
-            #     f"Model: {self.args.model}, Noise Type: {self.args.noise_type}, SNR: {self.args.snr_db} dB"
-            # )
-            # with open(self.results_file, "a") as f:
-            # f.write("\n=== Final Metrics ===\n")
-        for key in metrics_dict:
-            mean_val = np.mean(metrics_dict[key])
-            std_val = np.std(metrics_dict[key], ddof=1)
-
-            # 分别格式化均值和标准差
-            if len(metrics_dict[key]) == 1:
-                mean_val = f"{mean_val:.4f}"
-                std_val = "N/A"  # 如果只有一个值，标准差不可用
-            else:
-                mean_val = f"{mean_val:.4f}"
-                std_val = f"{std_val:.4f}"
-            print(f"{key}: {mean_val} ± {std_val}")
-            # f.write(f"{key}: {mean_val} ± {std_val}\n")
-            # f.write(f"{len(metrics_dict[key])} runs\n")
-
-            # f.write("\n=== End Final Metrics ===\n")
+        print(f"SNR: {metrics['SNR']:.2f}\nRMSE: {metrics['RMSE']:.4f}")
         print("Results saved to:", self.results_file)
 
     def test(self, model: nn.Module = None):
