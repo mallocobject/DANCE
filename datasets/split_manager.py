@@ -202,8 +202,8 @@ class SplitManager:
 
 
 if __name__ == "__main__":
-    mitdb_dir = "./ECG-Data/mitdb"
-    nstdb_dir = "./ECG-Data/nstdb"
+    mitdb_dir = "./mit-bih-arrhythmia-database"
+    nstdb_dir = "./mit-bih-noise-stress-test-database"
     split_dir = "./data_split"
 
     manager = SplitManager(mitdb_dir, nstdb_dir)
