@@ -5,9 +5,11 @@ import numpy as np
 
 
 plt.rcParams["mathtext.fontset"] = "stix"
-plt.rcParams["axes.labelsize"] = 14
-plt.rcParams["xtick.labelsize"] = 12
-plt.rcParams["ytick.labelsize"] = 12
+plt.rcParams["axes.labelsize"] = 18
+plt.rcParams["xtick.labelsize"] = 16
+plt.rcParams["ytick.labelsize"] = 16
+plt.rcParams["legend.fontsize"] = 16
+plt.rcParams["axes.titlesize"] = 20
 
 import os
 import sys
@@ -38,8 +40,8 @@ dataset = ECGDataset(
 
 # idx = np.random.randint(0, len(dataset) - 1)
 # print(idx)
-# idx = 860
-idx = 860
+idx = 458
+# idx = 1439
 noisy, clean = dataset[idx]
 noisy_input = torch.tensor(noisy).unsqueeze(0).float()
 
@@ -66,9 +68,12 @@ cbar_ax = fig.add_axes([0.92, 0.12, 0.02, 0.76])
 
 
 sns.heatmap(feat_in, ax=ax1, cmap="viridis", vmin=0, vmax=vmax, cbar=False)
-ax1.set_title("Input Feature Map (Before ATNC): Dense & Noisy", fontweight="bold")
-ax1.set_ylabel("Channels")
+ax1.set_title(
+    "Input Feature Map (Before ATNC): Dense & Noisy", fontweight="bold", fontsize=20
+)
+ax1.set_ylabel("Channels", fontsize=18)
 ax1.set_xticks([])
+ax1.tick_params(axis="y", labelsize=16)
 
 
 sns.heatmap(
@@ -81,18 +86,25 @@ sns.heatmap(
     cbar_ax=cbar_ax,
     cbar_kws={"label": "Magnitude"},
 )
-ax2.set_title("Output Feature Map (After ATNC): Sparse & Purified", fontweight="bold")
-ax2.set_ylabel("Channels")
-ax2.set_xlabel("Time Steps")
+ax2.set_title(
+    "Output Feature Map (After ATNC): Sparse & Purified", fontweight="bold", fontsize=20
+)
+ax2.set_ylabel("Channels", fontsize=18)
+ax2.set_xlabel("Time Steps", fontsize=18)
 
+ax2.tick_params(axis="both", labelsize=16)
+
+cbar = ax2.collections[0].colorbar
+cbar.ax.yaxis.label.set_size(18)
+cbar.ax.tick_params(labelsize=16)
 
 plt.subplots_adjust(right=0.9)
 
 
-plt.savefig("Figure7_Feature_Sparsity.svg", bbox_inches="tight", dpi=300)
+plt.savefig("Figure7_Feature_Sparsity.svg", format="svg", bbox_inches="tight")
 plt.show()
 
-ch_idx = 2
+ch_idx = 5
 time = np.arange(feat_in.shape[1])
 
 fig, ax = plt.subplots(figsize=(8, 4))
@@ -102,8 +114,8 @@ ax.plot(
     time,
     feat_in[ch_idx],
     color="lightgray",
-    label="Input Magnitude (|x|)",
-    linewidth=1.5,
+    label="Magnitude (|x|)",
+    linewidth=2,
 )
 
 
@@ -112,7 +124,7 @@ ax.axhline(
     thresh_val,
     color="red",
     linestyle="--",
-    label="Adaptive Threshold (τ)",
+    label="Threshold (τ)",
     linewidth=1.5,
 )
 
@@ -123,16 +135,19 @@ ax.plot(
     time,
     feat_out[ch_idx],
     color="#1f77b4",
-    label="Output Magnitude (ReLU(|x|-τ))",
-    linewidth=2,
+    label="Magnitude (ReLU(|x|-τ))",
+    linewidth=2.5,
 )
 
-ax.set_xlabel("Time Steps")
-ax.set_ylabel("Feature Magnitude")
-ax.legend(loc="upper right", frameon=True, edgecolor="black")
-ax.set_title(f"Channel {ch_idx} Mechanism Visualization", fontweight="bold")
+ax.set_xlabel("Time Steps", fontsize=18)
+ax.set_ylabel("Feature Magnitude", fontsize=18)
+ax.legend(loc="upper right", frameon=True, edgecolor="black", fontsize=16, framealpha=1)
+ax.set_title(
+    f"Channel {ch_idx} Mechanism Visualization", fontweight="bold", fontsize=20
+)
+ax.tick_params(axis="both", labelsize=16)
 ax.grid(True, linestyle=":", alpha=0.6)
 
 plt.tight_layout()
-plt.savefig("Figure_Mechanism_Curve.svg", bbox_inches="tight")
+plt.savefig("Figure_Mechanism_Curve.svg", format="svg", bbox_inches="tight")
 plt.show()

@@ -3,7 +3,7 @@
 
 i=1
 snr_values=-4
-gpu_ids=(0 1 2 3 3)  
+gpu_ids=(6 6 6 6 6)  
 
 echo "starting..."
 

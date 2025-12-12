@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from layers import DANCE, ATNC, SE, CBAM, ECA, DANCE_inv, RDSAB, AREM
 
-PLUGIN = ECA
+PLUGIN = DANCE
 
 
 class EncBlock(nn.Module):
@@ -23,7 +23,7 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            PLUGIN(),
+            PLUGIN(out_channels),
         )
 
     def forward(self, x):
@@ -72,7 +72,7 @@ class DANCER(nn.Module):
                 kernel_size=3,
                 padding=1,
             ),
-            PLUGIN(),
+            PLUGIN(channels[-1]),
         )
 
         for i in range(4):
