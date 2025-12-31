@@ -40,7 +40,7 @@ dataset = ECGDataset(
 
 # idx = np.random.randint(0, len(dataset) - 1)
 # print(idx)
-idx = 458
+idx = 6
 # idx = 1439
 noisy, clean = dataset[idx]
 noisy_input = torch.tensor(noisy).unsqueeze(0).float()
