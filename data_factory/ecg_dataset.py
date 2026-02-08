@@ -26,32 +26,34 @@ class ECGDataset(Dataset):
         self.noise_type = noise_type
         self.snr_db = snr_db
 
-        if snr_db not in [-4, -2, 0, 2, 4]:
-            raise ValueError(f"Unsupported SNR level: {snr_db}")
+        meta_path = os.path.join(split_dir, "meta.json")
+        if not os.path.exists(meta_path):
+            raise FileNotFoundError(f"Metadata file not found: {meta_path}")
+
+        with open(meta_path, "r") as f:
+            self.meta_info = json.load(f)
+
+        if snr_db not in self.meta_info["snr_levels"]:
+            raise ValueError(
+                f"Unsupported SNR level: {snr_db}. Available: {self.meta_info['snr_levels']}"
+            )
 
         if noise_type not in ["bw", "em", "ma", "emb"]:
             raise ValueError(f"Unsupported noise type: {noise_type}")
 
-        split_path = os.path.join(split_dir, "split_info.json")
-        if not os.path.exists(split_path):
-            raise FileNotFoundError(f"Split file not found: {split_path}")
-
-        with open(split_path, "r") as f:
-            self.split_data = json.load(f)
-
         if split == "train":
-            self.indices = self.split_data["train_indices"]
+            self.indices = self.meta_info["split"]["train_indices"]
         elif split == "test":
-            self.indices = self.split_data["test_indices"]
+            self.indices = self.meta_info["split"]["test_indices"]
         else:
             raise ValueError(f"Unknown split: {split}")
 
         self.noisy_signals = np.load(
             os.path.join(split_dir, f"noisy_{noise_type}_snr_{snr_db}.npy")
         )
-        self.clean_signals = np.load(os.path.join(split_dir, "clean_signals.npy"))
+        self.clean_signals = np.load(os.path.join(split_dir, "clean_all.npy"))
 
-        train_noisy = self.noisy_signals[self.split_data["train_indices"]]
+        train_noisy = self.noisy_signals[self.meta_info["split"]["train_indices"]]
 
         self.__mean = np.mean(train_noisy, axis=(0, 1), keepdims=True)
         self.__std = np.std(train_noisy, axis=(0, 1), keepdims=True)
@@ -80,11 +82,8 @@ class ECGDataset(Dataset):
     def __getitem__(self, idx):
         data_idx = self.indices[idx]
 
-        noisy_signal = self.noisy_signals[data_idx]
-        clean_signal = self.clean_signals[data_idx]
-
-        noisy_tensor = torch.FloatTensor(noisy_signal)
-        clean_tensor = torch.FloatTensor(clean_signal)
+        noisy_tensor = torch.from_numpy(self.noisy_signals[data_idx]).float()
+        clean_tensor = torch.from_numpy(self.clean_signals[data_idx]).float()
 
         return noisy_tensor, clean_tensor
 

@@ -8,7 +8,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from models import DANCER, UNet, ACDAE, DACNN
+from models import DANCE, UNet, ACDAE, DACNN
 
 
 def measure_model(model, input_shape=(1, 2, 256), device="cuda", runs=1000):
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Testing on device: {device}\n")
 
-    models_to_test = [UNet(), ACDAE(), DACNN(), DANCER()]
+    models_to_test = [UNet(), ACDAE(), DACNN(), DANCE()]
 
     test_shape = (1, 2, 256)
 

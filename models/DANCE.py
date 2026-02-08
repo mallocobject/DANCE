@@ -8,13 +8,12 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
-from layers import APReLU, DAM
+from layers import DANCE, ATNC, SE, CBAM, ECA, DANCE_inv, AREM, DRSNBlock
 
 
 class EncBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size):
-        super().__init__()
+        super(EncBlock, self).__init__()
         self.conv = nn.Sequential(
             nn.Conv1d(
                 in_channels=in_channels,
@@ -22,7 +21,7 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            APReLU(out_channels),
+            ATNC(ch=out_channels),
             nn.BatchNorm1d(out_channels),
         )
 
@@ -33,7 +32,7 @@ class EncBlock(nn.Module):
 
 class DecBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, act=True):
-        super().__init__()
+        super(DecBlock, self).__init__()
         self.act = act
         self.conv = nn.Sequential(
             nn.Conv1d(
@@ -42,26 +41,29 @@ class DecBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
-            APReLU(out_channels),
+            ATNC(ch=out_channels),
             nn.BatchNorm1d(out_channels),
         )
         if act:
-            self.dam = DAM(out_channels)
+            self.relu = nn.Sequential(
+                AREM(ch=out_channels),
+                # nn.Identity(),
+            )
 
     def forward(self, x):
         x = self.conv(x)
         if self.act:
-            x = self.dam(x)
+            x = self.relu(x)
 
         return x
 
 
-class DACNN(nn.Module):
+class DANCE(nn.Module):
     def __init__(self, double_ch: bool = True) -> None:
         super().__init__()
 
         channels = [2, 16, 32, 64, 128] if double_ch else [1, 8, 16, 32, 64]
-        kernel_size = [17, 17, 3, 3]
+        kernel_size = [13, 7, 7, 7]
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
 
@@ -87,6 +89,7 @@ class DACNN(nn.Module):
 
     def forward(self, x):
         encfeature = []
+
         for i in range(3):
             x = self.encoder[i](x)
             encfeature.append(x)
@@ -99,13 +102,12 @@ class DACNN(nn.Module):
             x = self.up(x)
             x += encfeature[-i]
             x = self.decoder[i](x)
-
         return x
 
 
 if __name__ == "__main__":
     x = torch.rand(16, 2, 1024)
-    model = DACNN()
+    model = DANCE()
     print(model)
     y = model(x)
     print(y.shape)

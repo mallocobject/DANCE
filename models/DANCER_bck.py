@@ -8,7 +8,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from layers import DANCE, ATNC, SE, CBAM, ECA, DANCE_inv, RDSAB, AREM
+from layers import DANCE, ATNC, SE, CBAM, ECA, DANCE_inv, AREM, DRSNBlock
 
 PLUGIN = DANCE
 
@@ -23,7 +23,10 @@ class EncBlock(nn.Module):
                 kernel_size=kernel_size,
                 padding=(kernel_size - 1) // 2,
             ),
+            # ATNC(out_channels),
+            # nn.LeakyReLU(),
             PLUGIN(out_channels),
+            # nn.BatchNorm1d(out_channels),
         )
 
     def forward(self, x):
@@ -44,7 +47,12 @@ class DecBlock(nn.Module):
             ),
         )
         if act:
-            self.relu = nn.LeakyReLU()
+            self.relu = nn.Sequential(
+                # ATNC(out_channels),
+                # nn.LeakyReLU(),
+                PLUGIN(out_channels),
+                # nn.BatchNorm1d(out_channels),
+            )
 
     def forward(self, x):
         x = self.conv(x)
@@ -54,11 +62,33 @@ class DecBlock(nn.Module):
         return x
 
 
-class DANCER(nn.Module):
-    def __init__(self) -> None:
+class DANCE(nn.Module):
+    def __init__(self, double_ch: bool = True, type: str = "DANCE_inv") -> None:
         super().__init__()
 
-        channels = [2, 16, 32, 64, 128]
+        global PLUGIN
+        if type == "DANCE":
+            PLUGIN = DANCE
+        elif type == "DANCE_inv":
+            PLUGIN = DANCE_inv
+        elif type == "DRSN":
+            PLUGIN = DRSNBlock
+        elif type == "AREM":
+            PLUGIN = AREM
+        elif type == "ATNC":
+            PLUGIN = ATNC
+        elif type == "SE":
+            PLUGIN = SE
+        elif type == "CBAM":
+            PLUGIN = CBAM
+        elif type == "ECA":
+            PLUGIN = ECA
+        else:
+            raise ValueError(
+                "Unsupported type. Choose from 'DANCE', 'DANCE_inv', '', 'AREM', 'ATNC'."
+            )
+
+        channels = [2, 16, 32, 64, 128] if double_ch else [1, 8, 16, 32, 64]
         kernel_size = [13, 7, 7, 7]
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
@@ -73,6 +103,7 @@ class DANCER(nn.Module):
                 padding=1,
             ),
             PLUGIN(channels[-1]),
+            # nn.BatchNorm1d(channels[-1]),
         )
 
         for i in range(4):
@@ -107,8 +138,8 @@ class DANCER(nn.Module):
 
 
 if __name__ == "__main__":
-    x = torch.rand(16, 2, 256)
-    model = DANCER()
+    x = torch.rand(16, 2, 1024)
+    model = DANCE()
     print(model)
     y = model(x)
     print(y.shape)

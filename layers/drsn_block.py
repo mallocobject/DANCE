@@ -8,8 +8,10 @@ from .shcink import Shrink
 class DRSNBlock(nn.Module):
     expansion: int = 1
 
-    def __init__(self, chin: int, chout: int, stride: int = 1):
+    def __init__(self, chin: int, chout: int | None = None, stride: int = 1):
         super().__init__()
+        if chout is None:
+            chout = chin
         self.residual_function = nn.Sequential(
             nn.Conv1d(chin, chout, kernel_size=3, stride=stride, padding=1, bias=False),
             nn.BatchNorm1d(chout),

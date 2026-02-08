@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 
 class ECA(nn.Module):
-    def __init__(self, kernel_size: int = 7):
+    def __init__(self, ch: int | None = None, kernel_size: int = 7):
         super().__init__()
 
         self.avg_pool = nn.AdaptiveAvgPool1d(1)

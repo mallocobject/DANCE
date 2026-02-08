@@ -1,17 +1,16 @@
 #!/bin/bash
 
-
-i=2
+i=5
 snr_values=-4
-gpu_ids=(0 4 5 6)
-# 1 2 2 3 7
+gpu_ids=(0 1 4 5 6 7)  
 
 echo "starting..."
 
+# for i in "${!snr_values[@]}"; do
     echo "启动 SNR=${snr_values} 在 GPU ${gpu_ids[i]}"
     python run.py \
         --split_dir ./data_split \
-        --model ACDAE \
+        --model DANCE \
         --batch_size 64 \
         --epochs 80 \
         --lr 1e-3 \
@@ -20,9 +19,10 @@ echo "starting..."
         --gpu_id "${gpu_ids[i]}" \
         --checkpoint_dir ./checkpoints \
         --mode train 
-    # sleep 5 
+    # sleep 5  
 # done
 
 
 wait
-echo "所有ACDAE训练任务已完成!"
+echo "所有DANCE训练任务已完成!"
+

@@ -46,11 +46,12 @@ class DecBlock(nn.Module):
 
 
 class UNet(nn.Module):
-    def __init__(self) -> None:
+    def __init__(self, double_ch: bool = True) -> None:
         super().__init__()
 
-        channels = [2, 16, 32, 64, 128]
-        kernel_size = [13, 7, 7, 7]
+        channels = [2, 16, 32, 64, 128] if double_ch else [1, 8, 16, 32, 64]
+
+        kernel_size = [17, 17, 7, 7]
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
 
@@ -100,7 +101,7 @@ class UNet(nn.Module):
 
 
 if __name__ == "__main__":
-    x = torch.rand(16, 2, 256)
+    x = torch.rand(16, 1, 512)
     model = UNet()
     print(model)
     y = model(x)

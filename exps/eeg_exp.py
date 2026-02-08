@@ -18,11 +18,11 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utils import compute_metrics
-from data_factory import ECGDataset
+from data_factory import EEGDataset
 from models import *
 
 
-class ECGDenoisingExperiment:
+class EEGDenoisingExperiment:
     def __init__(self, args: argparse.Namespace):
         self.args = args
 
@@ -51,13 +51,13 @@ class ECGDenoisingExperiment:
     def _build_model(self):
         if self.args.model not in self.model_dict:
             raise ValueError(f"Unknown model type: {self.args.model}")
-        model = self.model_dict[self.args.model]()
+        model = self.model_dict[self.args.model](double_ch=False)
         return model
 
     def _get_dataloader(self, split: str):
-        dataset = ECGDataset(
+        dataset = EEGDataset(
             split=split,
-            noise_type=self.args.noise_type,
+            type=self.args.noise_type,
             snr_db=self.args.snr_db,
             split_dir=self.args.split_dir,
         )
@@ -114,7 +114,7 @@ class ECGDenoisingExperiment:
         criterion = self._select_criterion()
 
         optimizer = self._select_optimizer(model)
-        scheduler = self._select_scheduler(optimizer)
+        # scheduler = self._select_scheduler(optimizer)
 
         model = model.to(self.device)
 
@@ -123,6 +123,8 @@ class ECGDenoisingExperiment:
             losses = []
             for x, label in dataloader:
                 x, label = x.to(self.device), label.to(self.device)
+                x.unsqueeze_(1)
+                label.unsqueeze_(1)
 
                 optimizer.zero_grad()
                 outputs = model(x)
@@ -131,7 +133,7 @@ class ECGDenoisingExperiment:
                 loss.backward()
                 optimizer.step()
 
-            scheduler.step()
+            # scheduler.step()
 
             avg_loss = np.mean(losses)
 
@@ -144,10 +146,10 @@ class ECGDenoisingExperiment:
             if epoch == self.args.epochs - 1:
                 metrics = self.test(model=model)
 
-        torch.save(model.state_dict(), self.checkpoint)
+        # torch.save(model.state_dict(), self.checkpoint)
 
         print(f"SNR: {metrics['SNR']:.2f}\nRMSE: {metrics['RMSE']:.4f}")
-        print("Results saved to:", self.results_file)
+        # print("Results saved to:", self.results_file)
 
     def test(self, model: nn.Module = None):
         test_dataloader = self._get_dataloader("test")
@@ -166,9 +168,13 @@ class ECGDenoisingExperiment:
         with torch.no_grad():
             for x, label in test_dataloader:
                 x, label = x.to(self.device), label.to(self.device)
+                x.unsqueeze_(1)
+                label.unsqueeze_(1)
 
                 outputs = model(x)
-                metrics_res = compute_metrics(outputs, label, self.mean, self.std)
+                metrics_res = compute_metrics(
+                    outputs, label, self.mean, self.std, ecg=False
+                )
                 for key in metrics:
                     metrics[key].append(metrics_res[key])
 

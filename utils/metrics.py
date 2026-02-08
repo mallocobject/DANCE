@@ -6,6 +6,7 @@ def compute_metrics(
     clean: torch.Tensor,
     mean: torch.Tensor | None = None,
     std: torch.Tensor | None = None,
+    ecg: bool = True,
 ) -> dict:
     """
     计算 ECG 信号去噪指标：
@@ -13,15 +14,21 @@ def compute_metrics(
     """
 
     # === 保证形状匹配 ===
-    # 输入通常是 (batch, channels, length)
+    # 输入是 (batch, channels, length)
     if clean.ndim == 2:
         clean = clean.unsqueeze(0)
         denoised = denoised.unsqueeze(0)
 
-    if mean is not None and std is not None:
+    if ecg and mean is not None and std is not None:
         # 反标准化
-        mean = mean.permute(0, 2, 1)  # (1, C, 1)
-        std = std.permute(0, 2, 1)  # (1, C, 1)
+        assert mean.shape[-1] == clean.shape[1] and std.shape[-1] == clean.shape[1]
+        mean = mean.transpose(1, 2)
+        std = std.transpose(1, 2)
+
+        denoised = denoised * std + mean
+
+    elif not ecg and mean is not None and std is not None:
+
         denoised = denoised * std + mean
 
     # 保证浮点精度（避免半精度误差）
@@ -31,14 +38,24 @@ def compute_metrics(
     # === 计算指标 ===
     diff = clean - denoised
 
-    # RMSE（每样本取均值）
-    rmse = torch.sqrt(torch.mean(diff**2, dim=[1, 2]))  # (batch,)
-    rmse_mean = rmse.mean().item()
+    if ecg:
+        # RMSE（每样本取均值）
+        rmse = torch.sqrt(torch.mean(diff**2, dim=[1, 2]))  # (batch,)
+        rmse_mean = rmse.mean().item()
 
-    # SNR（dB）
-    noise_power = torch.mean(diff**2, dim=[1, 2])
-    signal_power = torch.mean(clean**2, dim=[1, 2])
-    snr = 10 * torch.log10(signal_power / (noise_power))
-    snr_mean = snr.mean().item()
+        # SNR（dB）
+        sse = torch.sum(diff**2, dim=[1, 2])
+        ssc = torch.sum(clean**2, dim=[1, 2])
+        snr = 10 * torch.log10(ssc / sse)
+        snr_mean = snr.mean().item()
+    else:
+        rmse = torch.sqrt(torch.mean(diff**2))  # (batch,)
+        rmse_mean = rmse.item()
+
+        # SNR（dB）
+        sse = torch.sum(diff**2)
+        ssc = torch.sum(clean**2)
+        snr = 10 * torch.log10(ssc / sse)
+        snr_mean = snr.item()
 
     return {"RMSE": rmse_mean, "SNR": snr_mean}

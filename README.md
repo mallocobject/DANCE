@@ -40,7 +40,7 @@ DANCE/
 │   ├── split_manager.py
 │   └── ...
 ├── script/
-│   └── DANCER.sh
+│   └── DANCE.sh
 ├── requirements.txt
 └── README.md
 ```
@@ -58,10 +58,10 @@ python datasets/split_manager.py
 To run the model, execute the provided shell script:
 
 ```bash
-bash script/DANCER.sh
+bash script/DANCE.sh
 ```
 
-*Alternatively, you can modify script/DANCER.sh to customize parameters for your specific instances.*
+*Alternatively, you can modify script/DANCE.sh to customize parameters for your specific instances.*
 
 ---
 > **Dan Liu, Tianhai Xie @ IIP-2025**

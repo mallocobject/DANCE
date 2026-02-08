@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-i=1
+i=4
 snr_values=-4
-gpu_ids=(6 6 6 6 6)  
+gpu_ids=(0 1 2 4 5)  
 
 echo "starting..."
 
