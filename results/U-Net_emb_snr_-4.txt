@@ -1,0 +1,5 @@
+U-Net	seed=1	snr=4.32	rmse=0.2828
+U-Net	seed=2	snr=4.08	rmse=0.2922
+U-Net	seed=3	snr=4.14	rmse=0.2878
+U-Net	seed=4	snr=4.23	rmse=0.2883
+U-Net	seed=5	snr=3.97	rmse=0.2941

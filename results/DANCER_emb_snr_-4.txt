@@ -1,0 +1,5 @@
+DANCER	seed=1	snr=5.08	rmse=0.3068
+DANCER	seed=2	snr=4.62	rmse=0.3191
+DANCER	seed=3	snr=4.63	rmse=0.3219
+DANCER	seed=4	snr=4.84	rmse=0.3173
+DANCER	seed=5	snr=4.89	rmse=0.3116

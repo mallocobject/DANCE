@@ -1,0 +1,1578 @@
+==========================================
+[1/175] 模型: DANCER, 噪声: EOG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 0.36
+RMSE: 185.2136
+完成: DANCER - EOG - -4dB - 第 1 次运行
+
+==========================================
+[2/175] 模型: DANCER, 噪声: EOG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 0.29
+RMSE: 187.0538
+完成: DANCER - EOG - -4dB - 第 2 次运行
+
+==========================================
+[3/175] 模型: DANCER, 噪声: EOG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 0.72
+RMSE: 178.0047
+完成: DANCER - EOG - -4dB - 第 3 次运行
+
+==========================================
+[4/175] 模型: DANCER, 噪声: EOG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 0.70
+RMSE: 177.9621
+完成: DANCER - EOG - -4dB - 第 4 次运行
+
+==========================================
+[5/175] 模型: DANCER, 噪声: EOG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 0.51
+RMSE: 182.1480
+完成: DANCER - EOG - -4dB - 第 5 次运行
+
+==========================================
+[6/175] 模型: DANCER, 噪声: EMG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 0.78
+RMSE: 177.7913
+完成: DANCER - EMG - -4dB - 第 1 次运行
+
+==========================================
+[7/175] 模型: DANCER, 噪声: EMG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: -0.35
+RMSE: 203.6309
+完成: DANCER - EMG - -4dB - 第 2 次运行
+
+==========================================
+[8/175] 模型: DANCER, 噪声: EMG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 1.07
+RMSE: 171.8909
+完成: DANCER - EMG - -4dB - 第 3 次运行
+
+==========================================
+[9/175] 模型: DANCER, 噪声: EMG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 0.60
+RMSE: 181.6885
+完成: DANCER - EMG - -4dB - 第 4 次运行
+
+==========================================
+[10/175] 模型: DANCER, 噪声: EMG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 0.38
+RMSE: 186.5688
+完成: DANCER - EMG - -4dB - 第 5 次运行
+
+==========================================
+[11/175] 模型: DANCER, 噪声: EOGEMG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 3.26
+RMSE: 134.2828
+完成: DANCER - EOGEMG - -4dB - 第 1 次运行
+
+==========================================
+[12/175] 模型: DANCER, 噪声: EOGEMG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 2.40
+RMSE: 149.0453
+完成: DANCER - EOGEMG - -4dB - 第 2 次运行
+
+==========================================
+[13/175] 模型: DANCER, 噪声: EOGEMG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 2.83
+RMSE: 141.5483
+完成: DANCER - EOGEMG - -4dB - 第 3 次运行
+
+==========================================
+[14/175] 模型: DANCER, 噪声: EOGEMG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 3.08
+RMSE: 137.8054
+完成: DANCER - EOGEMG - -4dB - 第 4 次运行
+
+==========================================
+[15/175] 模型: DANCER, 噪声: EOGEMG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 3.01
+RMSE: 138.5054
+完成: DANCER - EOGEMG - -4dB - 第 5 次运行
+
+==========================================
+[16/175] 模型: DANCER, 噪声: EOGEMG, SNR: -2dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 4.56
+RMSE: 119.1506
+完成: DANCER - EOGEMG - -2dB - 第 1 次运行
+
+==========================================
+[17/175] 模型: DANCER, 噪声: EOGEMG, SNR: -2dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 4.82
+RMSE: 114.7361
+完成: DANCER - EOGEMG - -2dB - 第 2 次运行
+
+==========================================
+[18/175] 模型: DANCER, 噪声: EOGEMG, SNR: -2dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 4.80
+RMSE: 114.9104
+完成: DANCER - EOGEMG - -2dB - 第 3 次运行
+
+==========================================
+[19/175] 模型: DANCER, 噪声: EOGEMG, SNR: -2dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 4.76
+RMSE: 114.4781
+完成: DANCER - EOGEMG - -2dB - 第 4 次运行
+
+==========================================
+[20/175] 模型: DANCER, 噪声: EOGEMG, SNR: -2dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 4.59
+RMSE: 117.3970
+完成: DANCER - EOGEMG - -2dB - 第 5 次运行
+
+==========================================
+[21/175] 模型: DANCER, 噪声: EOGEMG, SNR: 0dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 6.90
+RMSE: 91.3138
+完成: DANCER - EOGEMG - 0dB - 第 1 次运行
+
+==========================================
+[22/175] 模型: DANCER, 噪声: EOGEMG, SNR: 0dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 6.73
+RMSE: 92.2428
+完成: DANCER - EOGEMG - 0dB - 第 2 次运行
+
+==========================================
+[23/175] 模型: DANCER, 噪声: EOGEMG, SNR: 0dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 6.20
+RMSE: 99.9282
+完成: DANCER - EOGEMG - 0dB - 第 3 次运行
+
+==========================================
+[24/175] 模型: DANCER, 噪声: EOGEMG, SNR: 0dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 6.05
+RMSE: 100.4789
+完成: DANCER - EOGEMG - 0dB - 第 4 次运行
+
+==========================================
+[25/175] 模型: DANCER, 噪声: EOGEMG, SNR: 0dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 5.27
+RMSE: 108.7179
+完成: DANCER - EOGEMG - 0dB - 第 5 次运行
+
+==========================================
+[26/175] 模型: DANCER, 噪声: EOGEMG, SNR: 2dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 7.43
+RMSE: 84.9106
+完成: DANCER - EOGEMG - 2dB - 第 1 次运行
+
+==========================================
+[27/175] 模型: DANCER, 噪声: EOGEMG, SNR: 2dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 8.07
+RMSE: 79.5517
+完成: DANCER - EOGEMG - 2dB - 第 2 次运行
+
+==========================================
+[28/175] 模型: DANCER, 噪声: EOGEMG, SNR: 2dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 8.03
+RMSE: 79.9592
+完成: DANCER - EOGEMG - 2dB - 第 3 次运行
+
+==========================================
+[29/175] 模型: DANCER, 噪声: EOGEMG, SNR: 2dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 7.28
+RMSE: 86.4496
+完成: DANCER - EOGEMG - 2dB - 第 4 次运行
+
+==========================================
+[30/175] 模型: DANCER, 噪声: EOGEMG, SNR: 2dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 7.97
+RMSE: 80.5324
+完成: DANCER - EOGEMG - 2dB - 第 5 次运行
+
+==========================================
+[31/175] 模型: DANCER, 噪声: EOGEMG, SNR: 4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 8.62
+RMSE: 74.4826
+完成: DANCER - EOGEMG - 4dB - 第 1 次运行
+
+==========================================
+[32/175] 模型: DANCER, 噪声: EOGEMG, SNR: 4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 8.73
+RMSE: 74.0049
+完成: DANCER - EOGEMG - 4dB - 第 2 次运行
+
+==========================================
+[33/175] 模型: DANCER, 噪声: EOGEMG, SNR: 4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 8.30
+RMSE: 76.4708
+完成: DANCER - EOGEMG - 4dB - 第 3 次运行
+
+==========================================
+[34/175] 模型: DANCER, 噪声: EOGEMG, SNR: 4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 8.99
+RMSE: 71.3448
+完成: DANCER - EOGEMG - 4dB - 第 4 次运行
+
+==========================================
+[35/175] 模型: DANCER, 噪声: EOGEMG, SNR: 4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 9.31
+RMSE: 69.1882
+完成: DANCER - EOGEMG - 4dB - 第 5 次运行
+
+==========================================
+[36/175] 模型: UNet, 噪声: EOG, SNR: -4dB, 第 1 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOG - -4dB - 第 1 次运行
+
+==========================================
+[37/175] 模型: UNet, 噪声: EOG, SNR: -4dB, 第 2 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOG - -4dB - 第 2 次运行
+
+==========================================
+[38/175] 模型: UNet, 噪声: EOG, SNR: -4dB, 第 3 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOG - -4dB - 第 3 次运行
+
+==========================================
+[39/175] 模型: UNet, 噪声: EOG, SNR: -4dB, 第 4 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOG - -4dB - 第 4 次运行
+
+==========================================
+[40/175] 模型: UNet, 噪声: EOG, SNR: -4dB, 第 5 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOG - -4dB - 第 5 次运行
+
+==========================================
+[41/175] 模型: UNet, 噪声: EMG, SNR: -4dB, 第 1 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EMG - -4dB - 第 1 次运行
+
+==========================================
+[42/175] 模型: UNet, 噪声: EMG, SNR: -4dB, 第 2 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EMG - -4dB - 第 2 次运行
+
+==========================================
+[43/175] 模型: UNet, 噪声: EMG, SNR: -4dB, 第 3 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EMG - -4dB - 第 3 次运行
+
+==========================================
+[44/175] 模型: UNet, 噪声: EMG, SNR: -4dB, 第 4 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EMG - -4dB - 第 4 次运行
+
+==========================================
+[45/175] 模型: UNet, 噪声: EMG, SNR: -4dB, 第 5 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EMG - -4dB - 第 5 次运行
+
+==========================================
+[46/175] 模型: UNet, 噪声: EOGEMG, SNR: -4dB, 第 1 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - -4dB - 第 1 次运行
+
+==========================================
+[47/175] 模型: UNet, 噪声: EOGEMG, SNR: -4dB, 第 2 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - -4dB - 第 2 次运行
+
+==========================================
+[48/175] 模型: UNet, 噪声: EOGEMG, SNR: -4dB, 第 3 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - -4dB - 第 3 次运行
+
+==========================================
+[49/175] 模型: UNet, 噪声: EOGEMG, SNR: -4dB, 第 4 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - -4dB - 第 4 次运行
+
+==========================================
+[50/175] 模型: UNet, 噪声: EOGEMG, SNR: -4dB, 第 5 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - -4dB - 第 5 次运行
+
+==========================================
+[51/175] 模型: UNet, 噪声: EOGEMG, SNR: -2dB, 第 1 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - -2dB - 第 1 次运行
+
+==========================================
+[52/175] 模型: UNet, 噪声: EOGEMG, SNR: -2dB, 第 2 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - -2dB - 第 2 次运行
+
+==========================================
+[53/175] 模型: UNet, 噪声: EOGEMG, SNR: -2dB, 第 3 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - -2dB - 第 3 次运行
+
+==========================================
+[54/175] 模型: UNet, 噪声: EOGEMG, SNR: -2dB, 第 4 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - -2dB - 第 4 次运行
+
+==========================================
+[55/175] 模型: UNet, 噪声: EOGEMG, SNR: -2dB, 第 5 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - -2dB - 第 5 次运行
+
+==========================================
+[56/175] 模型: UNet, 噪声: EOGEMG, SNR: 0dB, 第 1 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 0dB - 第 1 次运行
+
+==========================================
+[57/175] 模型: UNet, 噪声: EOGEMG, SNR: 0dB, 第 2 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 0dB - 第 2 次运行
+
+==========================================
+[58/175] 模型: UNet, 噪声: EOGEMG, SNR: 0dB, 第 3 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 0dB - 第 3 次运行
+
+==========================================
+[59/175] 模型: UNet, 噪声: EOGEMG, SNR: 0dB, 第 4 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 0dB - 第 4 次运行
+
+==========================================
+[60/175] 模型: UNet, 噪声: EOGEMG, SNR: 0dB, 第 5 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 0dB - 第 5 次运行
+
+==========================================
+[61/175] 模型: UNet, 噪声: EOGEMG, SNR: 2dB, 第 1 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 2dB - 第 1 次运行
+
+==========================================
+[62/175] 模型: UNet, 噪声: EOGEMG, SNR: 2dB, 第 2 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 2dB - 第 2 次运行
+
+==========================================
+[63/175] 模型: UNet, 噪声: EOGEMG, SNR: 2dB, 第 3 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 2dB - 第 3 次运行
+
+==========================================
+[64/175] 模型: UNet, 噪声: EOGEMG, SNR: 2dB, 第 4 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 2dB - 第 4 次运行
+
+==========================================
+[65/175] 模型: UNet, 噪声: EOGEMG, SNR: 2dB, 第 5 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 2dB - 第 5 次运行
+
+==========================================
+[66/175] 模型: UNet, 噪声: EOGEMG, SNR: 4dB, 第 1 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 4dB - 第 1 次运行
+
+==========================================
+[67/175] 模型: UNet, 噪声: EOGEMG, SNR: 4dB, 第 2 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 4dB - 第 2 次运行
+
+==========================================
+[68/175] 模型: UNet, 噪声: EOGEMG, SNR: 4dB, 第 3 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 4dB - 第 3 次运行
+
+==========================================
+[69/175] 模型: UNet, 噪声: EOGEMG, SNR: 4dB, 第 4 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 4dB - 第 4 次运行
+
+==========================================
+[70/175] 模型: UNet, 噪声: EOGEMG, SNR: 4dB, 第 5 次运行
+==========================================
+usage: run2.py [-h] [--split_dir SPLIT_DIR]
+               [--model {U-Net,DANCER,ACDAE,DACNN,RALENet}]
+               [--plugin_type {DANCE,DANCE_inv,DRSN,AREM,ATNC,SE,CBAM,ECA}]
+               [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
+               [--noise_type {EMG,EOG,EOGEMG}] [--snr_db {-4,-2,0,2,4}]
+               [--seed SEED] [--gpu_id GPU_ID]
+               [--checkpoint_dir CHECKPOINT_DIR] [--mode {train,test}]
+run2.py: error: argument --model: invalid choice: 'UNet' (choose from 'U-Net', 'DANCER', 'ACDAE', 'DACNN', 'RALENet')
+完成: UNet - EOGEMG - 4dB - 第 5 次运行
+
+==========================================
+[71/175] 模型: DACNN, 噪声: EOG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 0.25
+RMSE: 187.6542
+完成: DACNN - EOG - -4dB - 第 1 次运行
+
+==========================================
+[72/175] 模型: DACNN, 噪声: EOG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 0.97
+RMSE: 172.8510
+完成: DACNN - EOG - -4dB - 第 2 次运行
+
+==========================================
+[73/175] 模型: DACNN, 噪声: EOG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 1.13
+RMSE: 169.6970
+完成: DACNN - EOG - -4dB - 第 3 次运行
+
+==========================================
+[74/175] 模型: DACNN, 噪声: EOG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 0.37
+RMSE: 185.0050
+完成: DACNN - EOG - -4dB - 第 4 次运行
+
+==========================================
+[75/175] 模型: DACNN, 噪声: EOG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 0.91
+RMSE: 173.7758
+完成: DACNN - EOG - -4dB - 第 5 次运行
+
+==========================================
+[76/175] 模型: DACNN, 噪声: EMG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 0.50
+RMSE: 184.2181
+完成: DACNN - EMG - -4dB - 第 1 次运行
+
+==========================================
+[77/175] 模型: DACNN, 噪声: EMG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: -0.18
+RMSE: 200.9056
+完成: DACNN - EMG - -4dB - 第 2 次运行
+
+==========================================
+[78/175] 模型: DACNN, 噪声: EMG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 1.41
+RMSE: 165.4886
+完成: DACNN - EMG - -4dB - 第 3 次运行
+
+==========================================
+[79/175] 模型: DACNN, 噪声: EMG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 1.83
+RMSE: 157.1939
+完成: DACNN - EMG - -4dB - 第 4 次运行
+
+==========================================
+[80/175] 模型: DACNN, 噪声: EMG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 1.14
+RMSE: 170.9716
+完成: DACNN - EMG - -4dB - 第 5 次运行
+
+==========================================
+[81/175] 模型: DACNN, 噪声: EOGEMG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 3.86
+RMSE: 127.1396
+完成: DACNN - EOGEMG - -4dB - 第 1 次运行
+
+==========================================
+[82/175] 模型: DACNN, 噪声: EOGEMG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 3.47
+RMSE: 133.7592
+完成: DACNN - EOGEMG - -4dB - 第 2 次运行
+
+==========================================
+[83/175] 模型: DACNN, 噪声: EOGEMG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 3.88
+RMSE: 125.3219
+完成: DACNN - EOGEMG - -4dB - 第 3 次运行
+
+==========================================
+[84/175] 模型: DACNN, 噪声: EOGEMG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 3.37
+RMSE: 134.4073
+完成: DACNN - EOGEMG - -4dB - 第 4 次运行
+
+==========================================
+[85/175] 模型: DACNN, 噪声: EOGEMG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 3.23
+RMSE: 136.2219
+完成: DACNN - EOGEMG - -4dB - 第 5 次运行
+
+==========================================
+[86/175] 模型: DACNN, 噪声: EOGEMG, SNR: -2dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 5.65
+RMSE: 104.2632
+完成: DACNN - EOGEMG - -2dB - 第 1 次运行
+
+==========================================
+[87/175] 模型: DACNN, 噪声: EOGEMG, SNR: -2dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 4.96
+RMSE: 115.0504
+完成: DACNN - EOGEMG - -2dB - 第 2 次运行
+
+==========================================
+[88/175] 模型: DACNN, 噪声: EOGEMG, SNR: -2dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 5.10
+RMSE: 114.0652
+完成: DACNN - EOGEMG - -2dB - 第 3 次运行
+
+==========================================
+[89/175] 模型: DACNN, 噪声: EOGEMG, SNR: -2dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 5.20
+RMSE: 110.8736
+完成: DACNN - EOGEMG - -2dB - 第 4 次运行
+
+==========================================
+[90/175] 模型: DACNN, 噪声: EOGEMG, SNR: -2dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 5.59
+RMSE: 107.0596
+完成: DACNN - EOGEMG - -2dB - 第 5 次运行
+
+==========================================
+[91/175] 模型: DACNN, 噪声: EOGEMG, SNR: 0dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 7.66
+RMSE: 83.8014
+完成: DACNN - EOGEMG - 0dB - 第 1 次运行
+
+==========================================
+[92/175] 模型: DACNN, 噪声: EOGEMG, SNR: 0dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 7.75
+RMSE: 84.2374
+完成: DACNN - EOGEMG - 0dB - 第 2 次运行
+
+==========================================
+[93/175] 模型: DACNN, 噪声: EOGEMG, SNR: 0dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 6.70
+RMSE: 95.9039
+完成: DACNN - EOGEMG - 0dB - 第 3 次运行
+
+==========================================
+[94/175] 模型: DACNN, 噪声: EOGEMG, SNR: 0dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 7.31
+RMSE: 87.0466
+完成: DACNN - EOGEMG - 0dB - 第 4 次运行
+
+==========================================
+[95/175] 模型: DACNN, 噪声: EOGEMG, SNR: 0dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 7.86
+RMSE: 83.8469
+完成: DACNN - EOGEMG - 0dB - 第 5 次运行
+
+==========================================
+[96/175] 模型: DACNN, 噪声: EOGEMG, SNR: 2dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 9.00
+RMSE: 74.8787
+完成: DACNN - EOGEMG - 2dB - 第 1 次运行
+
+==========================================
+[97/175] 模型: DACNN, 噪声: EOGEMG, SNR: 2dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 8.37
+RMSE: 77.7083
+完成: DACNN - EOGEMG - 2dB - 第 2 次运行
+
+==========================================
+[98/175] 模型: DACNN, 噪声: EOGEMG, SNR: 2dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 8.31
+RMSE: 78.2418
+完成: DACNN - EOGEMG - 2dB - 第 3 次运行
+
+==========================================
+[99/175] 模型: DACNN, 噪声: EOGEMG, SNR: 2dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 8.11
+RMSE: 83.1465
+完成: DACNN - EOGEMG - 2dB - 第 4 次运行
+
+==========================================
+[100/175] 模型: DACNN, 噪声: EOGEMG, SNR: 2dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 8.62
+RMSE: 75.7826
+完成: DACNN - EOGEMG - 2dB - 第 5 次运行
+
+==========================================
+[101/175] 模型: DACNN, 噪声: EOGEMG, SNR: 4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 9.15
+RMSE: 70.2218
+完成: DACNN - EOGEMG - 4dB - 第 1 次运行
+
+==========================================
+[102/175] 模型: DACNN, 噪声: EOGEMG, SNR: 4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 8.90
+RMSE: 73.1172
+完成: DACNN - EOGEMG - 4dB - 第 2 次运行
+
+==========================================
+[103/175] 模型: DACNN, 噪声: EOGEMG, SNR: 4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 9.67
+RMSE: 67.4833
+完成: DACNN - EOGEMG - 4dB - 第 3 次运行
+
+==========================================
+[104/175] 模型: DACNN, 噪声: EOGEMG, SNR: 4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 9.92
+RMSE: 66.5953
+完成: DACNN - EOGEMG - 4dB - 第 4 次运行
+
+==========================================
+[105/175] 模型: DACNN, 噪声: EOGEMG, SNR: 4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 9.68
+RMSE: 67.8927
+完成: DACNN - EOGEMG - 4dB - 第 5 次运行
+
+==========================================
+[106/175] 模型: ACDAE, 噪声: EOG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 6.11
+RMSE: 95.6766
+完成: ACDAE - EOG - -4dB - 第 1 次运行
+
+==========================================
+[107/175] 模型: ACDAE, 噪声: EOG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 6.66
+RMSE: 89.7245
+完成: ACDAE - EOG - -4dB - 第 2 次运行
+
+==========================================
+[108/175] 模型: ACDAE, 噪声: EOG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 6.61
+RMSE: 90.3942
+完成: ACDAE - EOG - -4dB - 第 3 次运行
+
+==========================================
+[109/175] 模型: ACDAE, 噪声: EOG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 7.06
+RMSE: 85.8134
+完成: ACDAE - EOG - -4dB - 第 4 次运行
+
+==========================================
+[110/175] 模型: ACDAE, 噪声: EOG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 6.56
+RMSE: 90.9063
+完成: ACDAE - EOG - -4dB - 第 5 次运行
+
+==========================================
+[111/175] 模型: ACDAE, 噪声: EMG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 5.15
+RMSE: 113.8859
+完成: ACDAE - EMG - -4dB - 第 1 次运行
+
+==========================================
+[112/175] 模型: ACDAE, 噪声: EMG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 4.72
+RMSE: 118.9722
+完成: ACDAE - EMG - -4dB - 第 2 次运行
+
+==========================================
+[113/175] 模型: ACDAE, 噪声: EMG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 4.57
+RMSE: 122.0143
+完成: ACDAE - EMG - -4dB - 第 3 次运行
+
+==========================================
+[114/175] 模型: ACDAE, 噪声: EMG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 4.58
+RMSE: 122.3587
+完成: ACDAE - EMG - -4dB - 第 4 次运行
+
+==========================================
+[115/175] 模型: ACDAE, 噪声: EMG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 5.08
+RMSE: 113.7736
+完成: ACDAE - EMG - -4dB - 第 5 次运行
+
+==========================================
+[116/175] 模型: ACDAE, 噪声: EOGEMG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 6.64
+RMSE: 94.8373
+完成: ACDAE - EOGEMG - -4dB - 第 1 次运行
+
+==========================================
+[117/175] 模型: ACDAE, 噪声: EOGEMG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 5.76
+RMSE: 105.8277
+完成: ACDAE - EOGEMG - -4dB - 第 2 次运行
+
+==========================================
+[118/175] 模型: ACDAE, 噪声: EOGEMG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 5.82
+RMSE: 104.5814
+完成: ACDAE - EOGEMG - -4dB - 第 3 次运行
+
+==========================================
+[119/175] 模型: ACDAE, 噪声: EOGEMG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 5.22
+RMSE: 113.3668
+完成: ACDAE - EOGEMG - -4dB - 第 4 次运行
+
+==========================================
+[120/175] 模型: ACDAE, 噪声: EOGEMG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 5.90
+RMSE: 103.8338
+完成: ACDAE - EOGEMG - -4dB - 第 5 次运行
+
+==========================================
+[121/175] 模型: ACDAE, 噪声: EOGEMG, SNR: -2dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 6.47
+RMSE: 98.0165
+完成: ACDAE - EOGEMG - -2dB - 第 1 次运行
+
+==========================================
+[122/175] 模型: ACDAE, 噪声: EOGEMG, SNR: -2dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 6.25
+RMSE: 100.4234
+完成: ACDAE - EOGEMG - -2dB - 第 2 次运行
+
+==========================================
+[123/175] 模型: ACDAE, 噪声: EOGEMG, SNR: -2dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 6.79
+RMSE: 93.1939
+完成: ACDAE - EOGEMG - -2dB - 第 3 次运行
+
+==========================================
+[124/175] 模型: ACDAE, 噪声: EOGEMG, SNR: -2dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 7.20
+RMSE: 88.8500
+完成: ACDAE - EOGEMG - -2dB - 第 4 次运行
+
+==========================================
+[125/175] 模型: ACDAE, 噪声: EOGEMG, SNR: -2dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 6.88
+RMSE: 92.0425
+完成: ACDAE - EOGEMG - -2dB - 第 5 次运行
+
+==========================================
+[126/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 0dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 6.83
+RMSE: 94.5776
+完成: ACDAE - EOGEMG - 0dB - 第 1 次运行
+
+==========================================
+[127/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 0dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 7.21
+RMSE: 88.8497
+完成: ACDAE - EOGEMG - 0dB - 第 2 次运行
+
+==========================================
+[128/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 0dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 7.64
+RMSE: 85.5732
+完成: ACDAE - EOGEMG - 0dB - 第 3 次运行
+
+==========================================
+[129/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 0dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 7.58
+RMSE: 86.1349
+完成: ACDAE - EOGEMG - 0dB - 第 4 次运行
+
+==========================================
+[130/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 0dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 7.77
+RMSE: 83.5408
+完成: ACDAE - EOGEMG - 0dB - 第 5 次运行
+
+==========================================
+[131/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 2dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 8.25
+RMSE: 78.9813
+完成: ACDAE - EOGEMG - 2dB - 第 1 次运行
+
+==========================================
+[132/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 2dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 8.57
+RMSE: 75.8857
+完成: ACDAE - EOGEMG - 2dB - 第 2 次运行
+
+==========================================
+[133/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 2dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 7.96
+RMSE: 82.5088
+完成: ACDAE - EOGEMG - 2dB - 第 3 次运行
+
+==========================================
+[134/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 2dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 8.63
+RMSE: 74.8314
+完成: ACDAE - EOGEMG - 2dB - 第 4 次运行
+
+==========================================
+[135/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 2dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 7.72
+RMSE: 84.2444
+完成: ACDAE - EOGEMG - 2dB - 第 5 次运行
+
+==========================================
+[136/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 9.53
+RMSE: 67.8740
+完成: ACDAE - EOGEMG - 4dB - 第 1 次运行
+
+==========================================
+[137/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 9.35
+RMSE: 69.2989
+完成: ACDAE - EOGEMG - 4dB - 第 2 次运行
+
+==========================================
+[138/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 9.26
+RMSE: 70.6958
+完成: ACDAE - EOGEMG - 4dB - 第 3 次运行
+
+==========================================
+[139/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 9.46
+RMSE: 69.2572
+完成: ACDAE - EOGEMG - 4dB - 第 4 次运行
+
+==========================================
+[140/175] 模型: ACDAE, 噪声: EOGEMG, SNR: 4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 9.80
+RMSE: 66.6495
+完成: ACDAE - EOGEMG - 4dB - 第 5 次运行
+
+==========================================
+[141/175] 模型: RALENet, 噪声: EOG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 2.98
+RMSE: 137.2964
+完成: RALENet - EOG - -4dB - 第 1 次运行
+
+==========================================
+[142/175] 模型: RALENet, 噪声: EOG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 3.84
+RMSE: 124.2961
+完成: RALENet - EOG - -4dB - 第 2 次运行
+
+==========================================
+[143/175] 模型: RALENet, 噪声: EOG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 2.58
+RMSE: 143.8348
+完成: RALENet - EOG - -4dB - 第 3 次运行
+
+==========================================
+[144/175] 模型: RALENet, 噪声: EOG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 2.52
+RMSE: 144.6997
+完成: RALENet - EOG - -4dB - 第 4 次运行
+
+==========================================
+[145/175] 模型: RALENet, 噪声: EOG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 3.36
+RMSE: 131.3827
+完成: RALENet - EOG - -4dB - 第 5 次运行
+
+==========================================
+[146/175] 模型: RALENet, 噪声: EMG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 1.77
+RMSE: 161.0021
+完成: RALENet - EMG - -4dB - 第 1 次运行
+
+==========================================
+[147/175] 模型: RALENet, 噪声: EMG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 0.80
+RMSE: 183.0331
+完成: RALENet - EMG - -4dB - 第 2 次运行
+
+==========================================
+[148/175] 模型: RALENet, 噪声: EMG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 2.76
+RMSE: 141.5437
+完成: RALENet - EMG - -4dB - 第 3 次运行
+
+==========================================
+[149/175] 模型: RALENet, 噪声: EMG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 1.94
+RMSE: 156.5177
+完成: RALENet - EMG - -4dB - 第 4 次运行
+
+==========================================
+[150/175] 模型: RALENet, 噪声: EMG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 3.67
+RMSE: 132.3571
+完成: RALENet - EMG - -4dB - 第 5 次运行
+
+==========================================
+[151/175] 模型: RALENet, 噪声: EOGEMG, SNR: -4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 3.06
+RMSE: 138.3012
+完成: RALENet - EOGEMG - -4dB - 第 1 次运行
+
+==========================================
+[152/175] 模型: RALENet, 噪声: EOGEMG, SNR: -4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 3.45
+RMSE: 133.5625
+完成: RALENet - EOGEMG - -4dB - 第 2 次运行
+
+==========================================
+[153/175] 模型: RALENet, 噪声: EOGEMG, SNR: -4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 2.21
+RMSE: 151.4760
+完成: RALENet - EOGEMG - -4dB - 第 3 次运行
+
+==========================================
+[154/175] 模型: RALENet, 噪声: EOGEMG, SNR: -4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 3.96
+RMSE: 126.1336
+完成: RALENet - EOGEMG - -4dB - 第 4 次运行
+
+==========================================
+[155/175] 模型: RALENet, 噪声: EOGEMG, SNR: -4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 3.99
+RMSE: 126.9272
+完成: RALENet - EOGEMG - -4dB - 第 5 次运行
+
+==========================================
+[156/175] 模型: RALENet, 噪声: EOGEMG, SNR: -2dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 3.72
+RMSE: 129.9182
+完成: RALENet - EOGEMG - -2dB - 第 1 次运行
+
+==========================================
+[157/175] 模型: RALENet, 噪声: EOGEMG, SNR: -2dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 4.77
+RMSE: 118.8320
+完成: RALENet - EOGEMG - -2dB - 第 2 次运行
+
+==========================================
+[158/175] 模型: RALENet, 噪声: EOGEMG, SNR: -2dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 3.48
+RMSE: 131.6991
+完成: RALENet - EOGEMG - -2dB - 第 3 次运行
+
+==========================================
+[159/175] 模型: RALENet, 噪声: EOGEMG, SNR: -2dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 4.51
+RMSE: 120.9216
+完成: RALENet - EOGEMG - -2dB - 第 4 次运行
+
+==========================================
+[160/175] 模型: RALENet, 噪声: EOGEMG, SNR: -2dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 4.86
+RMSE: 115.7590
+完成: RALENet - EOGEMG - -2dB - 第 5 次运行
+
+==========================================
+[161/175] 模型: RALENet, 噪声: EOGEMG, SNR: 0dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 5.64
+RMSE: 104.4048
+完成: RALENet - EOGEMG - 0dB - 第 1 次运行
+
+==========================================
+[162/175] 模型: RALENet, 噪声: EOGEMG, SNR: 0dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 6.25
+RMSE: 98.6405
+完成: RALENet - EOGEMG - 0dB - 第 2 次运行
+
+==========================================
+[163/175] 模型: RALENet, 噪声: EOGEMG, SNR: 0dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 5.79
+RMSE: 101.3385
+完成: RALENet - EOGEMG - 0dB - 第 3 次运行
+
+==========================================
+[164/175] 模型: RALENet, 噪声: EOGEMG, SNR: 0dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 4.97
+RMSE: 110.9120
+完成: RALENet - EOGEMG - 0dB - 第 4 次运行
+
+==========================================
+[165/175] 模型: RALENet, 噪声: EOGEMG, SNR: 0dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 6.14
+RMSE: 100.1468
+完成: RALENet - EOGEMG - 0dB - 第 5 次运行
+
+==========================================
+[166/175] 模型: RALENet, 噪声: EOGEMG, SNR: 2dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 6.64
+RMSE: 94.0550
+完成: RALENet - EOGEMG - 2dB - 第 1 次运行
+
+==========================================
+[167/175] 模型: RALENet, 噪声: EOGEMG, SNR: 2dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 6.48
+RMSE: 95.3143
+完成: RALENet - EOGEMG - 2dB - 第 2 次运行
+
+==========================================
+[168/175] 模型: RALENet, 噪声: EOGEMG, SNR: 2dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 6.50
+RMSE: 94.9597
+完成: RALENet - EOGEMG - 2dB - 第 3 次运行
+
+==========================================
+[169/175] 模型: RALENet, 噪声: EOGEMG, SNR: 2dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 7.82
+RMSE: 84.1240
+完成: RALENet - EOGEMG - 2dB - 第 4 次运行
+
+==========================================
+[170/175] 模型: RALENet, 噪声: EOGEMG, SNR: 2dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 7.46
+RMSE: 85.8583
+完成: RALENet - EOGEMG - 2dB - 第 5 次运行
+
+==========================================
+[171/175] 模型: RALENet, 噪声: EOGEMG, SNR: 4dB, 第 1 次运行
+==========================================
+🚀 Starting training
+SNR: 7.11
+RMSE: 87.6336
+完成: RALENet - EOGEMG - 4dB - 第 1 次运行
+
+==========================================
+[172/175] 模型: RALENet, 噪声: EOGEMG, SNR: 4dB, 第 2 次运行
+==========================================
+🚀 Starting training
+SNR: 6.47
+RMSE: 93.3419
+完成: RALENet - EOGEMG - 4dB - 第 2 次运行
+
+==========================================
+[173/175] 模型: RALENet, 噪声: EOGEMG, SNR: 4dB, 第 3 次运行
+==========================================
+🚀 Starting training
+SNR: 7.92
+RMSE: 80.2689
+完成: RALENet - EOGEMG - 4dB - 第 3 次运行
+
+==========================================
+[174/175] 模型: RALENet, 噪声: EOGEMG, SNR: 4dB, 第 4 次运行
+==========================================
+🚀 Starting training
+SNR: 8.02
+RMSE: 79.9129
+完成: RALENet - EOGEMG - 4dB - 第 4 次运行
+
+==========================================
+[175/175] 模型: RALENet, 噪声: EOGEMG, SNR: 4dB, 第 5 次运行
+==========================================
+🚀 Starting training
+SNR: 7.94
+RMSE: 80.8841
+完成: RALENet - EOGEMG - 4dB - 第 5 次运行
+
+==========================================
+所有实验完成! 总任务数: 175
+日志已保存到: results/all_results5.log

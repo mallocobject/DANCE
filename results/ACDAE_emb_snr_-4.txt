@@ -1,0 +1,5 @@
+ACDAE	seed=1	snr=3.73	rmse=0.2494
+ACDAE	seed=2	snr=4.06	rmse=0.2419
+ACDAE	seed=3	snr=4.22	rmse=0.2346
+ACDAE	seed=4	snr=3.80	rmse=0.2470
+ACDAE	seed=5	snr=3.76	rmse=0.2485

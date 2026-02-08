@@ -1,0 +1,5 @@
+DACNN	seed=1	snr=-2.04	rmse=0.4906
+DACNN	seed=2	snr=-1.09	rmse=0.4375
+DACNN	seed=3	snr=-2.96	rmse=0.5403
+DACNN	seed=4	snr=-2.60	rmse=0.5141
+DACNN	seed=5	snr=-0.97	rmse=0.4309
